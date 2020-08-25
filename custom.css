@@ -1,0 +1,149 @@
+:root {
+--pagedjs-margin-right: 0in !important;
+--pagedjs-margin-left: 0in !important;
+--pagedjs-margin-top: 0in !important;
+--pagedjs-margin-bottom: 0in !important;
+}
+
+/* Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Ubuntu+Condensed&display=swap');
+
+/* Headers */
+h1 {
+  font-family: Ubuntu Condensed;
+  text-transform: uppercase;
+  color: white;
+  background-color: #5D7E78;
+  size: 5em;
+  padding-left: 40px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 50px;
+}
+
+h2 {
+  font-family: Ubuntu Condensed;
+  text-transform: none;
+  color: #5D7E78;
+  size: 4em;
+  padding-left: 40px;
+}
+
+h3 {
+  font-family: Ubuntu Condensed;
+  text-transform: none;
+  color: #708D87;
+  size: 3em;
+  padding-left: 40px;
+}
+
+h4 {
+  font-family: Ubuntu Condensed;
+  text-transform: none;
+  color: #80918E;
+  size: 2.5em;
+  padding-left: 40px;
+}
+
+h5 {
+  font-family: Ubuntu Condensed;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: gray;
+  size: 1em;
+  padding-left: 35px;
+  margin-top: 0.1em;
+}
+
+/*title*/
+h1.title {
+  font-family: Ubuntu Condensed;
+  background-color: #466A63;
+  color: white;
+  font-size: 4em;
+  padding-top: 200px;
+  padding-left: 15px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* Body */
+
+body {
+  font-family: Open Sans;
+  font-weight: 300;
+  color: black;
+  background-color: white;
+  padding-left: 0px;
+}
+
+p {
+  font-family: Open Sans;
+  font-weight: 300;
+  color: black;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Text box 1 */
+
+.text-box-info {
+background-color: #E2EFE1;
+color: black;
+border-style: solid;
+border-width: 4px;
+border-radius: 8px; /*rounds corners*/
+border-color: #C8DCD2;
+margin-left: 20px;
+margin-right: 20px;
+}
+
+
+/* --- Circle --- */
+.circle {
+    width: 250px;
+    height: 250px;
+    background-color: #5D7E78;
+    border-color: #80918E;
+    border-width: 4px;
+    border-radius: 50%;
+    float: right;
+    -webkit-shape-outside: circle();
+    shape-outside: circle() margin-box;
+    margin-left: 20px;
+    margin-right: 40px;
+    margin-top: 1px;
+    margin-bottom: 90px;
+    shape-inside: circle();
+}
+
+/* --- Center alignment ---*/
+.aligncenter {
+    text-align: center;
+}
+
+/* -------- Text box over image --------*/
+
+/* Container holding the image and the text */
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  font-family: Ubuntu Condensed;
+  text-transform: uppercase;
+  font-size: 3.5em;
+  color: #5D7E78;
+}
+
+
