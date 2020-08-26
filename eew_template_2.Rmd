@@ -155,7 +155,7 @@ effluentviolations[17:19,3] <- as.character("Trump")
 
 effluentgraph <- ggplot(effluentviolations, mapping=aes(x=factor(Year),
   y=Violations, color=President, group=1))+
-  scale_discrete_manual(values=c("#450d54", "#22908d", "#e56d13"), aesthetics = c("colour"))+
+  scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   geom_point()+
   geom_line(show.legend=FALSE)+
   labs(y="Violations", x="Year")+
@@ -186,7 +186,7 @@ inspections[17:19,3] <- as.character("Trump")
 
 inspectiongraph <- ggplot(inspections, mapping=aes(x=factor(Date),
                                                         y=Count, color=President, group=1))+
-  scale_discrete_manual(values=c("#450d54", "#22908d", "#e56d13"), aesthetics = c("colour"))+
+  scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   geom_point(show.legend=FALSE)+
   geom_line(show.legend=FALSE)+
   labs(y="Inspections", x="Year")+
@@ -219,13 +219,13 @@ enforcement$Amountinthousands <-round(enforcement$Amountinthousands,0)
 
 #plot change in enforcement
 enforcement$President <- as.character("Bush")
-enforcement[9:16,4] <- as.character("Obama")
-enforcement[17:19,4] <- as.character("Trump")
+enforcement[9:16,5] <- as.character("Obama")
+enforcement[17:19,5] <- as.character("Trump")
 
-enforcementactiongraph <- enforcement %>% ggplot()+
-  geom_point(aes(x=factor(Date),y=Count, color=President, group=1), show.legend=FALSE)+
-  scale_discrete_manual(values=c("#450d54", "#22908d", "#e56d13"), aesthetics = c("colour"))+
-  geom_line(aes(x=factor(Date),y=Count, color=President, group=1), show.legend = FALSE)+
+enforcementactiongraph <- ggplot(enforcement, mapping=aes(x=factor(Date),y=Count, color=President, group=1))+
+  geom_point(show.legend=FALSE)+
+  geom_line(show.legend = FALSE)+
+  scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y="# Actions", x="Year")+
   ggtitle("Enforcement Actions")+
   scale_y_continuous(expand=c(0,0), limits=c(0,50))+
@@ -235,7 +235,7 @@ enforcementactiongraph <- enforcement %>% ggplot()+
 
 enforcementfinegraph <- enforcement %>% ggplot()+
   geom_point(aes(x=factor(Date),y=Amountinthousands , color=President, group=1), show.legend=FALSE)+
-  scale_color_viridis(discrete=TRUE)
+  scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   geom_line(aes(x=factor(Date),y=Amountinthousands, color=President, group=1), show.legend = FALSE)+
   labs(y="Fines ($1000s)", x="Year")+
   ggtitle("Enforcement Fines")+
