@@ -1,5 +1,5 @@
 ---
-title: "Congressional Report Card"
+title: "EEW Congressional Report Card"
 output: 
   html_paged:
     number_sections: false
@@ -92,55 +92,38 @@ eCAA$year <- as.numeric(eCAA$year)
 ```
 
 <div class="container">
-  <img src="factory_unsplash.jpg" alt="Snow" style="width:100%;">
-  <div class="top-left">District Info</div>
+  <img src="MA4_data/ma4_map.jpeg" alt="Snow" style="width:100%;">
+  <div class="top-left">Massachusetts' 4th District</div>
+  <div class="middle-left">Seat held by Joseph Kennedy III since 2013</div>
 </div> 
 
-### 17 August 2020  
+### 25 August 2020  
 
-#### This report was produced by the Environmental Enforcement Watch, a project of EDGI. Data utlized to produce this report comes from the EPA's Enforcement and Compliance History Online [ECHO](https://echo.epa.gov/). 
+#### The [Environmental Enforcement Watch](https://www.environmentalenforcementwatch.org/) (EEW), a project of [EDGI](https://envirodatagov.org/), produced this report using data from the EPA. It provides information about pollution violations and the EPA’s efforts to control pollution. Congress has the power to strengthen and oversee how well EPA protects us from pollution. 
 
 <a href="https://www.environmentalenforcementwatch.org/"><img src="eew_logo.png" style="float: left; width: 25%; margin-left: 20%" ></a>
 
 <a href="https://envirodatagov.org/"><img src="edgi_logo.png" style="float: right; width: 35%; margin-right: 20%" ></a>
 
-
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
 
-
 ##### DISTRICT INFORMATION
 
-# Massachussetts' 4th Congressional District   
+# Why and What 
 
-## Joe Kennedy 
-
-<a ><img src="Joe_kennedy.jpeg" style="float: left; width: 25%; margin-right: 5%" ></a>
-
-<h2><span style="color:#25539f">Democrat</span></h2>
-## In office since January 3rd, 2013
-
-## Relevant Committee Membership: [Energy and Commerce Committee](https://energycommerce.house.gov/)
-<div class="text-box-info">
-
-<p>The House Energy and Commerce Committee is the oldest house committee, and has one of the broadest mandates. Among other things, it has jurisdiction over environmental protection, clean air and climate change, safe drinking water, and toxic chemicals and hazardous waste. Additionally, it has oversight of the Environmental Protection Agency.</p>
-</div>
-### Relevant Subcommittees: 
-1. [Energy](https://energycommerce.house.gov/subcommittees/energy-116th-congress) 
-2. [Oversights and Investigations](https://energycommerce.house.gov/subcommittees/oversight-and-investigations-116th-congress) 
-
-## What powers do representatives on this committee/subcommittee have? 
+## Why
+It is Congress's job to oversee how the laws it passes are implemented by agencies like the Environmental Protection Agency (EPA). Congress has charged the EPA with enforcing most of the laws that protect environmental health by controlling the release of pollution and hazardous materials into the air, water and land. Without effective enforcement, **these laws are meaningless**. Congress can strengthen EPA enforcement by increasing resources to the EPA, passing more effective laws, requiring better data collection, and general oversight. In the House of Representatives, the Energy and Commerce Committee is the main committee that oversees the EPA. 
 
 <div class="text-box-info">
-
-<p>As a member of this committee and subcommittee, Joe can . . .</p>
-
+### [House Energy and Commerce Committee](https://energycommerce.house.gov/about-ec)
+This Committee is the oldest house Committee with the broadest jurisdiction of any authorizing committee. The Committee oversees the EPA, and legislates on issues like environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee includes 55 members – 24 Republicans and 31 Democrats. The subcommittees of primary interest to these reports are Environment & Climate Change and Oversight & Investigations. 
 </div>
 
-## Cosponsored Bills in Interest Areas 
+## What - the Data in this report 
+While ECHO remains the only publicly available and comprehensive source for environmental compliance data, it is known to be extremely unreliable. According to former EPA Administrator Cynthia Giles, states often report less than 5% of violations under the regulations controlling clean air and hazardous waste, which means that ECHO data may exclude more than 95% of such violations. Therefore, other than the Clean Water Act, for which violations are reported through an automated system, violation data should not be considered accurate. It is important to note that states which might have the most violations may actually be the most responsible in terms of their reporting to EPA. Below is a color code of reliability for each data type presented in this report: 
 
-Pull info from govtrack
 
 
 \pagebreak
@@ -711,6 +694,38 @@ The GHGRP is an EPA Program mandated by law that requires reporting of major sou
 * Real world comparison	
 * Major emitters in your district	
 
+\pagebreak
+
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
+
+
+##### DISTRICT INFORMATION
+
+# Legislator Information   
+
+## Joe Kennedy 
+
+<a ><img src="Joe_kennedy.jpeg" style="float: left; width: 25%; margin-right: 5%" ></a>
+
+<h2><span style="color:#25539f">Democrat</span></h2>
+## In office since January 3rd, 2013
+
+## Relevant Committee Membership: [Energy and Commerce Committee](https://energycommerce.house.gov/)
+<div class="text-box-info">
+
+<p>The House Energy and Commerce Committee is the oldest house committee, and has one of the broadest mandates. Among other things, it has jurisdiction over environmental protection, clean air and climate change, safe drinking water, and toxic chemicals and hazardous waste. Additionally, it has oversight of the Environmental Protection Agency.</p>
+</div>
+### Relevant Subcommittees: 
+1. [Energy](https://energycommerce.house.gov/subcommittees/energy-116th-congress) 
+2. [Oversights and Investigations](https://energycommerce.house.gov/subcommittees/oversight-and-investigations-116th-congress) 
+
+## What powers do representatives on this committee/subcommittee have? 
+
+<div class="text-box-info">
+
+<p>As a member of this committee and subcommittee, Joe can . . .</p>
+
+</div>
 
 \pagebreak
 
