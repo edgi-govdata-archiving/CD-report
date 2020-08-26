@@ -90,14 +90,11 @@ eCAA <- read.csv(here("MA4_data/MA4_CAA_enforcement.csv"))
 eCAA$year <- as.numeric(eCAA$year)
 
 ```
-
 <div class="container">
-  <img src="factory_unsplash.jpg" alt="Snow" style="width:100%;">
+  <img src="ma4_maalvika.jpg" alt="Snow" style="width:100%;">
   <div class="top-left">Massachusetts' 4th District</div>
   <div class="middle-left">Seat held by Joseph Kennedy III since 2013</div>
 </div> 
-
-
 ### 26 August 2020  
 
 #### The [Environmental Enforcement Watch](https://www.environmentalenforcementwatch.org/) (EEW), a project of [EDGI](https://envirodatagov.org/), produced this report using data from the EPA. It provides information about pollution violations and the EPA’s efforts to control pollution. Congress has the power to strengthen and oversee how well EPA protects us from pollution. 
@@ -119,12 +116,7 @@ Data included herein were drawn from EPA's publicly available Enforcement and Co
 # Why and What 
 
 ## Why
-It is Congress's job to oversee how the laws it passes are implemented by agencies like the Environmental Protection Agency (EPA). Congress has charged the EPA with enforcing most of the laws that protect environmental health by controlling the release of pollution and hazardous materials into the air, water and land. Without effective enforcement, **these laws are meaningless**. Congress can strengthen EPA enforcement by increasing resources to the EPA, passing more effective laws, requiring better data collection, and general oversight. In the House of Representatives, the Energy and Commerce Committee is the main committee that oversees the EPA. 
-
-<div class="text-box-info">
-### [House Energy and Commerce Committee](https://energycommerce.house.gov/about-ec)
-This Committee is the oldest house Committee with the broadest jurisdiction of any authorizing committee. The Committee oversees the EPA, and legislates on issues like environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee includes 55 members – 24 Republicans and 31 Democrats. The subcommittees of primary interest to these reports are Environment & Climate Change and Oversight & Investigations. 
-</div>
+It is Congress's job to oversee how the laws it passes are implemented by agencies like the Environmental Protection Agency (EPA). Congress has charged the EPA with enforcing most of the laws that protect environmental health by controlling the release of pollution and hazardous materials into the air, water and land. Without effective enforcement, **these laws are meaningless**. Congress can strengthen EPA enforcement by increasing resources to the EPA, passing more effective laws, requiring better data collection, and general oversight. In the **House of Representatives**, the **Energy and Commerce Committee** is the main committee that oversees the EPA.  In the **Senate**, the **Environment and Public Works Committee** is the main committee that oversees the EPA. 
 
 ## What - the Data in this report 
 While ECHO remains the only publicly available and comprehensive source for environmental compliance data, it is known to be extremely unreliable. According to former EPA Administrator Cynthia Giles, states often report less than 5% of violations under the regulations controlling clean air and hazardous waste, which means that ECHO data may exclude more than 95% of such violations. Therefore, other than the Clean Water Act, for which violations are reported through an automated system, violation data should not be considered accurate. It is important to note that states which might have the most violations may actually be the most responsible in terms of their reporting to EPA. Below is a color code of reliability for each data type presented in this report: 
@@ -713,8 +705,8 @@ The GHGRP is an EPA Program mandated by law that requires reporting of major sou
 
 ## Relevant Committee Membership: [Energy and Commerce Committee](https://energycommerce.house.gov/)
 <div class="text-box-info">
-
-<p>The House Energy and Commerce Committee is the oldest house committee, and has one of the broadest mandates. Among other things, it has jurisdiction over environmental protection, clean air and climate change, safe drinking water, and toxic chemicals and hazardous waste. Additionally, it has oversight of the Environmental Protection Agency.</p>
+### [House Energy and Commerce Committee](https://energycommerce.house.gov/about-ec)
+This Committee is the oldest house Committee with the broadest jurisdiction of any authorizing committee. The Committee oversees the EPA, and legislates on issues like environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee includes 55 members – 24 Republicans and 31 Democrats. The subcommittees of primary interest to these reports are Environment & Climate Change and Oversight & Investigations. 
 </div>
 ### Relevant Subcommittees: 
 1. [Energy](https://energycommerce.house.gov/subcommittees/energy-116th-congress) 
