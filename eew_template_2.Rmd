@@ -57,7 +57,7 @@ activefacilities <- `active-facilities_All_pg3_MA-4`
 theme_meg <- function () { 
   theme_bw(base_family="Georgia") %+replace% 
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.border = element_blank(),
-          axis.line = element_line(colour = "black"), axis.title.x=element_text(face = "bold", size = 14), 
+          axis.line = element_line(colour = "black"), axis.title.x=element_text(face = "bold", size = 12), 
           axis.title.y=element_text(face = "bold", size = 10, angle=90), plot.title=element_text(face = "bold", size = 14, hjust =.5), 
           axis.text.x=element_text(face = "bold", size = 14), axis.text.y=element_text(face = "bold", size = 8))
 }
@@ -155,7 +155,7 @@ effluentviolations[17:19,3] <- as.character("Trump")
 
 effluentgraph <- ggplot(effluentviolations, mapping=aes(x=factor(Year),
   y=Violations, color=President, group=1))+
-  scale_color_viridis(discrete= TRUE)+
+  scale_discrete_manual(values=c("#450d54", "#22908d", "#e56d13"), aesthetics = c("colour"))+
   geom_point()+
   geom_line(show.legend=FALSE)+
   labs(y="Violations", x="Year")+
@@ -186,7 +186,7 @@ inspections[17:19,3] <- as.character("Trump")
 
 inspectiongraph <- ggplot(inspections, mapping=aes(x=factor(Date),
                                                         y=Count, color=President, group=1))+
-  scale_color_viridis(discrete= TRUE)+
+  scale_discrete_manual(values=c("#450d54", "#22908d", "#e56d13"), aesthetics = c("colour"))+
   geom_point(show.legend=FALSE)+
   geom_line(show.legend=FALSE)+
   labs(y="Inspections", x="Year")+
@@ -213,6 +213,10 @@ enforcementchange$PercentDifferenceFine <- as.numeric(100*(enforcementchange[1,4
                                                          enforcementchange[1,3])
 enforcementchange[,1:6] <-round(enforcementchange[,1:6],2)
 
+##make a new amount column /1000
+enforcement$Amountinthousands <- ((enforcement$Amount)/1000)
+enforcement$Amountinthousands <-round(enforcement$Amountinthousands,0)
+
 #plot change in enforcement
 enforcement$President <- as.character("Bush")
 enforcement[9:16,4] <- as.character("Obama")
@@ -220,7 +224,7 @@ enforcement[17:19,4] <- as.character("Trump")
 
 enforcementactiongraph <- enforcement %>% ggplot()+
   geom_point(aes(x=factor(Date),y=Count, color=President, group=1), show.legend=FALSE)+
-  scale_color_viridis(discrete=TRUE)+
+  scale_discrete_manual(values=c("#450d54", "#22908d", "#e56d13"), aesthetics = c("colour"))+
   geom_line(aes(x=factor(Date),y=Count, color=President, group=1), show.legend = FALSE)+
   labs(y="# Actions", x="Year")+
   ggtitle("Enforcement Actions")+
@@ -230,12 +234,12 @@ enforcementactiongraph <- enforcement %>% ggplot()+
   theme(axis.text.x=element_text(size=9),axis.title.x = element_blank())
 
 enforcementfinegraph <- enforcement %>% ggplot()+
-  geom_point(aes(x=factor(Date),y=Amount, color=President, group=1), show.legend=FALSE)+
-  scale_color_viridis(discrete=TRUE)+
-  geom_line(aes(x=factor(Date),y=Amount, color=President, group=1), show.legend = FALSE)+
-  labs(y="Fines ($)", x="Year")+
+  geom_point(aes(x=factor(Date),y=Amountinthousands , color=President, group=1), show.legend=FALSE)+
+  scale_color_viridis(discrete=TRUE)
+  geom_line(aes(x=factor(Date),y=Amountinthousands, color=President, group=1), show.legend = FALSE)+
+  labs(y="Fines ($1000s)", x="Year")+
   ggtitle("Enforcement Fines")+
-  scale_y_continuous(expand=c(0,0), limits=c(0,3000000))+
+  scale_y_continuous(expand=c(0,0), limits=c(0,3000))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
   theme(axis.text.x=element_text(size=9),axis.title.x = element_blank())
