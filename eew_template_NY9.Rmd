@@ -327,15 +327,13 @@ inspectionsper1000[2] <-round(inspectionsper1000[2],0)
 #Now let's visualize this 
 inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper1000, x=Program))+
   geom_bar(position="dodge", stat="identity", show.legend=FALSE)+
-  geom_rect(fill="#FFD300", alpha=.02, xmin=0, xmax=1.5, ymin=0, ymax=300)+
-  geom_rect(fill="#50C878", alpha=.02, xmin=1.5, xmax=2.5, ymin=0, ymax=300)+
-  geom_rect(fill="#FFD300", alpha=.02, xmin=2.5, xmax=3.5, ymin=0, ymax=300)+
   scale_fill_manual(values=c("#999999" , "#333333", "#d43a69"))+
   labs(y="Inspections per 1000 Facilities\n", x="")+
   geom_text(aes(label=Inspectionsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
   ggtitle("Inspections per 1000 Facilities in 2019")+
   scale_y_continuous(expand=c(0,0),limits = c(0,300))+
-  theme_meg()
+  theme_meg()+
+   theme(axis.text.x = element_text(color =(values=c("#FFD300" , "#50C878", "#FFD300"))))
 
 #comparing violations
 #let's combine the violations data at national, state, CD level 
@@ -352,21 +350,19 @@ violationsper1000[2] <-round(violationsper1000[2],0)
 #Now let's visualize this 
 violations1000bar <- ggplot(violationsper1000, aes(fill=Region, y=violationsper1000, x=Program))+
   geom_bar(position="dodge", stat="identity")+
-  geom_rect(fill="#C21807", alpha=.02, xmin=0, xmax=1.5, ymin=0, ymax=600)+
-  geom_rect(fill="#50C878", alpha=.02, xmin=1.5, xmax=2.5, ymin=0, ymax=600)+
-  geom_rect(fill="#C21807", alpha=.02, xmin=2.5, xmax=3.5, ymin=0, ymax=600)+
   scale_fill_manual(values=c("#999999" , "#333333", "#d43a69"))+
   labs(y="Violations per 1000 Facilities\n", x="")+
   geom_text(aes(label=violationsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
   ggtitle("Violations per 1000 Facilities in 2019")+
   scale_y_continuous(expand=c(0,0),limits = c(0,600))+
   theme_meg()+
-  theme(legend.position = c(0.8, 0.5))
+  theme(legend.position = c(0.8, 0.5),axis.text.x = element_text(color =(values=c("#C21807" , "#50C878", "#C21807"))))
 
 inspect1000bar / violations1000bar
   
 ```
 
+### See color-coded table on page 1 for data reliability color codes, visualized here as x-axis labels and on subsequent pages as chart titles
 ### Still need - 
 * Enforcement fines nationally and statewide 
 
@@ -728,6 +724,8 @@ GHGgraph <- ggplot(GHGs_forgraph, aes(fill=Region, y=Emissions, x=as.factor(Year
 ## In office since January 3rd, 2013
 
 ## Relevant Committee Membership: Vice Chair, [Energy and Commerce Committee](https://energycommerce.house.gov/)
+<br />
+<br />
 <div class="text-box-info">
 ### [House Energy and Commerce Committee](https://energycommerce.house.gov/about-ec)
 This Committee is the oldest house Committee with the broadest jurisdiction of any authorizing committee. The Committee oversees the EPA, and legislates on issues like environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee includes 55 members – 24 Republicans and 31 Democrats. The subcommittees of primary interest to these reports are Environment & Climate Change and Oversight & Investigations. 
