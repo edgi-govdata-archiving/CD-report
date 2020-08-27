@@ -723,7 +723,7 @@ GHGgraph <- ggplot(GHGs_forgraph, aes(fill=Region, y=Emissions, x=as.factor(Year
 
 <a ><img src="greg_walden.jpeg" style="float: left; width: 25%; margin-right: 5%" ></a>
 
-<h2><span style="color:#25539f">Democrat</span></h2>
+<h2><span style="color:#C21807">Republican</span></h2>
 ## In office since January 6th, 1999
 
 ## Relevant Committee Membership: Ranking Member, [Energy and Commerce Committee](https://energycommerce.house.gov/)
