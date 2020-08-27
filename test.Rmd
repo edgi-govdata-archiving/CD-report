@@ -1,0 +1,36 @@
+---
+title: "testagain"
+author: "Meg Raisle"
+date: "8/26/2020"
+output: html_document
+---
+```{r setup, include=FALSE}
+library(tidyverse)
+library(pagedown)
+library(palmerpenguins)
+library(patchwork)
+library(here)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(shiny)
+library(extrafont)
+library(viridis)
+library(grid)
+library(gridExtra)
+library(fishualize)
+library(kableExtra)
+library(ggrepel)
+library(knitr)
+library(pander)
+loadfonts()
+```
+
+
+```{r data, eval=TRUE, warning=FALSE, echo=FALSE}
+
+specie <- c(rep("sorgho" , 3) , rep("poacee" , 3) , rep("banana" , 3) , rep("triticum" , 3) )
+condition <- rep(c("normal" , "stress" , "Nitrogen") , 4)
+value <- abs(rnorm(12 , 0 , 15))
+data <- data.frame(specie,condition,value)
+```
