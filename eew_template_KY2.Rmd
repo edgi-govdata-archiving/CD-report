@@ -45,11 +45,11 @@ names(USAviolationsper1000_All)[1] <- "Program"
 
 #each time this section is run, change "here" to specify the subfolder for the district or state 
 #Also, the way it is set up, you're going to need to cntrl f to change the district and date for the files
-filenames = list.files(here("KY2"), pattern = ".csv")
-file_KYunt = length(filenames)
+filenames = list.files(here("testing"), pattern = ".csv")
+file_count = length(filenames)
 for (i in filenames){  
   name <- gsub("^([^_]*_[^_]*_[^_]*_[^-]*-[^-*])-.*$","\\1", i)
-  assign(name, read.csv(here("KY2", i)))
+  assign(name, read.csv(here("testing", i)))
 }
 
 activefacilities <- `active-facilities_All_pg3_KY-2`
