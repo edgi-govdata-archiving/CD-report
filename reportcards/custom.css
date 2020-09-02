@@ -149,7 +149,7 @@ margin-right: 20px;
 /* Middle left text */
 .middle-left {
   position: absolute;
-  top: 60px;
+  top: 70px;
   left: 16px;
   font-family: Ubuntu Condensed;
   text-transform: uppercase;
@@ -157,3 +157,13 @@ margin-right: 20px;
   color: black;
 }
 
+/* bottom left text */
+.bottom-left {
+  position: absolute;
+  top: 120px;
+  left: 16px;
+  font-family: Ubuntu Condensed;
+  text-transform: uppercase;
+  font-size: 2em;
+  color: #466A63;
+}

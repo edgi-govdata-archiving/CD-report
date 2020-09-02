@@ -45,14 +45,14 @@ names(USAviolationsper1000_All)[1] <- "Program"
 
 #each time this section is run, change "here" to specify the subfolder for the district or state 
 #Also, the way it is set up, you're going to need to cntrl f to change the district and date for the files
-filenames = list.files(here("IL9"), pattern = ".csv")
+filenames = list.files(here("FL14"), pattern = ".csv")
 file_count = length(filenames)
 for (i in filenames){  
   name <- gsub("^([^_]*_[^_]*_[^_]*_[^-]*-[^-]*)-.*$","\\1", i)
-  assign(name, read.csv(here("IL9", i)))
+  assign(name, read.csv(here("FL14", i)))
 }
 
-activefacilities <- `active-facilities_All_pg3_IL-9`
+activefacilities <- `active-facilities_All_pg3_FL-14`
 
 #set up a theme default to reduce code block later 
 theme_meg <- function () { 
@@ -74,18 +74,17 @@ theme_megpie <- function () {
 
 ```
  <div class="container">
-  <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/IL9/IL9_map.png" alt="Snow" style="width:100%;">
-  <div class="top-left">Illinois' 9th District</div>
-  <div class="bottom-left">Seat held by Greg Walden since 1999</div>
+  <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/FL14/FL14_map.png" alt="Snow" style="width:100%;">
+  <div class="top-left">Florida's 14th District</div>
+  <div class="middle-left">Seat held by Kathy Castor since 2013</div>
+  <div class="bottom-left">Report Generated 2 September 2020</div>
 </div>
 <p style="font-size:6pt; font-style:italic">
 Map above shows congressional district with clusters of regulated facilities
 </p>
-### 2 September 2020
 The [Environmental Enforcement Watch](https://www.environmentalenforcementwatch.org/) (EEW), a project of [EDGI](https://envirodatagov.org/), produced this report using data from the EPA. It provides information about pollution violations and the EPA’s efforts to control pollution. Congress has the power to strengthen and oversee how well EPA protects us from pollution. 
 <a href="https://www.environmentalenforcementwatch.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/eew_logo.png" style="float: left; width: 15%; margin-left: 20%" ></a>
 <a href="https://envirodatagov.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 25%; margin-right: 20%" ></a>
-
 <p style="font-size:6pt; font-style:italic; padding-top:60px">
 **Disclaimer:**
 Data included herein were drawn from EPA's publicly available Enforcement and Compliance History Online ECHO database on August 25, 2020. EDGI has no control over the nature, content, or sustained availability of this database. While EDGI works to assure that the information in this report is correct, that information is subject to limitations of the ECHO database, and is provided “as is.” EDGI makes no representations or warranties of aOR kind, express or implied, about the completeness or reliability of this information. The information and images within this report are for general information purposes only. To examine this data for yourself you can view our analysis here and re-run it here.
@@ -129,7 +128,7 @@ head(datacheck) %>%
 
 ##### DRAFT not for circulation
 
-# Highlights for Illinois' 9th District
+# Highlights for Florida's 14th District
 * <h2>Highlight from Open Hour</h2>
 * <h2>Highlight from Open Hour</h2>
 * <h2>Highlight from Open Hour</h2>
@@ -139,7 +138,7 @@ head(datacheck) %>%
 ##So, we're going to do the first 3 years of Obama and Trump so average
 #[9:11,2] Obama
 # [17:19,2] Trump
-effluentviolations <- `effluent-violations_CWA_pg3_IL-9`
+effluentviolations <- `effluent-violations_CWA_pg3_FL-14`
 effluentviolations <- effluentviolations[-c(20),]
 effluentchange <- data.frame("Obama Average" =mean(effluentviolations[9:11,2]),
                              "Trump Average" =mean(effluentviolations[17:19,2]))
@@ -154,10 +153,9 @@ effluentviolations[9:16,3] <- as.character("Obama")
 effluentviolations[17:19,3] <- as.character("Trump")
 
 effluentgraph <- ggplot(effluentviolations, mapping=aes(x=factor(Year),
-  y=Violations, color=President, group=1))+
-  scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  geom_point()+
-  geom_line(show.legend=FALSE)+
+  y=Violations, fill=President, group=1))+
+  geom_bar(stat="identity")+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y="Violations", x="Year")+
   ggtitle("Clean Water Act Violations")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(effluentviolations$Violations+(.2*max(effluentviolations$Violations)))))+
@@ -170,7 +168,7 @@ effluentgraph <- ggplot(effluentviolations, mapping=aes(x=factor(Year),
 ##So, we're going to do the first 3 years of Obama and Trump so average
 #[9:11,2] Obama
 # [17:19,2] Trump
-inspections <- `inspections_All_pg3_IL-9`
+inspections <- `inspections_All_pg3_FL-14`
 inspections <- inspections[-c(20),]
 inspectionchange <- data.frame("Obama Average" =mean(inspections[9:11,2]),
                              "Trump Average" =mean(inspections[17:19,2]))
@@ -185,10 +183,9 @@ inspections[9:16,3] <- as.character("Obama")
 inspections[17:19,3] <- as.character("Trump")
 
 inspectiongraph <- ggplot(inspections, mapping=aes(x=factor(Date),
-                                                        y=Count, color=President, group=1))+
-  scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  geom_point(show.legend=FALSE)+
-  geom_line(show.legend=FALSE)+
+                                                        y=Count, fill=President, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y="Inspections", x="Year")+
   ggtitle("Facility Inspections-All Programs")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(inspections$Count+(.2*max(inspections$Count)))))+
@@ -200,7 +197,7 @@ inspectiongraph <- ggplot(inspections, mapping=aes(x=factor(Date),
 ##So, we're going to do the first 3 years of Obama and Trump so average
 #[9:11,2] Obama
 # [17:19,2] Trump
-enforcement <- `enforcements_All_pg3_IL-9`
+enforcement <- `enforcements_All_pg3_FL-14`
 enforcement <- enforcement[-c(20),]
 enforcement$Amount <- round(enforcement$Amount,0)
 enforcementchange <- data.frame("Obama Average Count" =mean(enforcement[9:11,2]),
@@ -222,10 +219,9 @@ enforcement$President <- as.character("Bush")
 enforcement[9:16,5] <- as.character("Obama")
 enforcement[17:19,5] <- as.character("Trump")
 
-enforcementactiongraph <- ggplot(enforcement, mapping=aes(x=factor(Date),y=Count, color=President, group=1))+
-  geom_point(show.legend=FALSE)+
-  geom_line(show.legend = FALSE)+
-  scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+
+enforcementactiongraph <- ggplot(enforcement, mapping=aes(x=factor(Date),y=Count, fill=President, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y="# Actions", x="Year")+
   ggtitle("Enforcement Actions-All Programs")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(enforcement$Count+(.2*max(enforcement$Count)))))+
@@ -234,9 +230,8 @@ enforcementactiongraph <- ggplot(enforcement, mapping=aes(x=factor(Date),y=Count
   theme(axis.text.x=element_text(size=9),axis.title.x = element_blank())
 
 enforcementfinegraph <- enforcement %>% ggplot()+
-  geom_point(aes(x=factor(Date),y=Amountinthousands , color=President, group=1), show.legend=FALSE)+
-  scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  geom_line(aes(x=factor(Date),y=Amountinthousands, color=President, group=1), show.legend = FALSE)+
+  geom_bar(aes(x=factor(Date),y=Amountinthousands , fill=President, group=1),stat="identity", show.legend=FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y="Fines ($1000s)", x="Year")+
   ggtitle("Enforcement Fines-All Programs")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(enforcement$Amountinthousands+(.2*max(enforcement$Amountinthousands)))))+
@@ -253,15 +248,15 @@ effluentgraph/inspectiongraph/enforcementactiongraph/enforcementfinegraph
 #CAA
 
 ##first let's fix up the data
-#ok so We'll put the % in the title for the state, and try to figure out the same for IL 9
-CAArecurring <- `recurring-violations_All_pg3_IL-9`[-c(2,3,5,6),]
+#ok so We'll put the % in the title for the state, and try to figure out the same for FL 14
+CAArecurring <- `recurring-violations_All_pg3_FL-14`[-c(2,3,5,6),]
 CAArecurring <- CAArecurring %>%
   select(CD,Facilities, Percent)
 names(CAArecurring)[1] <- "Region"
 CAArecurring[1,1] <- as.character("Rest of State")
-CAArecurring[2,1] <- as.character("IL 9")
+CAArecurring[2,1] <- as.character("FL 14")
 CAArecurring$Region2 <- as.character("All of OR")
-CAArecurring[2,4] <- as.character("IL 9")
+CAArecurring[2,4] <- as.character("FL 14")
 CAArecurring$RecurringViolators <- (as.numeric(CAArecurring[1,2]-CAArecurring[2,2]))
 CAArecurring[2,5] <- as.numeric(CAArecurring[2,2])
 CAArecurring$Proportional <- (as.numeric((100/(CAArecurring[1,2]))*CAArecurring[1,5]))
@@ -271,15 +266,15 @@ CAArecurring[3] <-round(CAArecurring[3],2)
 #CWA
 
 ##first let's fix up the data
-#ok so We'll put the % in the title for the state, and try to figure out the same for IL 9
-CWArecurring <- `recurring-violations_All_pg3_IL-9`[-c(1,3,4,6),]
+#ok so We'll put the % in the title for the state, and try to figure out the same for FL 14
+CWArecurring <- `recurring-violations_All_pg3_FL-14`[-c(1,3,4,6),]
 CWArecurring <- CWArecurring %>%
   select(CD,Facilities, Percent)
 names(CWArecurring)[1] <- "Region"
 CWArecurring[1,1] <- as.character("Rest of State")
-CWArecurring[2,1] <- as.character("IL 9")
+CWArecurring[2,1] <- as.character("FL 14")
 CWArecurring$Region2 <- as.character("All of OR")
-CWArecurring[2,4] <- as.character("IL 9")
+CWArecurring[2,4] <- as.character("FL 14")
 CWArecurring$RecurringViolators <- (as.numeric(CWArecurring[1,2]-CWArecurring[2,2]))
 CWArecurring[2,5] <- as.numeric(CWArecurring[2,2])
 CWArecurring$Proportional <- (as.numeric((100/(CWArecurring[1,2]))*CWArecurring[1,5]))
@@ -289,22 +284,22 @@ CWArecurring[3] <-round(CWArecurring[3],2)
 #RCRA
 
 ##first let's fix up the data
-#ok so We'll put the % in the title for the state, and try to figure out the same for IL 9
-RCRArecurring <- `recurring-violations_All_pg3_IL-9`[-c(1,2,4,5),]
+#ok so We'll put the % in the title for the state, and try to figure out the same for FL 14
+RCRArecurring <- `recurring-violations_All_pg3_FL-14`[-c(1,2,4,5),]
 RCRArecurring <- RCRArecurring %>%
   select(CD,Facilities, Percent)
 names(RCRArecurring)[1] <- "Region"
 RCRArecurring[1,1] <- as.character("Rest of State")
-RCRArecurring[2,1] <- as.character("IL 9")
+RCRArecurring[2,1] <- as.character("FL 14")
 RCRArecurring$Region2 <- as.character("All of OR")
-RCRArecurring[2,4] <- as.character("IL 9")
+RCRArecurring[2,4] <- as.character("FL 14")
 RCRArecurring$RecurringViolators <- (as.numeric(RCRArecurring[1,2]-RCRArecurring[2,2]))
 RCRArecurring[2,5] <- as.numeric(RCRArecurring[2,2])
 RCRArecurring$Proportional <- (as.numeric((100/(RCRArecurring[1,2]))*RCRArecurring[1,5]))
 RCRArecurring[2,6] <- as.numeric(100-RCRArecurring[1,6])
 RCRArecurring[3] <-round(RCRArecurring[3],2)
 ```
-<h2><span style="color:#50C878">Under the Clean Water Act, the most well-reported regulation, `r CWArecurring[2,2]` facilities, representing `r CWArecurring[2,3]`% of all regulated facilities in IL9, were in violation for at least 25% of the last 3 years.</span></h2>
+<h2><span style="color:#50C878">Under the Clean Water Act, the most well-reported regulation, `r CWArecurring[2,2]` facilities, representing `r CWArecurring[2,3]`% of all regulated facilities in FL14, were in violation for at least 25% of the last 3 years.</span></h2>
 
 \pagebreak
 
@@ -320,11 +315,11 @@ RCRArecurring[3] <-round(RCRArecurring[3],2)
 #let's combine the inspections data at national, state, CD level 
 names(USAinspectionsper1000_All)[2] <- "Inspectionsper1000"
 USAinspectionsper1000_All$Region <- as.factor("National")
-names(`inspectionsper1000_All_pg4_IL-090120.csv`)[2] <- "Inspectionsper1000"
-`inspectionsper1000_All_pg4_IL-090120.csv`$Region <- as.factor("State")
-names(`inspectionsper1000_All_pg4_IL-9`)[2] <- "Inspectionsper1000"
-`inspectionsper1000_All_pg4_IL-9`$Region <- as.factor("Congressional District")
-inspectionsper1000 <- rbind(USAinspectionsper1000_All, `inspectionsper1000_All_pg4_IL-090120.csv`, `inspectionsper1000_All_pg4_IL-9`)
+names(`inspectionsper1000_All_pg4_FL-090220.csv`)[2] <- "Inspectionsper1000"
+`inspectionsper1000_All_pg4_FL-090220.csv`$Region <- as.factor("State")
+names(`inspectionsper1000_All_pg4_FL-14`)[2] <- "Inspectionsper1000"
+`inspectionsper1000_All_pg4_FL-14`$Region <- as.factor("Congressional District")
+inspectionsper1000 <- rbind(USAinspectionsper1000_All, `inspectionsper1000_All_pg4_FL-090220.csv`, `inspectionsper1000_All_pg4_FL-14`)
 inspectionsper1000$Inspectionsper1000 <- as.numeric(inspectionsper1000$Inspectionsper1000)
 inspectionsper1000[2] <-round(inspectionsper1000[2],0) 
 
@@ -335,7 +330,7 @@ inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper10
   labs(y="Inspections per 1000 Facilities\n", x="")+
   geom_text(aes(label=Inspectionsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
   ggtitle("Inspections per 1000 Facilities in 2019")+
-  scale_y_continuous(expand=c(0,0),limits = c(0,300))+
+  scale_y_continuous(expand=c(0,0),limits=c(0,max(inspectionsper1000$Inspectionsper1000+(.2*max(inspectionsper1000$Inspectionsper1000)))))+
   theme_meg()+
   theme(axis.text.x = element_text(color =(values=c("#FFD300" , "#50C878", "#FFD300"))))
 
@@ -343,11 +338,11 @@ inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper10
 #let's combine the violations data at national, state, CD level 
 names(USAviolationsper1000_All)[2] <- "violationsper1000"
 USAviolationsper1000_All$Region <- as.factor("National")
-names(`violationsper1000_All_pg4_IL-090120.csv`)[2] <- "violationsper1000"
-`violationsper1000_All_pg4_IL-090120.csv`$Region <- as.factor("State")
-names(`violationsper1000_All_pg4_IL-9`)[2] <- "violationsper1000"
-`violationsper1000_All_pg4_IL-9`$Region <- as.factor("Congressional District")
-violationsper1000 <- rbind(USAviolationsper1000_All, `violationsper1000_All_pg4_IL-090120.csv`, `violationsper1000_All_pg4_IL-9`)
+names(`violationsper1000_All_pg4_FL-090220.csv`)[2] <- "violationsper1000"
+`violationsper1000_All_pg4_FL-090220.csv`$Region <- as.factor("State")
+names(`violationsper1000_All_pg4_FL-14`)[2] <- "violationsper1000"
+`violationsper1000_All_pg4_FL-14`$Region <- as.factor("Congressional District")
+violationsper1000 <- rbind(USAviolationsper1000_All, `violationsper1000_All_pg4_FL-090220.csv`, `violationsper1000_All_pg4_FL-14`)
 violationsper1000$violationsper1000 <- as.numeric(violationsper1000$violationsper1000)
 violationsper1000[2] <-round(violationsper1000[2],0)
 
@@ -355,10 +350,10 @@ violationsper1000[2] <-round(violationsper1000[2],0)
 violations1000bar <- ggplot(violationsper1000, aes(fill=Region, y=violationsper1000, x=Program))+
   geom_bar(position="dodge", stat="identity")+
   scale_fill_manual(values=c("#999999" , "#333333", "#d43a69"))+
-  labs(y="Violations per 1000 Facilities\n", x="")+
+  labs(y="Violations per 1000 Facilities", x="")+
   geom_text(aes(label=violationsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
   ggtitle("Violations per 1000 Facilities in 2019")+
-  scale_y_continuous(expand=c(0,0),limits = c(0,600))+
+  scale_y_continuous(expand=c(0,0),limits=c(0,max(violationsper1000$violationsper1000+(.2*max(violationsper1000$violationsper1000)))))+
   theme_meg()+
   theme(legend.position = c(0.8, 0.5),axis.text.x = element_text(color =(values=c("#C21807" , "#50C878", "#C21807"))))
 
@@ -388,7 +383,7 @@ The Clean Air Act (CAA) is the comprehensive federal law that regulates air emis
 ```{r, fig.height = 5, fig.width = 8, fig.align = "center"}
 
 #clean up data
-CAAviolations <- `violations_CAA_pg5_IL-9` 
+CAAviolations <- `violations_CAA_pg5_FL-14` 
 CAAviolations <- CAAviolations[-c(20),]
 CAAviolations$President <- as.character("Bush")
 CAAviolations[9:16,3] <- as.character("Obama")
@@ -396,10 +391,9 @@ CAAviolations[17:19,3] <- as.character("Trump")
 
 
 
-vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, color=President, group=1))+
-  scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3, show.legend = FALSE)+
-  geom_line(show.legend = FALSE)+
+vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Violations", x="Year")+
   ggtitle("CAA violations")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAviolations$Count+(.2*max(CAAviolations$Count)))))+
@@ -409,16 +403,15 @@ vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, color=Pr
         axis.title.x = element_blank())
 
 #clean up data
-CAAinspections <- `inspections_CAA_pg5_IL-9`
-#CAAinspections <- CAAinspections[-c(19),]
+CAAinspections <- `inspections_CAA_pg5_FL-14`
+CAAinspections <- CAAinspections[-c(20),]
 CAAinspections$President <- as.character("Bush")
 CAAinspections[9:16,3] <- as.character("Obama")
 CAAinspections[17:19,3] <- as.character("Trump")
 
-iCAAgraph <- ggplot(CAAinspections, mapping=aes(x=factor(Date), y=Count, color=President, group=1))+
-   scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3,show.legend = FALSE)+
-  geom_line(show.legend = FALSE)+
+iCAAgraph <- ggplot(CAAinspections, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Inspections", x="Year")+
   ggtitle("CAA Inspections")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAinspections$Count+(.2*max(CAAinspections$Count)))))+
@@ -428,7 +421,7 @@ iCAAgraph <- ggplot(CAAinspections, mapping=aes(x=factor(Date), y=Count, color=P
         axis.title.x = element_blank())
 
 #clean up data
-CAAenforcement <- `enforcements_CAA_pg5_IL-9`
+CAAenforcement <- `enforcements_CAA_pg5_FL-14`
 CAAenforcement <- CAAenforcement[-c(20),]
 CAAenforcement$Amountinthousands <- ((CAAenforcement$Amount)/1000)
 CAAenforcement$Amountinthousands <-round(CAAenforcement$Amountinthousands,0)
@@ -436,10 +429,9 @@ CAAenforcement$President <- as.character("Bush")
 CAAenforcement[9:16,5] <- as.character("Obama")
 CAAenforcement[17:19,5] <- as.character("Trump")
 
-eCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Count, color=President, group=1))+
-   scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3,show.legend = FALSE)+
-  geom_line(show.legend = FALSE)+
+eCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Actions", x="Year")+
   ggtitle("CAA Enforcement Actions")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAenforcement$Count+(.2*max(CAAenforcement$Count)))))+
@@ -448,10 +440,9 @@ eCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Count, color=P
   theme(plot.title = element_text(color="#FFD300"), axis.text.x=element_text(size=10),
         axis.title.x = element_blank())
 
-fineCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, color=President, group=1))+
-   scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3)+
-  geom_line()+
+fineCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, fill=President, group=1))+
+  geom_bar(stat="identity")+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" Fines($1000s)", x="Year")+
   ggtitle("CAA Fines")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAenforcement$Amountinthousands+(.2*max(CAAenforcement$Amountinthousands)))))+
@@ -484,17 +475,16 @@ The Clean Water Act is a series of regulations that govern discharges of polluta
 ```{r, fig.height = 5, fig.width = 8, fig.align = "center"}
 
 #clean up data
-CWAviolations <- `violations_CWA_pg6_IL-9`
+CWAviolations <- `violations_CWA_pg6_FL-14`
 names(CWAviolations)[2] <- "Count"
 CWAviolations <- CWAviolations[-c(20),]
 CWAviolations$President <- as.character("Bush")
 CWAviolations[9:16,3] <- as.character("Obama")
 CWAviolations[17:19,3] <- as.character("Trump")
 
-vCWAgraph <- ggplot(CWAviolations, mapping=aes(x=factor(YEAR), y=Count, color=President, group=1))+
-  scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3,show.legend = FALSE)+
-  geom_line(show.legend = FALSE)+
+vCWAgraph <- ggplot(CWAviolations, mapping=aes(x=factor(YEAR), y=Count, fill=President, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Violations", x="Year")+
   ggtitle("CWA violations")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CWAviolations$Count+(.2*max(CWAviolations$Count)))))+
@@ -504,16 +494,15 @@ vCWAgraph <- ggplot(CWAviolations, mapping=aes(x=factor(YEAR), y=Count, color=Pr
         axis.title.x = element_blank())
 
 #clean up data
-CWAinspections <- `inspections_CWA_pg6_IL-9`
+CWAinspections <- `inspections_CWA_pg6_FL-14`
 CWAinspections <- CWAinspections[-c(20),]
 CWAinspections$President <- as.character("Bush")
 CWAinspections[9:16,3] <- as.character("Obama")
 CWAinspections[17:19,3] <- as.character("Trump")
 
-iCWAgraph <- ggplot(CWAinspections, mapping=aes(x=factor(Date), y=Count, color=President, group=1))+
-   scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3,show.legend = FALSE)+
-  geom_line(show.legend = FALSE)+
+iCWAgraph <- ggplot(CWAinspections, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Inspections", x="Year")+
   ggtitle("CWA Inspections")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CWAinspections$Count+(.2*max(CWAinspections$Count)))))+
@@ -523,7 +512,7 @@ iCWAgraph <- ggplot(CWAinspections, mapping=aes(x=factor(Date), y=Count, color=P
         axis.title.x = element_blank())
 
 #clean up data
-CWAenforcement <- `enforcements_CWA_pg6_IL-9`
+CWAenforcement <- `enforcements_CWA_pg6_FL-14`
 CWAenforcement <- CWAenforcement[-c(20),]
 CWAenforcement$Amountinthousands <- ((CWAenforcement$Amount)/1000)
 CWAenforcement$Amountinthousands <-round(CWAenforcement$Amountinthousands,0)
@@ -531,10 +520,9 @@ CWAenforcement$President <- as.character("Bush")
 CWAenforcement[8:16,5] <- as.character("Obama")
 CWAenforcement[17:19,5] <- as.character("Trump")
 
-eCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Count, color=President, group=1))+
-   scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3, show.legend = FALSE)+
-  geom_line(show.legend = FALSE)+
+eCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Actions", x="Year")+
   ggtitle("CWA Enforcement Actions")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CWAenforcement$Count+(.2*max(CWAenforcement$Count)))))+
@@ -543,10 +531,9 @@ eCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Count, color=P
   theme(plot.title = element_text(color="#FFD300"), axis.text.x=element_text(size=10),
         axis.title.x = element_blank())
 
-fineCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, color=President, group=1))+
-   scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3)+
-  geom_line()+
+fineCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, fill=President, group=1))+
+  geom_bar(stat="identity")+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" Fines($1000s)", x="Year")+
   ggtitle("CWA Fines")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CWAenforcement$Amountinthousands+(.2*max(CWAenforcement$Amountinthousands)))))+
@@ -582,16 +569,15 @@ control hazardous waste from the "cradle-to-grave", regulating the generation, t
 ```{r, fig.height = 5, fig.width = 8, fig.align = "center"}
 
 #clean up data
-RCRAviolations <- `violations_RCRA_pg7_IL-9`
+RCRAviolations <- `violations_RCRA_pg7_FL-14`
 RCRAviolations <- RCRAviolations[-c(20),]
 RCRAviolations$President <- as.character("Bush")
 RCRAviolations[9:16,3] <- as.character("Obama")
 RCRAviolations[17:19,3] <- as.character("Trump")
 
-vRCRAgraph <- ggplot(RCRAviolations, mapping=aes(x=factor(Date), y=Count, color=President, group=1))+
-  scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3,show.legend = FALSE)+
-  geom_line(show.legend = FALSE)+
+vRCRAgraph <- ggplot(RCRAviolations, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Violations", x="Year")+
   ggtitle("RCRA violations")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(RCRAviolations$Count+(.2*max(RCRAviolations$Count)))))+
@@ -601,16 +587,15 @@ vRCRAgraph <- ggplot(RCRAviolations, mapping=aes(x=factor(Date), y=Count, color=
         axis.title.x = element_blank())
 
 #clean up data
-RCRAinspections <- `inspections_RCRA_pg7_IL-9`
+RCRAinspections <- `inspections_RCRA_pg7_FL-14`
 RCRAinspections <- RCRAinspections[-c(20),]
 RCRAinspections$President <- as.character("Bush")
 RCRAinspections[9:16,3] <- as.character("Obama")
 RCRAinspections[17:19,3] <- as.character("Trump")
 
-iRCRAgraph <- ggplot(RCRAinspections, mapping=aes(x=factor(Date), y=Count, color=President, group=1))+
-   scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3,show.legend = FALSE)+
-  geom_line(show.legend = FALSE)+
+iRCRAgraph <- ggplot(RCRAinspections, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Inspections", x="Year")+
   ggtitle("RCRA Inspections")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(RCRAinspections$Count+(.2*max(RCRAinspections$Count)))))+
@@ -620,7 +605,7 @@ iRCRAgraph <- ggplot(RCRAinspections, mapping=aes(x=factor(Date), y=Count, color
         axis.title.x = element_blank())
 
 #clean up data
-RCRAenforcement <- `enforcements_RCRA_pg7_IL-9`
+RCRAenforcement <- `enforcements_RCRA_pg7_FL-14`
 RCRAenforcement <- RCRAenforcement[-c(20),]
 RCRAenforcement$Amountinthousands <- ((RCRAenforcement$Amount)/1000)
 RCRAenforcement$Amountinthousands <-round(RCRAenforcement$Amountinthousands,0)
@@ -628,10 +613,9 @@ RCRAenforcement$President <- as.character("Bush")
 RCRAenforcement[8:16,5] <- as.character("Obama")
 RCRAenforcement[17:19,5] <- as.character("Trump")
 
-eRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Count, color=President, group=1))+
-   scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3, show.legend = FALSE)+
-  geom_line(show.legend = FALSE)+
+eRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE)+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Actions", x="Year")+
   ggtitle("RCRA Enforcement Actions")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(RCRAenforcement$Count+(.2*max(RCRAenforcement$Count)))))+
@@ -640,10 +624,9 @@ eRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Count, color
   theme(plot.title = element_text(color="#FFD300"), axis.text.x=element_text(size=10),
         axis.title.x = element_blank())
 
-fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, color=President, group=1))+
-   scale_color_manual(values=c("#450d54", "#22908d", "#e56d13"))+ 
-  geom_point(size=3)+
-  geom_line()+
+fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, fill=President, group=1))+
+  geom_bar(stat="identity")+
+  scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" Fines($1000s)", x="Year")+
   ggtitle("RCRA Fines")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(RCRAenforcement$Amountinthousands+(.2*max(RCRAenforcement$Amountinthousands)))))+
@@ -668,14 +651,14 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 
 # Legislator Information   
 
-## Greg Walden 
+## Kathy Castor 
 
-<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/IL9/janice_schakowsky.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/FL14/kathy_castor.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
-<h2><span style="color:#C21807">Republican</span></h2>
-## In office since January 6th, 1999
+<h2><span style="color:#25539f">Democrat</span></h2>
+## In office since January 3rd, 2013
 
-## Relevant Committee Membership: Ranking Member, [Energy and Commerce Committee](https://energycommerce.house.gov/)
+## Relevant Committee Membership:  [Energy and Commerce Committee](https://energycommerce.house.gov/)
 <br />
 <br />
 <div class="text-box-info">
@@ -683,10 +666,10 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 This Committee is the oldest house Committee with the broadest jurisdiction of aOR authorizing committee. The Committee oversees the EPA, and legislates on issues like environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee includes 55 members – 24 Republicans and 31 Democrats. The subcommittees of primary interest to these reports are Environment & Climate Change and Oversight & Investigations. 
 </div>
 ### Relevant Subcommittees: 
-1. Energy
-2. Environment and Climate Change
+1. Consumer Protection and Commerce
+2. Health
 3. [Oversights and Investigations](https://energycommerce.house.gov/subcommittees/oversight-and-investigations-116th-congress)
-4. Health
+4. Chair of the House Select Committee on the Climate Crisis
 
 
 
