@@ -76,7 +76,7 @@ theme_megpie <- function () {
  <div class="container">
   <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/TX26/TX26_map.png" alt="Snow" style="width:100%;">
   <div class="top-left">Texas' 26th District</div>
-  <div class="middle-left">Seat held by Michael Burgess since 2013</div>
+  <div class="middle-left">Seat held by Michael Burgess since 2003</div>
   <div class="bottom-left">Report Generated 3 September 2020</div>
 </div>
 <p style="font-size:6pt; font-style:italic">
