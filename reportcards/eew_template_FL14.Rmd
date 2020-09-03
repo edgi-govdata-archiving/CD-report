@@ -220,6 +220,7 @@ effluentgraph <- ggplot(effluentviolations, mapping=aes(x=factor(Year),
 #[9:11,2] Obama
 # [17:19,2] Trump
 inspections <- `inspections_All_pg3_FL-14`
+names(inspections)[1] <- "Date"
 inspections <- inspections[-c(20),]
 inspectionchange <- data.frame("Obama Average" =mean(inspections[9:11,2]),
                              "Trump Average" =mean(inspections[17:19,2]))
@@ -250,6 +251,7 @@ inspectiongraph <- ggplot(inspections, mapping=aes(x=factor(Date),
 #[9:11,2] Obama
 # [17:19,2] Trump
 enforcement <- `enforcements_All_pg3_FL-14`
+names(enforcement)[1] <- "Date"
 enforcement <- enforcement[-c(20),]
 enforcement$Amount <- round(enforcement$Amount,0)
 enforcementchange <- data.frame("Obama Average Count" =mean(enforcement[9:11,2]),
@@ -380,6 +382,7 @@ The Clean Air Act (CAA) is the comprehensive federal law that regulates air emis
 
 #clean up data
 CAAviolations <- `violations_CAA_pg5_FL-14` 
+names(CAAviolations)[1] <- "Date"
 CAAviolations <- CAAviolations[-c(20),]
 CAAviolations$President <- as.character("Bush")
 CAAviolations[9:16,3] <- as.character("Obama")
@@ -400,6 +403,7 @@ vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, fill=Pre
 
 #clean up data
 CAAinspections <- `inspections_CAA_pg5_FL-14`
+names(CAAinspections)[1] <- "Date"
 CAAinspections <- CAAinspections[-c(20),]
 CAAinspections$President <- as.character("Bush")
 CAAinspections[9:16,3] <- as.character("Obama")
@@ -419,6 +423,7 @@ iCAAgraph <- ggplot(CAAinspections, mapping=aes(x=factor(Date), y=Count, fill=Pr
 #clean up data
 CAAenforcement <- `enforcements_CAA_pg5_FL-14`
 CAAenforcement <- CAAenforcement[-c(20),]
+names(CAAenforcement)[1] <- "Date"
 CAAenforcement$Amountinthousands <- ((CAAenforcement$Amount)/1000)
 CAAenforcement$Amountinthousands <-round(CAAenforcement$Amountinthousands,0)
 CAAenforcement$President <- as.character("Bush")
@@ -471,8 +476,11 @@ The Clean Water Act is a series of regulations that govern discharges of polluta
 ```{r, fig.height = 5, fig.width = 8, fig.align = "center"}
 
 #clean up data
-CWAviolations <- `violations_CWA_pg6_FL-14`
+CWAviolations <- read.csv(here("FL14/violations_CWA_pg6_FL-14-090220.csv"), 
+                          header=FALSE)
+#CWAviolations <- `violations_CWA_pg6_FL-14`
 names(CWAviolations)[2] <- "Count"
+names(CWAviolations)[1] <- "YEAR"
 CWAviolations <- CWAviolations[-c(20),]
 CWAviolations$President <- as.character("Bush")
 CWAviolations[9:16,3] <- as.character("Obama")
@@ -491,6 +499,7 @@ vCWAgraph <- ggplot(CWAviolations, mapping=aes(x=factor(YEAR), y=Count, fill=Pre
 
 #clean up data
 CWAinspections <- `inspections_CWA_pg6_FL-14`
+names(CWAinspections)[1] <- "Date"
 CWAinspections <- CWAinspections[-c(20),]
 CWAinspections$President <- as.character("Bush")
 CWAinspections[9:16,3] <- as.character("Obama")
@@ -509,6 +518,7 @@ iCWAgraph <- ggplot(CWAinspections, mapping=aes(x=factor(Date), y=Count, fill=Pr
 
 #clean up data
 CWAenforcement <- `enforcements_CWA_pg6_FL-14`
+names(CWAenforcement)[1] <- "Date"
 CWAenforcement <- CWAenforcement[-c(20),]
 CWAenforcement$Amountinthousands <- ((CWAenforcement$Amount)/1000)
 CWAenforcement$Amountinthousands <-round(CWAenforcement$Amountinthousands,0)
@@ -566,6 +576,7 @@ control hazardous waste from the "cradle-to-grave", regulating the generation, t
 
 #clean up data
 RCRAviolations <- `violations_RCRA_pg7_FL-14`
+names(RCRAviolations)[1] <- "Date"
 RCRAviolations <- RCRAviolations[-c(20),]
 RCRAviolations$President <- as.character("Bush")
 RCRAviolations[9:16,3] <- as.character("Obama")
@@ -584,6 +595,7 @@ vRCRAgraph <- ggplot(RCRAviolations, mapping=aes(x=factor(Date), y=Count, fill=P
 
 #clean up data
 RCRAinspections <- `inspections_RCRA_pg7_FL-14`
+names(RCRAinspections)[1] <- "Date"
 RCRAinspections <- RCRAinspections[-c(20),]
 RCRAinspections$President <- as.character("Bush")
 RCRAinspections[9:16,3] <- as.character("Obama")
@@ -602,6 +614,7 @@ iRCRAgraph <- ggplot(RCRAinspections, mapping=aes(x=factor(Date), y=Count, fill=
 
 #clean up data
 RCRAenforcement <- `enforcements_RCRA_pg7_FL-14`
+names(RCRAenforcement)[1] <- "Date"
 RCRAenforcement <- RCRAenforcement[-c(20),]
 RCRAenforcement$Amountinthousands <- ((RCRAenforcement$Amount)/1000)
 RCRAenforcement$Amountinthousands <-round(RCRAenforcement$Amountinthousands,0)
