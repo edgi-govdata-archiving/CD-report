@@ -64,7 +64,7 @@ theme_megpie <- function () {
 }
 ```
  <div class="container">
-  <img src="OK2/OK2_map.png" alt="Snow" style="width:100%;">
+  <img src="../OK2/OK2_map.png" alt="Snow" style="width:100%;">
   <div class="top-left">Oklahoma's 2nd District</div>
   <div class="middle-left">Seat held by Markwayne Mullin since 2013</div>
   <div class="bottom-left">Report Generated 2 September 2020</div>
@@ -73,8 +73,8 @@ theme_megpie <- function () {
 Map above shows congressional district with clusters of regulated facilities
 </p>
 The [Environmental Enforcement Watch](https://www.environmentalenforcementwatch.org/) (EEW), a project of [EDGI](https://envirodatagov.org/), produced this report using data from the EPA. It provides information about pollution violations and the EPA’s efforts to control pollution. Congress has the power to strengthen and oversee how well EPA protects us from pollution. 
-<a href="https://www.environmentalenforcementwatch.org/"><img src="eew_logo.png" style="float: left; width: 15%; margin-left: 20%" ></a>
-<a href="https://envirodatagov.org/"><img src="edgi_logo.png" style="float: right; width: 25%; margin-right: 20%" ></a>
+<a href="https://www.environmentalenforcementwatch.org/"><img src="../eew_logo.png" style="float: left; width: 15%; margin-left: 20%" ></a>
+<a href="https://envirodatagov.org/"><img src="../edgi_logo.png" style="float: right; width: 25%; margin-right: 20%" ></a>
 <p style="font-size:6pt; font-style:italic; padding-top:60px">
 **Disclaimer:**
 Data included herein were drawn from EPA's publicly available Enforcement and Compliance History Online ECHO database on August 25, 2020. EDGI has no control over the nature, content, or sustained availability of this database. While EDGI works to assure that the information in this report is correct, that information is subject to limitations of the ECHO database, and is provided “as is.” EDGI makes no representations or warranties of aOR kind, express or implied, about the completeness or reliability of this information. The information and images within this report are for general information purposes only. To examine this data for yourself you can view our analysis here and re-run it here.
@@ -572,7 +572,7 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 
 ## Markwayne Mullin
 
-<a ><img src="markwayne_mullin.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+<a ><img src="../OK2/markwayne_mullin.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
 <h2><span style="color:#25539f">Republican</span></h2>
 ## In office since January 3rd, 13
@@ -641,6 +641,6 @@ EDGI’s work has been widely acknowledged, leading to EDGI testifying before Co
 
 #### [Contact Us](https://www.environmentalenforcementwatch.org/contact/)
 
-<a href="https://www.environmentalenforcementwatch.org/"><img src="eew_logo.png" style="float: left; width: 25%; margin-left: 20%" ></a>
+<a href="https://www.environmentalenforcementwatch.org/"><img src="../eew_logo.png" style="float: left; width: 25%; margin-left: 20%" ></a>
 
-<a href="https://envirodatagov.org/"><img src="edgi_logo.png" style="float: right; width: 35%; margin-right: 20%" ></a>
+<a href="https://envirodatagov.org/"><img src="../edgi_logo.png" style="float: right; width: 35%; margin-right: 20%" ></a>
