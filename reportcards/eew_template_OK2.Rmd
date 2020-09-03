@@ -66,7 +66,7 @@ theme_megpie <- function () {
  <div class="container">
   <img src="OK2/OK2_map.png" alt="Snow" style="width:100%;">
   <div class="top-left">Oklahoma's 2nd District</div>
-  <div class="middle-left">Seat held by Kathy Castor since 2013</div>
+  <div class="middle-left">Seat held by Markwayne Mullin since 2013</div>
   <div class="bottom-left">Report Generated 2 September 2020</div>
 </div>
 <p style="font-size:6pt; font-style:italic">
@@ -570,7 +570,7 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 
 # Legislator Information   
 
-## Kathy Castor 
+## Markwayne Mullin
 
 <a ><img src="markwayne_mullin.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
