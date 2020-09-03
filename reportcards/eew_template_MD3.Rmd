@@ -295,7 +295,7 @@ enforcementfinegraph <- enforcement %>% ggplot()+
 ```
 # Highlights for Maryland's 3rd District
 * <h2>Highlight from Open Hour</h2>
-* <h2>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been `r inspectionchange[1,3]`% change in inspections, a `r enforcementchange[1,5]`% change in enforcement actions, and a `r enforcementchange[1,6]`% change in enforcement fines.</h2>
+* <h2>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been `r inspectionchange[1,3]`% change in inspections, a `r enforcementchange[1,5]`% change in enforcement fines, and a `r enforcementchange[1,6]`% change in enforcement actions.</h2>
 * <h2>Under the Clean Water Act, the only well-reported regulation in this report, `r CWArecurring[2,2]` facilities, representing `r CWArecurring[2,3]`% of all regulated facilities in MD3, were in violation for at least 25% of the last 3 years.</h2>
 ```{r echo=FALSE, out.width= "95%", out.extra='style="float:center; padding:0px"'}
 

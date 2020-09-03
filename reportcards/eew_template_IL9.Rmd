@@ -76,7 +76,7 @@ theme_megpie <- function () {
  <div class="container">
   <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/IL9/IL9_map.png" alt="Snow" style="width:100%;">
   <div class="top-left">Illinois' 9th District</div>
-  <div class="middle-left">Seat held by Jeff Duncan since 2011</div>
+  <div class="middle-left">Seat held by Janice Schakowsky since 1999</div>
   <div class="bottom-left">Report Generated 3 September 2020</div>
 </div>
 <p style="font-size:6pt; font-style:italic">
@@ -295,7 +295,7 @@ enforcementfinegraph <- enforcement %>% ggplot()+
 ```
 # Highlights for Illinois' 9th District
 * <h2>Highlight from Open Hour</h2>
-* <h2>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been `r inspectionchange[1,3]`% change in inspections, a `r enforcementchange[1,5]`% change in enforcement actions, and a `r enforcementchange[1,6]`% change in enforcement fines.</h2>
+* <h2>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been `r inspectionchange[1,3]`% change in inspections, a `r enforcementchange[1,5]`% change in enforcement fines, and a `r enforcementchange[1,6]`% change in enforcement actions.</h2>
 * <h2>Under the Clean Water Act, the only well-reported regulation in this report, `r CWArecurring[2,2]` facilities, representing `r CWArecurring[2,3]`% of all regulated facilities in IL9, were in violation for at least 25% of the last 3 years.</h2>
 ```{r echo=FALSE, out.width= "95%", out.extra='style="float:center; padding:0px"'}
 
@@ -660,12 +660,12 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 
 # Legislator Information   
 
-## Jeff Duncan 
+## Janice Schakowsky 
 
-<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/IL9/jeff_duncan.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/IL9/Janice_Schakowsky.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
 <h2><span style="color:#C21807">Republican</span></h2>
-## In office since January 5th, 2011
+## In office since January 6th, 1999
 
 ## Relevant Committee Membership:  [Energy and Commerce Committee](https://energycommerce.house.gov/)
 <br />
@@ -675,9 +675,9 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 This Committee is the oldest house Committee with the broadest jurisdiction of aOR authorizing committee. The Committee oversees the EPA, and legislates on issues like environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee includes 55 members – 24 Republicans and 31 Democrats. The subcommittees of primary interest to these reports are Environment & Climate Change and Oversight & Investigations. 
 </div>
 ### Relevant Subcommittees: 
-1. Energy
+1. Chair, Consumer Protection and Commerce
 2. [Oversights and Investigations](https://energycommerce.house.gov/subcommittees/oversight-and-investigations-116th-congress)
-3. Environment and Climate Change
+
 
 
 \pagebreak
