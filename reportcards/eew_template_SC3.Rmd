@@ -77,7 +77,7 @@ theme_megpie <- function () {
   <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/SC3/SC3_map.png" alt="Snow" style="width:100%;">
   <div class="top-left">South Carolina's 3rd District</div>
   <div class="middle-left">Seat held by Jeff Duncan since 2011</div>
-  <div class="bottom-left">Report Generated 3 September 2020</div>
+  <div class="bottom-left">Report Generated 8 September 2020</div>
 </div>
 <p style="font-size:6pt; font-style:italic">
 Map above shows congressional district with clusters of regulated facilities
@@ -254,10 +254,10 @@ enforcement <- `enforcements_All_pg3_SC-3`
 names(enforcement)[1] <- "Date"
 enforcement <- enforcement[-c(20),]
 enforcement$Amount <- round(enforcement$Amount,0)
-enforcementchange <- data.frame("Obama Average Count" =mean(enforcement[9:11,2]),
-                               "Trump Average Count" =mean(enforcement[17:19,2]),
-                               "Obama Average Fine" =mean(enforcement[9:11,3]),
-                               "Trump Average Fine" =mean(enforcement[17:19,3]))
+enforcementchange <- data.frame("Obama Average Count" =mean(enforcement[9:11,3]),
+                               "Trump Average Count" =mean(enforcement[17:19,3]),
+                               "Obama Average Fine" =mean(enforcement[9:11,2]),
+                               "Trump Average Fine" =mean(enforcement[17:19,2]))
 enforcementchange$PercentDifferenceCount <- as.numeric(100*(enforcementchange[1,2]-enforcementchange[1,1])/
                                                    enforcementchange[1,1])
 enforcementchange$PercentDifferenceFine <- as.numeric(100*(enforcementchange[1,4]-enforcementchange[1,3])/
@@ -295,7 +295,7 @@ enforcementfinegraph <- enforcement %>% ggplot()+
 ```
 # Highlights for South Carolina's 3rd District
 * <h2>Highlight from Open Hour</h2>
-* <h2>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been `r inspectionchange[1,3]`% change in inspections, a `r enforcementchange[1,5]`% change in enforcement fines, and a `r enforcementchange[1,6]`% change in enforcement actions.</h2>
+* <h2>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been `r inspectionchange[1,3]`% change in inspections, a `r enforcementchange[1,6]`% change in enforcement fines, and a `r enforcementchange[1,5]`% change in enforcement actions.</h2>
 * <h2>Under the Clean Water Act, the only well-reported regulation in this report, `r CWArecurring[2,2]` facilities, representing `r CWArecurring[2,3]`% of all regulated facilities in SC3, were in violation for at least 25% of the last 3 years.</h2>
 ```{r echo=FALSE, out.width= "95%", out.extra='style="float:center; padding:0px"'}
 
