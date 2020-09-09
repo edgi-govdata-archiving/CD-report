@@ -40,13 +40,13 @@ names(USAinspectionsper1000_All)[1] <- "Program"
 names(USAviolationsper1000_All)[1] <- "Program"
 #each time this section is run, change "here" to specify the subfolder for the district or state 
 #Also, the way it is set up, you're going to need to cntrl f to change the district and date for the files
-filenames = list.files(here("CA6"), pattern = ".csv")
+filenames = list.files(here("MI12"), pattern = ".csv")
 file_count = length(filenames)
 for (i in filenames){  
   name <- gsub("^([^_]*_[^_]*_[^_]*_[^-]*-[^-]*)-.*$","\\1", i)
-  assign(name, read.csv(here("CA6", i)))
+  assign(name, read.csv(here("MI12", i)))
 }
-activefacilities <- `active-facilities_All_pg3_CA-6`
+activefacilities <- `active-facilities_All_pg3_MI-12`
 #set up a theme default to reduce code block later 
 theme_meg <- function () { 
   theme_bw(base_family="Georgia") %+replace% 
@@ -64,9 +64,9 @@ theme_megpie <- function () {
 }
 ```
  <div class="container">
-  <img src="../CA6/CA6_map.png" alt="Snow" style="width:100%;">
-  <div class="top-left">California's 6th District</div>
-  <div class="middle-left">Seat held by Doris O. Matsui since 2013</div>
+  <img src="../MI12/MI12_map.png" alt="Snow" style="width:100%;">
+  <div class="top-left">Michigan's 12th District</div>
+  <div class="middle-left">Seat held by Debbie Dingell since 2015</div>
   <div class="bottom-left">Report Generated 8 September 2020</div>
 </div>
 <p style="font-size:6pt; font-style:italic">
@@ -116,15 +116,15 @@ head(datacheck) %>%
 ```{r echo=FALSE}
 #CAA
 ##first let's fix up the data
-#ok so We'll put the % in the title for the state, and try to figure out the same for CA 6
-CAArecurring <- `recurring-violations_All_pg3_CA-6`[-c(2,3,5,6),]
+#ok so We'll put the % in the title for the state, and try to figure out the same for MI 12
+CAArecurring <- `recurring-violations_All_pg3_MI-12`[-c(2,3,5,6),]
 CAArecurring <- CAArecurring %>%
   select(CD,Facilities, Percent)
 names(CAArecurring)[1] <- "Region"
 CAArecurring[1,1] <- as.character("Rest of State")
-CAArecurring[2,1] <- as.character("CA 6")
+CAArecurring[2,1] <- as.character("MI 12")
 CAArecurring$Region2 <- as.character("All of OR")
-CAArecurring[2,4] <- as.character("CA 6")
+CAArecurring[2,4] <- as.character("MI 12")
 CAArecurring$RecurringViolators <- (as.numeric(CAArecurring[1,2]-CAArecurring[2,2]))
 CAArecurring[2,5] <- as.numeric(CAArecurring[2,2])
 CAArecurring$Proportional <- (as.numeric((100/(CAArecurring[1,2]))*CAArecurring[1,5]))
@@ -132,15 +132,15 @@ CAArecurring[2,6] <- as.numeric(100-CAArecurring[1,6])
 CAArecurring[3] <-round(CAArecurring[3],2)
 #CWA
 ##first let's fix up the data
-#ok so We'll put the % in the title for the state, and try to figure out the same for CA 6
-CWArecurring <- `recurring-violations_All_pg3_CA-6`[-c(1,3,4,6),]
+#ok so We'll put the % in the title for the state, and try to figure out the same for MI 12
+CWArecurring <- `recurring-violations_All_pg3_MI-12`[-c(1,3,4,6),]
 CWArecurring <- CWArecurring %>%
   select(CD,Facilities, Percent)
 names(CWArecurring)[1] <- "Region"
 CWArecurring[1,1] <- as.character("Rest of State")
-CWArecurring[2,1] <- as.character("CA 6")
+CWArecurring[2,1] <- as.character("MI 12")
 CWArecurring$Region2 <- as.character("All of OR")
-CWArecurring[2,4] <- as.character("CA 6")
+CWArecurring[2,4] <- as.character("MI 12")
 CWArecurring$RecurringViolators <- (as.numeric(CWArecurring[1,2]-CWArecurring[2,2]))
 CWArecurring[2,5] <- as.numeric(CWArecurring[2,2])
 CWArecurring$Proportional <- (as.numeric((100/(CWArecurring[1,2]))*CWArecurring[1,5]))
@@ -148,15 +148,15 @@ CWArecurring[2,6] <- as.numeric(100-CWArecurring[1,6])
 CWArecurring[3] <-round(CWArecurring[3],2)
 #RCRA
 ##first let's fix up the data
-#ok so We'll put the % in the title for the state, and try to figure out the same for CA 6
-RCRArecurring <- `recurring-violations_All_pg3_CA-6`[-c(1,2,4,5),]
+#ok so We'll put the % in the title for the state, and try to figure out the same for MI 12
+RCRArecurring <- `recurring-violations_All_pg3_MI-12`[-c(1,2,4,5),]
 RCRArecurring <- RCRArecurring %>%
   select(CD,Facilities, Percent)
 names(RCRArecurring)[1] <- "Region"
 RCRArecurring[1,1] <- as.character("Rest of State")
-RCRArecurring[2,1] <- as.character("CA 6")
+RCRArecurring[2,1] <- as.character("MI 12")
 RCRArecurring$Region2 <- as.character("All of OR")
-RCRArecurring[2,4] <- as.character("CA 6")
+RCRArecurring[2,4] <- as.character("MI 12")
 RCRArecurring$RecurringViolators <- (as.numeric(RCRArecurring[1,2]-RCRArecurring[2,2]))
 RCRArecurring[2,5] <- as.numeric(RCRArecurring[2,2])
 RCRArecurring$Proportional <- (as.numeric((100/(RCRArecurring[1,2]))*RCRArecurring[1,5]))
@@ -169,7 +169,7 @@ RCRArecurring[3] <-round(RCRArecurring[3],2)
 ##So, we're going to do the first 3 years of Obama and Trump so average
 #[9:11,2] Obama
 # [17:19,2] Trump
-effluentviolations <- `effluent-violations_CWA_pg3_CA-6`
+effluentviolations <- `effluent-violations_CWA_pg3_MI-12`
 effluentviolations <- effluentviolations[-c(20),]
 effluentchange <- data.frame("Obama Average" =mean(effluentviolations[9:11,2]),
                              "Trump Average" =mean(effluentviolations[17:19,2]))
@@ -195,7 +195,7 @@ effluentgraph <- ggplot(effluentviolations, mapping=aes(x=factor(Year),
 ##So, we're going to do the first 3 years of Obama and Trump so average
 #[9:11,2] Obama
 # [17:19,2] Trump
-inspections <- `inspections_All_pg3_CA-6`
+inspections <- `inspections_All_pg3_MI-12`
 names(inspections)[1] <- "Date"
 inspections <- inspections[-c(20),]
 inspectionchange <- data.frame("Obama Average" =mean(inspections[9:11,2]),
@@ -223,7 +223,7 @@ inspectiongraph <- ggplot(inspections, mapping=aes(x=factor(Date),
 ##So, we're going to do the first 3 years of Obama and Trump so average
 #[9:11,2] Obama
 # [17:19,2] Trump
-enforcement <- `enforcements_All_pg3_CA-6`
+enforcement <- `enforcements_All_pg3_MI-12`
 names(enforcement)[1] <- "Date"
 enforcement <- enforcement[-c(20),]
 enforcement$Amount <- round(enforcement$Amount,0)
@@ -262,10 +262,10 @@ enforcementfinegraph <- enforcement %>% ggplot()+
   theme_meg()+
   theme(axis.text.x=element_text(size=9),axis.title.x = element_blank())
 ```
-# Highlights for California's 6th District
+# Highlights for Michigan's 12th District
 * <h2>Highlight from Open Hour</h2>
 * <h2>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been `r inspectionchange[1,3]`% change in inspections, a `r enforcementchange[1,6]`% change in enforcement fines, and a `r enforcementchange[1,5]`% change in enforcement actions.</h2>
-* <h2>Under the Clean Water Act, the only well-reported regulation in this report, `r CWArecurring[2,2]` facilities, representing `r CWArecurring[2,3]`% of all regulated facilities in CA6, were in violation for at least 25% of the last 3 years.</h2>
+* <h2>Under the Clean Water Act, the only well-reported regulation in this report, `r CWArecurring[2,2]` facilities, representing `r CWArecurring[2,3]`% of all regulated facilities in MI12, were in violation for at least 25% of the last 3 years.</h2>
 ```{r echo=FALSE, out.width= "95%", out.extra='style="float:center; padding:0px"'}
 effluentgraph/inspectiongraph/enforcementactiongraph/enforcementfinegraph
 ```
@@ -281,11 +281,11 @@ effluentgraph/inspectiongraph/enforcementactiongraph/enforcementfinegraph
 #let's combine the inspections data at national, state, CD level 
 names(USAinspectionsper1000_All)[2] <- "Inspectionsper1000"
 USAinspectionsper1000_All$Region <- as.factor("National")
-names(`inspectionsper1000_All_pg4_CA-090820.csv`)[2] <- "Inspectionsper1000"
-`inspectionsper1000_All_pg4_CA-090820.csv`$Region <- as.factor("State")
-names(`inspectionsper1000_All_pg4_CA-6`)[2] <- "Inspectionsper1000"
-`inspectionsper1000_All_pg4_CA-6`$Region <- as.factor("Congressional District")
-inspectionsper1000 <- rbind(USAinspectionsper1000_All, `inspectionsper1000_All_pg4_CA-090820.csv`, `inspectionsper1000_All_pg4_CA-6`)
+names(`inspectionsper1000_All_pg4_MI-090820.csv`)[2] <- "Inspectionsper1000"
+`inspectionsper1000_All_pg4_MI-090820.csv`$Region <- as.factor("State")
+names(`inspectionsper1000_All_pg4_MI-12`)[2] <- "Inspectionsper1000"
+`inspectionsper1000_All_pg4_MI-12`$Region <- as.factor("Congressional District")
+inspectionsper1000 <- rbind(USAinspectionsper1000_All, `inspectionsper1000_All_pg4_MI-090820.csv`, `inspectionsper1000_All_pg4_MI-12`)
 inspectionsper1000$Inspectionsper1000 <- as.numeric(inspectionsper1000$Inspectionsper1000)
 inspectionsper1000[2] <-round(inspectionsper1000[2],0) 
 #Now let's visualize this 
@@ -302,11 +302,11 @@ inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper10
 #let's combine the violations data at national, state, CD level 
 names(USAviolationsper1000_All)[2] <- "violationsper1000"
 USAviolationsper1000_All$Region <- as.factor("National")
-names(`violationsper1000_All_pg4_CA-090820.csv`)[2] <- "violationsper1000"
-`violationsper1000_All_pg4_CA-090820.csv`$Region <- as.factor("State")
-names(`violationsper1000_All_pg4_CA-6`)[2] <- "violationsper1000"
-`violationsper1000_All_pg4_CA-6`$Region <- as.factor("Congressional District")
-violationsper1000 <- rbind(USAviolationsper1000_All, `violationsper1000_All_pg4_CA-090820.csv`, `violationsper1000_All_pg4_CA-6`)
+names(`violationsper1000_All_pg4_MI-090820.csv`)[2] <- "violationsper1000"
+`violationsper1000_All_pg4_MI-090820.csv`$Region <- as.factor("State")
+names(`violationsper1000_All_pg4_MI-12`)[2] <- "violationsper1000"
+`violationsper1000_All_pg4_MI-12`$Region <- as.factor("Congressional District")
+violationsper1000 <- rbind(USAviolationsper1000_All, `violationsper1000_All_pg4_MI-090820.csv`, `violationsper1000_All_pg4_MI-12`)
 violationsper1000$violationsper1000 <- as.numeric(violationsper1000$violationsper1000)
 violationsper1000[2] <-round(violationsper1000[2],0)
 #Now let's visualize this 
@@ -341,7 +341,7 @@ The Clean Air Act (CAA) is the comprehensive federal law that regulates air emis
 `r activefacilities[1,1]` facilities</h2>
 ```{r, fig.height = 5, fig.width = 8, fig.align = "center"}
 #clean up data
-CAAviolations <- `violations_CAA_pg5_CA-6` 
+CAAviolations <- `violations_CAA_pg5_MI-12` 
 names(CAAviolations)[1] <- "Date"
 CAAviolations <- CAAviolations[-c(20),]
 CAAviolations$President <- as.character("Bush")
@@ -358,7 +358,7 @@ vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, fill=Pre
   theme(plot.title = element_text(color="#C21807"), axis.text.x=element_text(size=10),
         axis.title.x = element_blank())
 #clean up data
-CAAinspections <- `inspections_CAA_pg5_CA-6`
+CAAinspections <- `inspections_CAA_pg5_MI-12`
 names(CAAinspections)[1] <- "Date"
 CAAinspections <- CAAinspections[-c(20),]
 CAAinspections$President <- as.character("Bush")
@@ -375,7 +375,7 @@ iCAAgraph <- ggplot(CAAinspections, mapping=aes(x=factor(Date), y=Count, fill=Pr
   theme(plot.title = element_text(color="#FFD300"), axis.text.x=element_text(size=10),
         axis.title.x = element_blank())
 #clean up data
-CAAenforcement <- `enforcements_CAA_pg5_CA-6`
+CAAenforcement <- `enforcements_CAA_pg5_MI-12`
 CAAenforcement <- CAAenforcement[-c(20),]
 names(CAAenforcement)[1] <- "Date"
 CAAenforcement$Amountinthousands <- ((CAAenforcement$Amount)/1000)
@@ -422,9 +422,9 @@ The Clean Water Act is a series of regulations that govern discharges of polluta
 `r activefacilities[2,1]` facilities</h2>
 ```{r, fig.height = 5, fig.width = 8, fig.align = "center"}
 #clean up data
-#CWAviolations <- read.csv(here("CA6/violations_CWA_pg6_CA-6-090820.csv"), 
+#CWAviolations <- read.csv(here("MI12/violations_CWA_pg6_MI-12-090820.csv"), 
                           #header=FALSE)
-CWAviolations <- `violations_CWA_pg6_CA-6`
+CWAviolations <- `violations_CWA_pg6_MI-12`
 names(CWAviolations)[2] <- "Count"
 names(CWAviolations)[1] <- "YEAR"
 CWAviolations <- CWAviolations[-c(20),]
@@ -442,7 +442,7 @@ vCWAgraph <- ggplot(CWAviolations, mapping=aes(x=factor(YEAR), y=Count, fill=Pre
   theme(plot.title = element_text(color="#50C878"), axis.text.x=element_text(size=10),
         axis.title.x = element_blank())
 #clean up data
-CWAinspections <- `inspections_CWA_pg6_CA-6`
+CWAinspections <- `inspections_CWA_pg6_MI-12`
 names(CWAinspections)[1] <- "Date"
 CWAinspections <- CWAinspections[-c(20),]
 CWAinspections$President <- as.character("Bush")
@@ -459,7 +459,7 @@ iCWAgraph <- ggplot(CWAinspections, mapping=aes(x=factor(Date), y=Count, fill=Pr
   theme(plot.title = element_text(color="#50C878"), axis.text.x=element_text(size=10),
         axis.title.x = element_blank())
 #clean up data
-CWAenforcement <- `enforcements_CWA_pg6_CA-6`
+CWAenforcement <- `enforcements_CWA_pg6_MI-12`
 names(CWAenforcement)[1] <- "Date"
 CWAenforcement <- CWAenforcement[-c(20),]
 CWAenforcement$Amountinthousands <- ((CWAenforcement$Amount)/1000)
@@ -509,7 +509,7 @@ control hazardous waste from the "cradle-to-grave", regulating the generation, t
 `r activefacilities[3,1]` facilities</h2>
 ```{r, fig.height = 5, fig.width = 8, fig.align = "center"}
 #clean up data
-RCRAviolations <- `violations_RCRA_pg7_CA-6`
+RCRAviolations <- `violations_RCRA_pg7_MI-12`
 names(RCRAviolations)[1] <- "Date"
 RCRAviolations <- RCRAviolations[-c(20),]
 RCRAviolations$President <- as.character("Bush")
@@ -526,7 +526,7 @@ vRCRAgraph <- ggplot(RCRAviolations, mapping=aes(x=factor(Date), y=Count, fill=P
   theme(plot.title = element_text(color="#C21807"), axis.text.x=element_text(size=10),
         axis.title.x = element_blank())
 #clean up data
-RCRAinspections <- `inspections_RCRA_pg7_CA-6`
+RCRAinspections <- `inspections_RCRA_pg7_MI-12`
 names(RCRAinspections)[1] <- "Date"
 RCRAinspections <- RCRAinspections[-c(20),]
 RCRAinspections$President <- as.character("Bush")
@@ -543,7 +543,7 @@ iRCRAgraph <- ggplot(RCRAinspections, mapping=aes(x=factor(Date), y=Count, fill=
   theme(plot.title = element_text(color="#FFD300"), axis.text.x=element_text(size=10),
         axis.title.x = element_blank())
 #clean up data
-RCRAenforcement <- `enforcements_RCRA_pg7_CA-6`
+RCRAenforcement <- `enforcements_RCRA_pg7_MI-12`
 names(RCRAenforcement)[1] <- "Date"
 RCRAenforcement <- RCRAenforcement[-c(20),]
 RCRAenforcement$Amountinthousands <- ((RCRAenforcement$Amount)/1000)
@@ -583,12 +583,12 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 
 # Legislator Information   
 
-## Doris O. Matsui 
+## Debbie Dingell 
 
-<a ><img src="../CA6/doris_matsui.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+<a ><img src="../MI12/debbie_dingell.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
 <h2><span style="color:#C21807">Democrat</span></h2>
-## In office since January 3, 2013
+## In office since January 6, 2015
 
 ## Relevant Committee Membership:  [Energy and Commerce Committee](https://energycommerce.house.gov/)
 <br />
