@@ -65,7 +65,7 @@ theme_megpie <- function () {
 ```
  <div class="container">
   <img src="../CA6/CA6_map.png" alt="Snow" style="width:100%;">
-  <div class="top-left">California's 3rd District</div>
+  <div class="top-left">California's 6th District</div>
   <div class="middle-left">Seat held by Doris O. Matsui since 2013</div>
   <div class="bottom-left">Report Generated 8 September 2020</div>
 </div>
