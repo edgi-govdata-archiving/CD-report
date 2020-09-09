@@ -587,7 +587,7 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 
 <a ><img src="../CA6/doris_matsui.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
-<h2><span style="color:#C21807">Republican</span></h2>
+<h2><span style="color:#C21807">Democrat</span></h2>
 ## In office since January 3, 2013
 
 ## Relevant Committee Membership:  [Energy and Commerce Committee](https://energycommerce.house.gov/)
