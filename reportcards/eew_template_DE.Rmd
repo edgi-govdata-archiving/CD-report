@@ -175,7 +175,7 @@ names(RCRArecurring)[1] <- "Region"
 RCRArecurring[1,1] <- as.character("Rest of State")
 RCRArecurring[2,1] <- as.character("DE")
 RCRArecurring$Region2 <- as.character("All of OR")
-RCRArecurring[2,4] <- as.character("DE")
+RCRArecurring[2,4] <- as.character("DE")> pagedown::chrome_print("reportcards/eew_template_DE.Rmd")
 RCRArecurring$RecurringViolators <- (as.numeric(RCRArecurring[1,2]-RCRArecurring[2,2]))
 RCRArecurring[2,5] <- as.numeric(RCRArecurring[2,2])
 RCRArecurring$Proportional <- (as.numeric((100/(RCRArecurring[1,2]))*RCRArecurring[1,5]))
