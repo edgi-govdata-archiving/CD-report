@@ -67,7 +67,7 @@ theme_megpie <- function () {
   <img src="../CA9/CA9_map.png" alt="Snow" style="width:100%;">
   <div class="top-left">California's 9th District</div>
   <div class="middle-left">Seat held by Jerry McNerney since 2013</div>
-  <div class="bottom-left">Report Generated 8 September 2020</div>
+  <div class="bottom-left">Report Generated 9 September 2020</div>
 </div>
 <p style="font-size:6pt; font-style:italic">
 Map above shows congressional district with clusters of regulated facilities
@@ -587,7 +587,7 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 
 <a ><img src="../CA9/jerry_mcnerney.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
-<h2><span style="color:#C21807">Democrat</span></h2>
+<h2><span style="color:#25539f">Democrat</span></h2>
 ## In office since January 3, 2013
 
 ## Relevant Committee Membership:  [Energy and Commerce Committee](https://energycommerce.house.gov/)
