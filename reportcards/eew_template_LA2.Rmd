@@ -590,14 +590,10 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 <h2><span style="color:#25539f">Democrat</span></h2>
 ## In office since January 5, 2011
 
-## Relevant Committee Membership:  
-<br />
-<br />
-###House Committee on Homeland Security
-Cybersecurity, Infrastructure Protection and Innovation subcommittee - Chair
+## Committee Membership:  
+* [House Committee on Homeland Security](https://homeland.house.gov/)
+* [House Commitee on the Judiciary](https://judiciary.house.gov/)
 
-###House Committee on the Judiciary
-Courts, Intellectual Property, and the Internet, Crime, Terrorism and Homeland Security subcommittees
 
 \pagebreak
 
