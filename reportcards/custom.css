@@ -40,20 +40,34 @@ h3 {
 
 h4 {
   font-family: Ubuntu Condensed;
-  text-transform: none;
-  color: #80918E;
-  size: 2.5em;
-  padding-left: 40px;
-}
-
-h5 {
-  font-family: Ubuntu Condensed;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: gray;
   size: 1em;
   padding-left: 35px;
   margin-top: 0.1em;
+}
+
+h5 {
+  font-family: Ubuntu Condensed;
+  color: white;
+  background-color: #4c95c8;
+  font-size: 2.7em;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+}
+
+h6 {
+  font-family: Ubuntu Condensed;
+  color: #cfe23f;
+  background-color: #4c95c8;
+  font-size: 1em;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 0px;
 }
 
 /*title*/
@@ -99,19 +113,6 @@ border-radius: 8px; /*rounds corners*/
 border-color: #C8DCD2;
 margin-left: 20px;
 margin-right: 20px;
-}
-
-/* Text box 2 */
-
-.text-box-front {
-background-color: #4c95c8;
-font-family: Ubuntu Condensed;
-color: white;
-font-size: 2.5em;
-padding-top: 10px;
-padding-left: 15px;
-margin-top: 0px;
-margin-bottom: 0px;
 }
 
 
@@ -173,10 +174,11 @@ margin-bottom: 0px;
 /* bottom left text */
 .bottom-left {
   position: absolute;
-  top: 120px;
-  left: 16px;
+  background-color: #4c95c8;
+  top: 460px;
+  left: 560px;
   font-family: Ubuntu Condensed;
-  text-transform: uppercase;
-  font-size: 2em;
-  color: #466A63;
+  font-size: 1em;
+  color: #cfe23f;
 }
+
