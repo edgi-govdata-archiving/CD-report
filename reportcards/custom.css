@@ -78,7 +78,7 @@ h1.title {
   background-color: #569b5e;
   color: white;
   font-size: 3.5em;
-  padding-top: 70px;
+  padding-top: 30px;
   padding-left: 15px;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -177,7 +177,7 @@ margin-right: 20px;
 .bottom-left {
   position: absolute;
   background-color: #4c95c8;
-  top: 5200px;
+  top: 550px;
   left: 550px;
   font-family: Ubuntu Condensed;
   font-size: .8em;
