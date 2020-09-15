@@ -59,10 +59,10 @@ h5 {
 /*title*/
 h1.title {
   font-family: Ubuntu Condensed;
-  background-color: #466A63;
+  background-color: #569b5e;
   color: white;
-  font-size: 4em;
-  padding-top: 100px;
+  font-size: 3.5em;
+  padding-top: 70px;
   padding-left: 15px;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -99,6 +99,19 @@ border-radius: 8px; /*rounds corners*/
 border-color: #C8DCD2;
 margin-left: 20px;
 margin-right: 20px;
+}
+
+/* Text box 2 */
+
+.text-box-front {
+background-color: #4c95c8;
+font-family: Ubuntu Condensed;
+color: white;
+font-size: 2.5em;
+padding-top: 10px;
+padding-left: 15px;
+margin-top: 0px;
+margin-bottom: 0px;
 }
 
 

@@ -1,0 +1,40 @@
+---
+title: "EEW Congressional Report Card"
+output: 
+  html_paged:
+    number_sections: false
+    css: ["custom.css"]
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(pagedown)
+library(palmerpenguins)
+library(patchwork)
+library(here)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(shiny)
+library(extrafont)
+library(viridis)
+library(grid)
+library(gridExtra)
+library(fishualize)
+library(kableExtra)
+library(ggrepel)
+loadfonts()
+
+
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+ <div class="container">
+  <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/CA36/CA36_map.png" alt="Snow" style="width:100%;">
+  <div class="top-left">California's 36th District</div>
+  <div class="middle-left">Seat held by Raul Ruiz since 2013</div>
+  <div class="bottom-left">Report Generated 3 September 2020</div>
+</div>
+<div class="text-box-front">
+California's 36th District; seat held by Raul Ruiz since 2013 
+</div>
+\pagebreak
