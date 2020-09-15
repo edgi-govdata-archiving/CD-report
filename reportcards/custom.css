@@ -57,6 +57,7 @@ h5 {
   padding-top: 15px;
   padding-bottom: 0px;
   margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 h6 {
@@ -65,9 +66,10 @@ h6 {
   background-color: #4c95c8;
   font-size: 1em;
   padding-left: 15px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 /*title*/
@@ -175,10 +177,10 @@ margin-right: 20px;
 .bottom-left {
   position: absolute;
   background-color: #4c95c8;
-  top: 460px;
-  left: 560px;
+  top: 5200px;
+  left: 550px;
   font-family: Ubuntu Condensed;
-  font-size: 1em;
+  font-size: .8em;
   color: #cfe23f;
 }
 
