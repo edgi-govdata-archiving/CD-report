@@ -43,6 +43,8 @@ for (i in filenames){
 
 names(USAinspectionsper1000_All)[1] <- "Program"
 names(USAviolationsper1000_All)[1] <- "Program"
+inflation <- inflation.csv
+names(inflation)[2] <- "base"
 
 #each time this section is run, change "here" to specify the subfolder for the district or state 
 #Also, the way it is set up, you're going to need to cntrl f to change the district and date for the files
@@ -242,6 +244,14 @@ enforcementchange[,1:6] <-round(enforcementchange[,1:6],2)
 ##make a new amount column /1000
 enforcement$Amountinthousands <- ((enforcement$Amount)/1000)
 enforcement$Amountinthousands <-round(enforcement$Amountinthousands,0)
+
+#adjust for inflation
+inflation <- inflation[-c(20:107),]
+enforcement <- cbind(enforcement, inflation)
+
+#reorganize 
+enforcement %>%
+  select(Date, Amount)
 
 #plot change in enforcement
 enforcement$President <- as.character("Bush")
