@@ -78,7 +78,7 @@ theme_meg <- function () {
 <a href="https://envirodatagov.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" ></a>
 \pagebreak
 
-<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 
 #### DRAFT not for circulation
 
@@ -101,7 +101,7 @@ This is an example, not reflective of the actual VA4 data
 
 \pagebreak
 
-<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 
 #### DRAFT not for circulation
 ```{r echo=FALSE}
@@ -184,12 +184,12 @@ effluentgraph <- ggplot(effluentviolations, mapping=aes(x=factor(Year),
   y=Violations, fill=President, group=1))+
   geom_bar(stat="identity")+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y="Violations", x="Year")+
-  ggtitle("Clean Water Act Violations")+
+  labs(y=" # Violations", x="Year", title="Clean Water Act Violations\n", subtitle ="Reliable data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(effluentviolations$Violations+(.2*max(effluentviolations$Violations)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
-  theme(axis.text.x=element_text(size=9), axis.title.x = element_blank())
+  theme(plot.title = element_text(color="#50C878", lineheight = .5), axis.text.x=element_text(size=9),
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 ##Inspections % change and graph
 
@@ -214,14 +214,14 @@ inspections[17:19,3] <- as.character("Trump")
 
 inspectiongraph <- ggplot(inspections, mapping=aes(x=factor(Date),
                                                         y=Count, fill=President, group=1))+
-  geom_bar(stat="identity", show.legend = FALSE)+
+  geom_bar(stat="identity", show.legend = FALSE, alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y="Inspections", x="Year")+
-  ggtitle("Facility Inspections-All Programs")+
+  labs(y="Inspections", x="Year", title="Facility Inspections-CAA,CWA,RCRA\n", subtitle = "Somewhat reliable Data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(inspections$Count+(.2*max(inspections$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
-  theme(axis.title.x = element_blank(), axis.text.x=element_text(size=9))
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=9),
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #enforcement
 ##So, we're going to do the first 3 years of Obama and Trump so average
@@ -241,42 +241,42 @@ enforcementchange$PercentDifferenceFine <- as.numeric(100*(enforcementchange[1,4
                                                          enforcementchange[1,3])
 enforcementchange[,1:6] <-round(enforcementchange[,1:6],2)
 
-##make a new amount column /1000
-enforcement$Amountinthousands <- ((enforcement$Amount)/1000)
-enforcement$Amountinthousands <-round(enforcement$Amountinthousands,0)
-
 #adjust for inflation
 inflation <- inflation[-c(20:107),]
 enforcement <- cbind(enforcement, inflation)
+enforcement$inflationadjust <- as.numeric(enforcement$Amount*enforcement$base)
 
-#reorganize 
-enforcement %>%
-  select(Date, Amount)
+##make a new amount column /1000
+enforcement$Amountinthousands <- ((enforcement$inflationadjust)/1000)
+enforcement$Amountinthousands <-round(enforcement$Amountinthousands,2)
 
-#plot change in enforcement
+#add presidental years
 enforcement$President <- as.character("Bush")
 enforcement[9:16,5] <- as.character("Obama")
 enforcement[17:19,5] <- as.character("Trump")
 
+#plot change in enforcement
 enforcementactiongraph <- ggplot(enforcement, mapping=aes(x=factor(Date),y=Count, fill=President, group=1))+
-  geom_bar(stat="identity", show.legend = FALSE)+
+  geom_bar(stat="identity", show.legend = FALSE, alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y="# Actions", x="Year")+
-  ggtitle("Enforcement Actions-All Programs")+
+  labs(y="# Actions", x="Year", title="Enforcement Actions-CAA,CWA,RCRA\n", subtitle = "Somewhat reliable data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(effluentviolations$Violations+(.2*max(effluentviolations$Violations)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
+  geom_text(aes(label=Count, family="Georgia", fontface="bold"), position = position_dodge(0.9), vjust = -0.1, size=3)+
   theme_meg()+
-  theme(axis.text.x=element_text(size=9),axis.title.x = element_blank())
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=9),
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 enforcementfinegraph <- enforcement %>% ggplot()+
-  geom_bar(aes(x=factor(Date),y=Amountinthousands , fill=President, group=1),stat="identity", show.legend=FALSE)+
+  geom_bar(aes(x=factor(Date),y=Amountinthousands , fill=President, group=1),stat="identity", show.legend=FALSE, alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y="Fines ($1000s)", x="Year")+
-  ggtitle("Enforcement Fines-All Programs")+
+  labs(y="Fines ($1000s)", x="Year", caption="Values adjusted for inflation. Note, the y-axis reports values in 1000's. A value of $2000\nrepresents $2,000,000 (2 million dollars).", title="Enforcement Fines-CAA,CWA,RCRA\n", subtitle="Somewhat reliable data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(enforcement$Amountinthousands+(.2*max(enforcement$Amountinthousands)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
-  theme(axis.text.x=element_text(size=9),axis.title.x = element_blank())
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=9),
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5), plot.caption = element_text(size=10))
+
 ```
 # Highlights for Virginia's 4th District
 * <h2>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been `r inspectionchange[1,3]`% change in inspections, a `r enforcementchange[1,6]`% change in enforcement fines, and a `r enforcementchange[1,5]`% change in enforcement actions.</h2>
@@ -286,9 +286,17 @@ enforcementfinegraph <- enforcement %>% ggplot()+
 effluentgraph/inspectiongraph/enforcementactiongraph/enforcementfinegraph
 
 ```
+
+### Figures throughout this report indicate reliability by the color of the title, the subtitle, and the degree of transparency of the data. See the data limitations page to view the color-coding table. 
+
+<br />
+<br />
+<br />
+<br />
+<br />
 \pagebreak
 
-<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 
 #### DRAFT not for circulation
 
@@ -347,14 +355,34 @@ violations1000bar <- ggplot(violationsper1000, aes(fill=Region, y=violationsper1
 inspect1000bar / violations1000bar
   
 ```
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
+
 #### DRAFT not for circulation 
 
 # Facilities in your District 
-
-These figures show the number of quarters the highest-violating facilities have been in violation over the last 3 years. These quarters are not necessarily consecutive.  
+These figures show the number of quarters the highest-violating facilities have been in violation over the last 3 years. These quarters are not necessarily consecutive.
 ```{r, fig.height = 7, fig.width = 5, fig.align = "left"}
 #call in data and clean up 
 CAAbadactors <- `noncomp_CAA_pg6_VA-4`
@@ -483,7 +511,7 @@ ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width
 
 \pagebreak
 
-<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 #### DRAFT not for circulation 
 
 # Clean Air Act
@@ -510,12 +538,11 @@ CAAviolations[17:19,3] <- as.character("Trump")
 vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
   geom_bar(stat="identity", show.legend = FALSE, alpha=.3)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" # Violations", x="Year", title="CAA violations", subtitle ="Not reliable data")+
-  #ggtitle("CAA violations", subtitle="Not reliable data")+
+  labs(y=" # Violations", x="Year", title="CAA violations\n", subtitle ="Unreliable data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAviolations$Count+(.2*max(CAAviolations$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016))+
   theme_meg()+
-  theme(plot.title = element_text(color="#C21807"), axis.text.x=element_text(size=10),
+  theme(plot.title = element_text(color="#C21807", lineheight = .5), axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #clean up data
@@ -529,45 +556,50 @@ CAAinspections[17:19,3] <- as.character("Trump")
 iCAAgraph <- ggplot(CAAinspections, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
   geom_bar(stat="identity", show.legend = FALSE, alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" # Inspections", x="Year", title="CAA Inspections", subtitle ="Somewhat reliable data")+
+  labs(y=" # Inspections", x="Year", title="CAA Inspections\n", subtitle ="Somewhat reliable data")+
   #ggtitle("CAA Inspections")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAinspections$Count+(.2*max(CAAinspections$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32"), axis.text.x=element_text(size=10),
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #clean up data
 CAAenforcement <- `enforcements_CAA_pg5_VA-4`
 CAAenforcement <- CAAenforcement[-c(20),]
 names(CAAenforcement)[1] <- "Date"
-CAAenforcement$Amountinthousands <- ((CAAenforcement$Amount)/1000)
-CAAenforcement$Amountinthousands <-round(CAAenforcement$Amountinthousands,0)
 CAAenforcement$President <- as.character("Bush")
-CAAenforcement[9:16,5] <- as.character("Obama")
-CAAenforcement[17:19,5] <- as.character("Trump")
+CAAenforcement[9:16,4] <- as.character("Obama")
+CAAenforcement[17:19,4] <- as.character("Trump")
+
+#adjust for inflation
+CAAenforcement <- cbind(CAAenforcement, inflation)
+CAAenforcement$inflationadjust <- as.numeric(CAAenforcement$Amount*CAAenforcement$base)
+
+##make a new amount column /1000
+CAAenforcement$Amountinthousands <- ((CAAenforcement$inflationadjust)/1000)
+CAAenforcement$Amountinthousands <-round(CAAenforcement$Amountinthousands,2)
 
 eCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
   geom_bar(stat="identity", show.legend = FALSE, alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" # Actions", x="Year", title="CAA Enforcement Actions", subtitle ="Somewhat reliable data")+
-#ggtitle("CAA Enforcement Actions")+
+  labs(y=" # Actions", x="Year", title="CAA Enforcement Actions\n", subtitle ="Somewhat reliable data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAviolations$Count+(.2*max(CAAviolations$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
+  geom_text(aes(label=Count, family="Georgia", fontface="bold"), position = position_dodge(0.9), vjust = -0.1, size=3)+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32"), axis.text.x=element_text(size=10),
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 fineCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, fill=President, group=1))+
   geom_bar(stat="identity", alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" Fines ($1000s)", x="Year", title="CAA Fines", subtitle ="Somewhat reliable data")+
-#ggtitle("CAA Fines")+
+  labs(y=" Fines ($1000s)", x="Year", title="CAA Fines\n", subtitle ="Somewhat reliable data", caption="Values adjusted for inflation. Note, the y-axis reports values in\n1000's. A value of $2000 represents $2,000,000 (2 million dollars).")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAenforcement$Amountinthousands+(.2*max(CAAenforcement$Amountinthousands)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32"), axis.text.x=element_text(size=10),
-        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5), plot.caption = element_text(size=8))
 
 
 
@@ -579,7 +611,7 @@ fineCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Amountintho
 
 \pagebreak
 
-<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 #### DRAFT not for circulation 
 
 # Clean Water Act 
@@ -607,12 +639,11 @@ CWAviolations[17:19,3] <- as.character("Trump")
 vCWAgraph <- ggplot(CWAviolations, mapping=aes(x=factor(YEAR), y=Count, fill=President, group=1))+
   geom_bar(stat="identity", show.legend = FALSE)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" # Violations", x="Year", title="CWA Violations", subtitle ="Reliable data")+
-#ggtitle("CWA violations")+
+  labs(y=" # Violations", x="Year", title="CWA Violations\n", subtitle ="Reliable data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CWAviolations$Count+(.2*max(CWAviolations$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#50C878"), axis.text.x=element_text(size=10),
+  theme(plot.title = element_text(color="#50C878", lineheight = .5), axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #clean up data
@@ -624,47 +655,54 @@ CWAinspections[9:16,3] <- as.character("Obama")
 CWAinspections[17:19,3] <- as.character("Trump")
 
 iCWAgraph <- ggplot(CWAinspections, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
-  geom_bar(stat="identity", show.legend = FALSE)+
+  geom_bar(stat="identity", show.legend = FALSE, alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" # Inspections", x="Year", title="CWA Inspections", subtitle ="Reliable data")+
+  labs(y=" # Inspections", x="Year", title="CWA Inspections\n", subtitle ="Somewhat reliable data")+
   ggtitle("CWA Inspections")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CWAinspections$Count+(.2*max(CWAinspections$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016, 2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#50C878"), axis.text.x=element_text(size=10),
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #clean up data
 CWAenforcement <- `enforcements_CWA_pg6_VA-4`
 names(CWAenforcement)[1] <- "Date"
 CWAenforcement <- CWAenforcement[-c(20),]
-CWAenforcement$Amountinthousands <- ((CWAenforcement$Amount)/1000)
-CWAenforcement$Amountinthousands <-round(CWAenforcement$Amountinthousands,0)
 CWAenforcement$President <- as.character("Bush")
-CWAenforcement[8:16,5] <- as.character("Obama")
-CWAenforcement[17:19,5] <- as.character("Trump")
+CWAenforcement[8:16,4] <- as.character("Obama")
+CWAenforcement[17:19,4] <- as.character("Trump")
+
+#adjust for inflation
+CWAenforcement <- cbind(CWAenforcement, inflation)
+CWAenforcement$inflationadjust <- as.numeric(CWAenforcement$Amount*CWAenforcement$base)
+
+##make a new amount column /1000
+CWAenforcement$Amountinthousands <- ((CWAenforcement$inflationadjust)/1000)
+CWAenforcement$Amountinthousands <-round(CWAenforcement$Amountinthousands,2)
 
 eCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
   geom_bar(stat="identity", show.legend = FALSE, alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" # Actions", x="Year", title="CWA Enforcement Actions", subtitle="Somewhat reliable data")+
+  labs(y=" # Actions", x="Year", title="CWA Enforcement Actions\n", subtitle="Somewhat reliable data")+
   #ggtitle("CWA Enforcement Actions")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CWAviolations$Count+(.2*max(CWAviolations$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
+  geom_text(aes(label=Count, family="Georgia", fontface="bold"), position = position_dodge(0.9), vjust = -0.1, size=3)+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32"), axis.text.x=element_text(size=10),
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 fineCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, fill=President, group=1))+
   geom_bar(stat="identity", alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" Fines($1000s)", x="Year", title="CWA Fines", subtitle="Somewhat reliable data")+
+  labs(y=" Fines($1000s)", x="Year", title="CWA Fines\n", subtitle="Somewhat reliable data", caption="Values adjusted for inflation. Note, the y-axis reports values in\n1000's. A value of $2000 represents $2,000,000 (2 million dollars).")+
   #ggtitle("CWA Fines")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CWAenforcement$Amountinthousands+(.2*max(CWAenforcement$Amountinthousands)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016,2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32"), axis.text.x=element_text(size=10),
-        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5), plot.caption = element_text(size=8))
 
 
 (iCWAgraph | vCWAgraph) / (eCWAgraph | fineCWAgraph)
@@ -676,7 +714,7 @@ fineCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Amountintho
 
 \pagebreak
 
-<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 
 #### DRAFT not for circulation
 
@@ -703,12 +741,12 @@ RCRAviolations[17:19,3] <- as.character("Trump")
 vRCRAgraph <- ggplot(RCRAviolations, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
   geom_bar(stat="identity", show.legend = FALSE, alpha=.3)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" # Violations", x="Year", title = "RCRA violations", subtitle = "Not reliable data")+
+  labs(y=" # Violations", x="Year", title = "RCRA violations\n", subtitle = "Unreliable data")+
   #ggtitle("RCRA violations")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(RCRAviolations$Count+(.2*max(RCRAviolations$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#C21807"), axis.text.x=element_text(size=10),
+  theme(plot.title = element_text(color="#C21807", lineheight = .5), axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #clean up data
@@ -722,12 +760,12 @@ RCRAinspections[17:19,3] <- as.character("Trump")
 iRCRAgraph <- ggplot(RCRAinspections, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
   geom_bar(stat="identity", show.legend = FALSE, alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" # Inspections", x="Year", title="RCRA Inspections", subtitle="Somewhat reliable data")+
+  labs(y=" # Inspections", x="Year", title="RCRA Inspections\n", subtitle="Somewhat reliable data")+
   #ggtitle("RCRA Inspections")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(RCRAinspections$Count+(.2*max(RCRAinspections$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016, 2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32"), axis.text.x=element_text(size=10),
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 
@@ -735,33 +773,38 @@ iRCRAgraph <- ggplot(RCRAinspections, mapping=aes(x=factor(Date), y=Count, fill=
 RCRAenforcement <- `enforcements_RCRA_pg7_VA-4`
 names(RCRAenforcement)[1] <- "Date"
 RCRAenforcement <- RCRAenforcement[-c(20),]
-RCRAenforcement$Amountinthousands <- ((RCRAenforcement$Amount)/1000)
-RCRAenforcement$Amountinthousands <-round(RCRAenforcement$Amountinthousands,0)
 RCRAenforcement$President <- as.character("Bush")
-RCRAenforcement[8:16,5] <- as.character("Obama")
-RCRAenforcement[17:19,5] <- as.character("Trump")
+RCRAenforcement[8:16,4] <- as.character("Obama")
+RCRAenforcement[17:19,4] <- as.character("Trump")
+
+#adjust for inflation
+RCRAenforcement <- cbind(RCRAenforcement, inflation)
+RCRAenforcement$inflationadjust <- as.numeric(RCRAenforcement$Amount*RCRAenforcement$base)
+
+##make a new amount column /1000
+RCRAenforcement$Amountinthousands <- ((RCRAenforcement$inflationadjust)/1000)
+RCRAenforcement$Amountinthousands <-round(RCRAenforcement$Amountinthousands,2)
 
 eRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
   geom_bar(stat="identity", show.legend = FALSE, alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" # Actions", x="Year", title="RCRA Enforcement Actions", subtitle = "Somewhat reliable data")+
-  #ggtitle("RCRA Enforcement Actions")+
+  labs(y=" # Actions", x="Year", title="RCRA Enforcement Actions\n", subtitle = "Somewhat reliable data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(RCRAviolations$Count+(.2*max(RCRAviolations$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
+  geom_text(aes(label=Count, family="Georgia", fontface="bold"), position = position_dodge(0.9), vjust = -0.1, size=3)+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32"), axis.text.x=element_text(size=10),
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, fill=President, group=1))+
   geom_bar(stat="identity", alpha=.6)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" Fines($1000s)", x="Year", title="RCRA Fines", subtitle = "Somewhat reliable data")+
-  ggtitle("RCRA Fines")+
+  labs(y=" Fines($1000s)", x="Year", title="RCRA Fines\n", subtitle = "Somewhat reliable data", caption="Values adjusted for inflation. Note, the y-axis reports values in\n1000's. A value of $2000 represents $2,000,000 (2 million dollars).")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(RCRAenforcement$Amountinthousands+(.2*max(RCRAenforcement$Amountinthousands)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016,2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32"), axis.text.x=element_text(size=10),
-        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
+  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5), plot.caption = element_text(size=8))
 
 
 (iRCRAgraph | vRCRAgraph) / (eRCRAgraph | fineRCRAgraph)
@@ -772,7 +815,7 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 
 \pagebreak
 
-<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 
 
 #### DRAFT not for circulation
@@ -800,12 +843,12 @@ This Committee is the oldest house Committee with the broadest jurisdiction of a
 
 \pagebreak
 
-<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 
 
 #### DRAFT not for circulation  
 
-# Data Limitations   
+# About the Data and its Limitations  
 
 <div class="text-box-info">
 
@@ -822,11 +865,9 @@ While ECHO remains the only publicly available and comprehensive source for envi
 
 #make dataframe
 
-datacheck <-data.frame("Metric"=c("CWA Inspections and Violations; GHG Emissions","CAA Inspections,
-                                    RCRA Inspections; CAA, CWA and RCRA Enforcement Actions and
-                                    Penalities", "CAA Violations, RCRA violations"),
-                          "Color"=c("Green", "Yellow", "Red"),
-                          "Why"=c("Automatic monitoring and Reporting", "Problems of pass through of data from state to EPA", "Problems of self-reporting and pass through of data from state to EPA"))
+datacheck <-data.frame("Metric"=c("CWA self-reported violations","CWA, CAA, RCRA inspections; CAA, CWA, RCRA enforcement actions and penalties", "CAA Violations, RCRA violations"),
+                          "Color"=c("Green (relatively good data)", "Yellow (data varies by state, from somewhat reliable to somewhat unreliable)", "Red (poor data that may be seriously misleading)"),
+                          "Why"=c("Mandatory electronic self-reporting", "Unreliability of state reporting on inspections and enforcement actions", "Problems of self-reporting and unreliability of state reporting"))
 
 head(datacheck) %>%
   kable() %>%
@@ -850,7 +891,7 @@ Here are just some of the issues that prevent citizens from knowing how well pol
 
 \pagebreak
 
-<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 
 
 #### DRAFT not for circulation
