@@ -57,8 +57,7 @@ h4 {
 
 h5 {
   font-family: Ubuntu Condensed;
-  color: white;
-  background-color: #4c95c8;
+  color: #4c95c8;
   font-size: 2.7em;
   padding-left: 15px;
   padding-top: 15px;
@@ -80,16 +79,17 @@ h6 {
 }
 
 /*title*/
-h1.title {
+.title {
   font-family: Ubuntu Condensed;
-  background-color: #569b5e;
-  color: white;
+  color: #569b5e;
   font-size: 3.5em;
   padding-top: 30px;
   padding-left: 15px;
-  margin-top: 0px;
+  padding bottom: 30px;
+  margin-top: 10px;
   margin-bottom: 0px;
 }
+
 
 /* Body */
 
@@ -190,6 +190,6 @@ margin-right: 20px;
   left: 550px;
   font-family: Ubuntu Condensed;
   font-size: .8em;
-  color: #cfe23f;
+  color: white;
 }
 
