@@ -29,17 +29,16 @@ loadfonts()
 
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ```
- <hr style="height:3px;border-width:0;color: #b9b9b9;background-color: #b9b9b9; margin-top: 2em">
+ <hr style="height:3px;border-width:0; margin-left:0px; margin-right:0px;color: #b9b9b9;background-color: #b9b9b9; margin-top: 0em; margin-bottom: 0em">
 ##### California's 36th District; seat held by Raul Ruiz since 2013 
  <div class="container">
-  <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/CA36/AZ2_map.png" alt="Snow" style="width:100%;">
-  <div class="bottom-left">Map shows congressional district with clusters of regulated facilities</div>
+  <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/CA36/CA2_map.png" alt="Snow" style="width:100%;">
   </div>
-<a href="https://www.environmentalenforcementwatch.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/eew_logo.png" style="float: left; width: 12%; margin-left: 30%"></a>
-<a href="https://envirodatagov.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" ></a>
-<br />
-
-
+  <br />
+<div class="logo-box">
+  <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/eew_logo.png" style="float: left; width: 12%; margin-left: 30%">
+  <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" >
+  </div>
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
