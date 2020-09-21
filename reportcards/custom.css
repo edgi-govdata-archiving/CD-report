@@ -81,6 +81,7 @@ h6 {
 /*title*/
 .title {
   font-family: Ubuntu Condensed;
+  background-color: white;
   color: #569b5e;
   font-size: 3.5em;
   padding-top: 30px;
