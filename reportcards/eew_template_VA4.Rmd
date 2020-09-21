@@ -77,11 +77,10 @@ theme_meg <- function () {
   </div>
 <a href="https://www.environmentalenforcementwatch.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/eew_logo.png" style="float: left; width: 12%; margin-left: 30%"></a>
 <a href="https://envirodatagov.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" ></a>
-  <br />
-  <br />
+
 \pagebreak
 
-<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
+
 
 #### DRAFT not for circulation
 
@@ -148,10 +147,9 @@ actionchange$Value <- ifelse(actionchange$PercentDifference>=0, "increase", "dec
 
 ```
 
+<h2><span style="color:#e56d13">Clean Water Act Violations: `r vCWAchange[1,4]` `r vCWAchange[1,5]` than the previous 16 years, representing a `r vCWAchange[1,6]`% `r vCWAchange[1,7]` in violations</span></h2>
 
-## Clean Water Act Violations: `r vCWAchange[1,4]` `r vCWAchange[1,5]` than the previous 16 years, representing a `r vCWAchange[1,6]`% `r vCWAchange[1,7]` in violations
-
-## Enforcement Actions under CAA, CWA, and RCRA: `r actionchange[1,4]` `r actionchange[1,5]` than the previous 16 years, representing a `r actionchange[1,6]`% `r actionchange[1,7]` in enforcement actions
+<h2><span style="color:#e56d13">Enforcement Actions under CAA, CWA, and RCRA: `r actionchange[1,4]` `r actionchange[1,5]` than the previous 16 years, representing a `r actionchange[1,6]`% `r actionchange[1,7]` in enforcement actions</span></h2>
 
 
 
@@ -426,20 +424,7 @@ inspect1000bar / violations1000bar
 <br />
 <br />
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
@@ -676,6 +661,7 @@ fineCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Amountintho
 These figures show patterns of CAA inspections, violations, enforcement actions and fines in this district since 2001 based on available EPA data (see page 9). The bars are colored by president. Figure transparency illustrates data reliability: the more transparent, the more uncertain the data. Data on CAA violations is particularly unreliable as emissions are often not directly monitored but are estimates. Inspection, enforcement, and fine data can be unreliable state reporting to ECHO may be incomplete.
 <br />
 <br />
+
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
@@ -774,6 +760,7 @@ These figures show patterns of Clean Water Act inspections, violations, enforcem
 <br />
 <br />
 <br />
+
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
@@ -879,13 +866,16 @@ These figures show patterns of RCRA inspections, violations, enforcement actions
 <br />
 <br />
 <br />
+<br />
+
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 
 #### DRAFT not for circulation
 
-# Legislator Information   
+# Legislator Information 
+<br />
 <a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/donald_mceachin.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
 ## Donald McEachin
