@@ -19,6 +19,7 @@ library(shiny)
 library(extrafont)
 library(viridis)
 library(grid)
+library(gridSVG)
 library(gridExtra)
 library(fishualize)
 library(kableExtra)
@@ -37,27 +38,149 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ###### Disclaimer: Data included herein were drawn from EPA's publicly available Enforcement and Compliance History Online ECHO database on August 25, 2020. EDGI has no control over the nature, content, or sustained availability of this database. While EDGI works to assure that the information in this report is correct, that information is subject to limitations of the ECHO database, and is provided “as is.” EDGI makes no representations or warranties of any kind, express or implied, about the completeness or reliability of this information. The information and images within this report are for general information purposes only. To examine this data for yourself you can view our analysis here and re-run it here.
 <a href="https://www.environmentalenforcementwatch.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/eew_logo.png" style="float: left; width: 12%; margin-left: 30%"></a>
 <a href="https://envirodatagov.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" ></a>
+<br />
+
+\pagebreak
+
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
+#### DRAFT not for circulation 
+
+# Facilities in your District 
+
+These figures show the number of quarters the highest-violating facilities have been in violation over the last 3 years. These quarters are not necessarily consecutive.  
+```{r, fig.height = 7, fig.width = 5, fig.align = "left"}
+#call in data and clean up 
+CAAbadactors <- `noncomp_CAA_pg6_VA-4`
+CAAbadactors <-CAAbadactors[!(CAAbadactors$noncomp_count==0),]
+CAAbadactors <- CAAbadactors[-c(11:20),]
+CAAbadactors$Facility <- CAAbadactors$FAC_NAME
+CAAbadactors$Facility <- strtrim(CAAbadactors$Facility, 35)
+
+
+#Let's try the CAA plot 
+
+CAAfacilities <- CAAbadactors %>%
+  mutate(Facility = fct_reorder(Facility, noncomp_count)) %>%
+  ggplot( mapping=aes(x=Facility, y=noncomp_count, fill=Facility, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE, width=.8)+
+  scale_fill_viridis(discrete = TRUE, option="B")+
+  labs(y="Quarters in Violation", x="", title="CAA Violators")+
+  scale_y_continuous(expand=c(0,0))+
+  scale_x_discrete(expand=c(0,0))+
+  theme_meg()+
+  theme(axis.text.y=element_text(size=12, face = "bold", color="black"), axis.title.x = element_text(size=14), axis.text.x=element_text(size=14,face = "bold"), plot.title=element_text(size=16))+
+  coord_flip()
+
+
+#call in data and clean up 
+CWAbadactors <- `noncomp_CWA_pg6_VA-4`
+CWAbadactors <-CWAbadactors[!(CWAbadactors$noncomp_count==0),]
+CWAbadactors <- CWAbadactors[-c(11:20),]
+CWAbadactors$Facility <- CWAbadactors$FAC_NAME
+CWAbadactors$Facility <- strtrim(CWAbadactors$Facility, 35)
+
+
+
+#Let's try the CWA plot 
+
+CWAfacilities <- CWAbadactors %>%
+  mutate(Facility = fct_reorder(Facility, noncomp_count)) %>%
+  ggplot( mapping=aes(x=Facility, y=noncomp_count, fill=Facility, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE, width=.8)+
+  scale_fill_viridis(discrete = TRUE, option="B")+
+  labs(y="Quarters in Violation", x="", title="CWA Violators")+
+  scale_y_continuous(expand=c(0,0),breaks=c(0,3,6,9,13))+
+  scale_x_discrete(expand=c(0,0))+
+  theme_meg()+
+  theme(axis.text.y=element_text(size=12, face = "bold", color="black"), axis.title.x = element_text(size=14), axis.text.x=
+          element_text(size=14,face = "bold"), plot.title=element_text(size=16))+
+  coord_flip()
+
+
+
+#call in data and clean up 
+RCRAbadactors <- `noncomp_RCRA_pg7_VA-4`
+RCRAbadactors <-RCRAbadactors[!(RCRAbadactors$noncomp_count==0),]
+RCRAbadactors <- RCRAbadactors[-c(11:20),]
+RCRAbadactors$Facility <- RCRAbadactors$FAC_NAME
+RCRAbadactors$Facility <- strtrim(RCRAbadactors$Facility, 35)
+
+
+
+#Let's try the RCRA plot 
+
+RCRAfacilities <- RCRAbadactors %>%
+  mutate(Facility = fct_reorder(Facility, noncomp_count)) %>%
+  ggplot( mapping=aes(x=Facility, y=noncomp_count, fill=Facility, group=1))+
+  geom_bar(stat="identity", show.legend = FALSE, width=.8)+
+  scale_fill_viridis(discrete = TRUE, option="B")+
+  labs(y="Quarters in Violation", x="", title="RCRA Violators")+
+  scale_y_continuous(expand=c(0,0))+
+  scale_x_discrete(expand=c(0,0))+
+  theme_meg()+
+  theme(axis.text.y=element_text(size=12, face = "bold", color="black"), axis.title.x = element_text(size=14), axis.text.x=
+          element_text(size=14,face = "bold"), plot.title=element_text(size=16))+
+  coord_flip()
+
+#CAAfacilities / CWAfacilities / RCRAfacilities 
+
+ggsave("CAAfacilities.jpeg", CAAfacilities, path=here("VA4"), scale = 3, width=7, height=4, units=c("cm"))
+ggsave("CWAfacilities.jpeg", CWAfacilities, path=here("VA4"), scale = 3, width=7, height=4, units=c("cm"))
+ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width=7, height=4, units=c("cm"))
+
+```
+<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/CAAfacilities.jpeg" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
+
+### ECHO reports for these facilities: 
+
+* <font size="2">[`r CAAbadactors[1,6] `](`r CAAbadactors[1,5] `)</font>
+* <font size="2">[`r CAAbadactors[2,6] `](`r CAAbadactors[2,5] `)</font>
+* <font size="2">[`r CAAbadactors[3,6] `](`r CAAbadactors[3,5] `)</font>
+* <font size="2">[`r CAAbadactors[4,6] `](`r CAAbadactors[4,5] `)</font>
+* <font size="2">[`r CAAbadactors[5,6] `](`r CAAbadactors[5,5] `)</font>
+* <font size="2">[`r CAAbadactors[6,6] `](`r CAAbadactors[6,5] `)</font>
+* <font size="2">[`r CAAbadactors[7,6] `](`r CAAbadactors[7,5] `)</font>
+* <font size="2">[`r CAAbadactors[8,6] `](`r CAAbadactors[8,5] `)</font>
+* <font size="2">[`r CAAbadactors[9,6] `](`r CAAbadactors[9,5] `)</font>
+* <font size="2">[`r CAAbadactors[10,6] `](`r CAAbadactors[10,5] `)</font>
+
+<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/CWAfacilities.jpeg" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
+
+### ECHO reports for these facilities: 
+
+* <font size="2">[`r CWAbadactors[1,6] `](`r CWAbadactors[1,5] `)</font>
+* <font size="2">[`r CWAbadactors[2,6] `](`r CWAbadactors[2,5] `)</font>
+* <font size="2">[`r CWAbadactors[3,6] `](`r CWAbadactors[3,5] `)</font>
+* <font size="2">[`r CWAbadactors[4,6] `](`r CWAbadactors[4,5] `)</font>
+* <font size="2">[`r CWAbadactors[5,6] `](`r CWAbadactors[5,5] `)</font>
+* <font size="2">[`r CWAbadactors[6,6] `](`r CWAbadactors[6,5] `)</font>
+* <font size="2">[`r CWAbadactors[7,6] `](`r CWAbadactors[7,5] `)</font>
+* <font size="2">[`r CWAbadactors[8,6] `](`r CWAbadactors[8,5] `)</font>
+* <font size="2">[`r CWAbadactors[9,6] `](`r CWAbadactors[9,5] `)</font>
+* <font size="2">[`r CWAbadactors[10,6] `](`r CWAbadactors[10,5] `)</font>
+
+<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/RCRAfacilities.jpeg" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
+
+### ECHO reports for these facilities: 
+
+* <font size="2">[`r RCRAbadactors[1,6] `](`r RCRAbadactors[1,5] `)</font>
+* <font size="2">[`r RCRAbadactors[2,6] `](`r RCRAbadactors[2,5] `)</font>
+* <font size="2">[`r RCRAbadactors[3,6] `](`r RCRAbadactors[3,5] `)</font>
+* <font size="2">[`r RCRAbadactors[4,6] `](`r RCRAbadactors[4,5] `)</font>
+* <font size="2">[`r RCRAbadactors[5,6] `](`r RCRAbadactors[5,5] `)</font>
+* <font size="2">[`r RCRAbadactors[6,6] `](`r RCRAbadactors[6,5] `)</font>
+* <font size="2">[`r RCRAbadactors[7,6] `](`r RCRAbadactors[7,5] `)</font>
+* <font size="2">[`r RCRAbadactors[8,6] `](`r RCRAbadactors[8,5] `)</font>
+* <font size="2">[`r RCRAbadactors[9,6] `](`r RCRAbadactors[9,5] `)</font>
+* <font size="2">[`r RCRAbadactors[10,6] `](`r RCRAbadactors[10,5] `)</font>
+
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 4em">
-
 #### DRAFT not for circulation
 
 # Introduction 
 
 ## Why
 It is Congress's job to oversee how the laws it passes are implemented by agencies like the Environmental Protection Agency (EPA). Congress has charged the EPA with enforcing most of the laws that protect environmental health by controlling the release of pollution and hazardous materials into the air, water and land. Without effective enforcement, **these laws are meaningless**. Congress can strengthen EPA enforcement by increasing resources to the EPA, passing more effective laws, requiring better data collection, and general oversight. In the **House of Representatives**, the **Energy and Commerce Committee** is the main committee that oversees the EPA.  In the **Senate**, the **Environment and Public Works Committee** is the main committee that oversees the EPA. 
-
-## What is a "facility"? 
-<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/facility.jpeg" style="float: center; width: 50%" ></a>
-
-## EEW Trump Term of Office Grade
-This is an example, not reflective of the actual VA4 data
-### Violations: Much Worse than Average
-### Enforcement: Worse than Average
-
-<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/draftgrade.png" style="float: right; width: 35%; margin-right: 20%" ></a>
-
-
-\pagebreak
 
