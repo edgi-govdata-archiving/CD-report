@@ -81,7 +81,7 @@ theme_meg <- function () {
 \pagebreak
 
 
-
+<h4><span style="padding-left=100px">Page 1</span></h4>
 #### DRAFT not for circulation
 
 # Introduction 
@@ -95,7 +95,7 @@ This report card analyzes available data from the EPA’s Enforcement and Compli
 ## What is a "facility"? 
 <a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/facility.jpeg" style="float: center; width: 60%" ></a>
 
-<h2><span style="color:#e56d13">Trump Administration Grade</span></h2>
+## Key changes in this District under the Trump Administration:*
 
 ```{r echo=FALSE}
 
@@ -147,9 +147,12 @@ actionchange$Value <- ifelse(actionchange$PercentDifference>=0, "increase", "dec
 
 ```
 
-<h2><span style="color:#e56d13">Clean Water Act Violations: `r vCWAchange[1,4]` `r vCWAchange[1,5]` than the previous 16 years, representing a `r vCWAchange[1,6]`% `r vCWAchange[1,7]` in violations</span></h2>
+<h3><span style="size=5em">Clean Water Act Violations:</span></h3> <span style="color=#569b5e">`r vCWAchange[1,4]` `r vCWAchange[1,5]`</span> than the previous 16 years, representing a <span style="color=#569b5e">`r vCWAchange[1,6]`% `r vCWAchange[1,7]` in violations</span></span></h3>
 
-<h2><span style="color:#e56d13">Enforcement Actions under CAA, CWA, and RCRA: `r actionchange[1,4]` `r actionchange[1,5]` than the previous 16 years, representing a `r actionchange[1,6]`% `r actionchange[1,7]` in enforcement actions</span></h2>
+<br />
+
+<h3><span style="size=5em">Enforcement Actions under CAA, CWA, and RCRA: `r actionchange[1,4]` `r actionchange[1,5]` than the previous 16 years, representing a `r actionchange[1,6]`% `r actionchange[1,7]` in enforcement actions</span></h3>
+
 
 
 

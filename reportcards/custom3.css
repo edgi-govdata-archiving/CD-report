@@ -25,17 +25,18 @@ h1 {
 h2 {
   font-family: Ubuntu Condensed;
   text-transform: none;
-  color: #5D7E78;
+  color: #569b5e;
   size: 4em;
   padding-left: 40px;
 }
 
 h3 {
-  font-family: Ubuntu Condensed;
+  font-family: Open Sans;
   text-transform: none;
-  color: #708D87;
-  size: 3em;
-  padding-left: 0px;
+  font-weight: 400;
+  color: black;
+  size: 4em;
+  padding-left: 40px;
   padding-bottom: 0px;
   margin-bottom: 0px;
   margin-top: 0px;
