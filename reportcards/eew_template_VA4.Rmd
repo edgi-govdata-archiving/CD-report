@@ -1,5 +1,5 @@
 ---
-title: "Environmental Enforcement Watch's"
+title: "Environmental Enforcement Watch"
 output: 
   html_paged:
     number_sections: false
@@ -45,6 +45,7 @@ names(USAinspectionsper1000_All)[1] <- "Program"
 names(USAviolationsper1000_All)[1] <- "Program"
 inflation <- inflation.csv
 names(inflation)[2] <- "base"
+housemembers <- housememberinfo.csv
 
 #each time this section is run, change "here" to specify the subfolder for the district or state 
 #Also, the way it is set up, you're going to need to cntrl f to change the district and date for the files
@@ -81,8 +82,7 @@ theme_meg <- function () {
 \pagebreak
 
 
-<h4><span style="padding-left=100px">Page 1</span></h4>
-#### DRAFT not for circulation
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 1</span></h4>
 
 # Introduction 
 
@@ -92,8 +92,8 @@ The Environmental Protection Agency (EPA) is charged by Congress to  enforce law
 This report card analyzes available data from the EPA’s Enforcement and Compliance History Online (ECHO) database regarding violations, inspections and enforcement actions made under the Clean Air Act (CAA), Clean Water Act (CWA) and Resource Conservation and Recovery Act (RCRA).
 
 
-## What is a "facility"? 
-<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/facility.jpeg" style="float: center; width: 60%" ></a>
+## What is a "regulated facility"? 
+<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/facilities2.png" style="float: center; width: 60%" ></a>
 
 ## Key changes in this District under the Trump Administration:*
 
@@ -113,7 +113,7 @@ vCWAchange <- data.frame("BushObamaAverage" =mean(CWAviolations[1:16,2]),
 
 vCWAchange$PercentDifference <- as.numeric(100*(vCWAchange[1,2]-vCWAchange[1,1])/
                                                  vCWAchange[1,1])
-vCWAchange$PercentDifference <-round(vCWAchange$PercentDifference,2)
+vCWAchange$PercentDifference <-round(vCWAchange$PercentDifference,0)
 
 vCWAchange$Extra <- ifelse((vCWAchange$PercentDifference>=100)|(vCWAchange$PercentDifference<=-100), "much", "")
 vCWAchange$Change <- ifelse(vCWAchange$PercentDifference<0, "better", "worse")
@@ -137,7 +137,7 @@ actionchange <- data.frame("BushObamaAverage" =mean(enforcement[1:16,3]),
 actionchange$PercentDifference <- as.numeric(100*(actionchange[1,2]-actionchange[1,1])/
                                                  actionchange[1,1])
 
-actionchange$PercentDifference <-round(actionchange$PercentDifference,2)
+actionchange$PercentDifference <-round(actionchange$PercentDifference,0)
 
 actionchange$Extra <- ifelse((actionchange$PercentDifference>=100)|(actionchange$PercentDifference<=-100), "much", "")
 actionchange$Change <- ifelse(actionchange$PercentDifference<0, "worse", "better")
@@ -147,20 +147,19 @@ actionchange$Value <- ifelse(actionchange$PercentDifference>=0, "increase", "dec
 
 ```
 
-<h3><span style="size=5em">Clean Water Act Violations:</span></h3> <span style="color=#569b5e">`r vCWAchange[1,4]` `r vCWAchange[1,5]`</span> than the previous 16 years, representing a <span style="color=#569b5e">`r vCWAchange[1,6]`% `r vCWAchange[1,7]` in violations</span></span></h3>
+<h3>Clean Water Act Violations: <span style="color:#569b5e">`r vCWAchange[1,4]` `r vCWAchange[1,5]`</span> than the previous 16 years, representing a <span style="color:#569b5e">`r vCWAchange[1,6]`% `r vCWAchange[1,7]`</span> in violations</h3>
 
 <br />
 
-<h3><span style="size=5em">Enforcement Actions under CAA, CWA, and RCRA: `r actionchange[1,4]` `r actionchange[1,5]` than the previous 16 years, representing a `r actionchange[1,6]`% `r actionchange[1,7]` in enforcement actions</span></h3>
+<h3>Enforcement Actions under CAA, CWA, and RCRA: <span style="color:#569b5e">`r actionchange[1,4]` `r actionchange[1,5]`</span> than the previous 16 years, representing a <span style="color:#569b5e">`r actionchange[1,6]`% `r actionchange[1,7]`</span> in enforcement actions</h3>
 
-
+*see data limitations page for metric calculations
 
 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-
-#### DRAFT not for circulation
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 2</span></h4>
 ```{r echo=FALSE}
 #CAA
 
@@ -196,7 +195,7 @@ CWArecurring$RecurringViolators <- (as.numeric(CWArecurring[1,2]-CWArecurring[2,
 CWArecurring[2,5] <- as.numeric(CWArecurring[2,2])
 CWArecurring$Proportional <- (as.numeric((100/(CWArecurring[1,2]))*CWArecurring[1,5]))
 CWArecurring[2,6] <- as.numeric(100-CWArecurring[1,6])
-CWArecurring[3] <-round(CWArecurring[3],2)
+CWArecurring[3] <-round(CWArecurring[3],0)
 
 #RCRA
 
@@ -245,8 +244,8 @@ effluentgraph <- ggplot(effluentviolations, mapping=aes(x=factor(Year),
   scale_y_continuous(expand=c(0,0), limits=c(0,max(effluentviolations$Violations+(.2*max(effluentviolations$Violations)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#50C878", lineheight = .5), axis.text.x=element_text(size=9),
-        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
+  theme(axis.text.x=element_text(size=9),
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5), plot.title = element_text(lineheight = .1))
 
 ##Inspections % change and graph
 
@@ -260,7 +259,7 @@ inspectionchange <- data.frame("Obama Average" =mean(inspections[9:11,2]),
                              "Trump Average" =mean(inspections[17:19,2]))
 inspectionchange$PercentDifference <- as.numeric(100*(inspectionchange[1,2]-inspectionchange[1,1])/
                                                  inspectionchange[1,1])
-inspectionchange[,1:3] <-round(inspectionchange[,1:3],2)
+inspectionchange[,1:3] <-round(inspectionchange[,1:3],0)
 
 #syntax for bullet points
 inspectionchange$Change <- ifelse(inspectionchange$PercentDifference>=0, "increase", "decrease")
@@ -280,7 +279,7 @@ inspectiongraph <- ggplot(inspections, mapping=aes(x=factor(Date),
   scale_y_continuous(expand=c(0,0), limits=c(0,max(inspections$Count+(.2*max(inspections$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=9),
+  theme(axis.text.x=element_text(size=9),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #enforcement
@@ -299,7 +298,7 @@ enforcementchange$PercentDifferenceCount <- as.numeric(100*(enforcementchange[1,
                                                    enforcementchange[1,1])
 enforcementchange$PercentDifferenceFine <- as.numeric(100*(enforcementchange[1,4]-enforcementchange[1,3])/
                                                          enforcementchange[1,3])
-enforcementchange[,1:6] <-round(enforcementchange[,1:6],2)
+enforcementchange[,1:6] <-round(enforcementchange[,1:6],0)
 
 #syntax for bullet points
 enforcementchange$CountChange <- ifelse(enforcementchange$PercentDifferenceCount>=0, "increase", "decrease")
@@ -330,7 +329,7 @@ enforcementactiongraph <- ggplot(enforcement, mapping=aes(x=factor(Date),y=Count
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   geom_text(aes(label=Count, family="Georgia", fontface="bold"), position = position_dodge(0.9), vjust = -0.1, size=3)+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=9),
+  theme(axis.text.x=element_text(size=9),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 enforcementfinegraph <- enforcement %>% ggplot()+
@@ -340,33 +339,32 @@ enforcementfinegraph <- enforcement %>% ggplot()+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(enforcement$Amountinthousands+(.2*max(enforcement$Amountinthousands)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=9),
+  theme(axis.text.x=element_text(size=9),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5), plot.caption = element_text(size=10))
 
 ```
 # Highlights for Virginia's 4th District
-* <h2>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been a `r inspectionchange[1,5]`% `r inspectionchange[1,4]` in inspections,  `r enforcementchange[1,10]`%  `r enforcementchange[1,9]`   in fines, and a `r enforcementchange[1,8]`% `r enforcementchange[1,7]` in enforcement actions.</h2>
-* <h2>Under the Clean Water Act, the only well-reported regulation in this report, `r CWArecurring[2,2]` facilities, representing `r CWArecurring[2,3]`% of all regulated facilities in VA4, were in violation for at least 25% of the last 3 years.</h2>
+
+* <h3>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been a <span style="color:#569b5e">`r inspectionchange[1,5]`% `r inspectionchange[1,4]` in inspections,  `r enforcementchange[1,10]`%  `r enforcementchange[1,9]` in fines</span>, and a <span style="color:#569b5e">`r enforcementchange[1,8]`% `r enforcementchange[1,7]` in enforcement actions.</span></h3>
+
+<br />
+
+* <h3>Under the Clean Water Act, the regulation most well-reported by EPA in this report, <span style="color:#569b5e">`r CWArecurring[2,2]` facilities, representing `r CWArecurring[2,3]`% of all regulated facilities in VA4,</span> were in violation for <span style="color:#569b5e">at least 9 months of the last 3 years.</span></h3>
 ```{r echo=FALSE, out.width= "95%", out.extra='style="float:center; padding:0px"'}
 
 effluentgraph/inspectiongraph/enforcementactiongraph/enforcementfinegraph
 
 ```
 
-### Figures throughout this report indicate reliability by the color of the title, the subtitle, and the degree of transparency of the data. See the data limitations page to view the color-coding table. 
+### Figures throughout this report indicate reliability by the subtitle and the degree of transparency of the data. See the data limitations page to view the ransparency-coding table and access the data here (NEED LINK HERE).
 
-<br />
-<br />
-<br />
-<br />
-<br />
+
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 3</span></h4>
 
-#### DRAFT not for circulation
-
-# Your District in Comparison
+# This District in Comparison
 ```{r, fig.height = 6, fig.width = 8, fig.align = "left"}
 
 #comparing inspections
@@ -391,8 +389,8 @@ inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper10
   geom_text(aes(label=Inspectionsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
   ggtitle("Inspections per 1000 Facilities in 2019")+
   scale_y_continuous(expand=c(0,0),limits=c(0,max(inspectionsper1000$Inspectionsper1000+(.2*max(inspectionsper1000$Inspectionsper1000)))))+
-  theme_meg()+
-  theme(axis.text.x = element_text(color =(values=c("#ffde32" , "#50C878", "#ffde32"))))
+  theme_meg()
+  
 
 #comparing violations
 #let's combine the violations data at national, state, CD level 
@@ -416,7 +414,7 @@ violations1000bar <- ggplot(violationsper1000, aes(fill=Region, y=violationsper1
   ggtitle("Violations per 1000 Facilities in 2019")+
   scale_y_continuous(expand=c(0,0),limits=c(0,max(violationsper1000$violationsper1000+(.2*max(violationsper1000$violationsper1000)))))+
   theme_meg()+
-  theme(legend.position = c(0.8, 0.5),axis.text.x = element_text(color =(values=c("#C21807" , "#50C878", "#C21807"))))
+  theme(legend.position = c(0.8, 0.5))
 
 inspect1000bar / violations1000bar
   
@@ -431,11 +429,10 @@ inspect1000bar / violations1000bar
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 4</span></h4> 
 
-#### DRAFT not for circulation 
-
-# Facilities in your District 
-These figures show the number of quarters the highest-violating facilities have been in violation over the last 3 years. These quarters are not necessarily consecutive.
+# Recent Non-Compliance in this District
+These figures show the ten facilities in this district with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years (not necessarily consequcetive).
 ```{r, fig.height = 7, fig.width = 5, fig.align = "left"}
 #call in data and clean up 
 CAAbadactors <- `noncomp_CAA_pg6_VA-4`
@@ -519,7 +516,7 @@ ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width
 ```
 <a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/CAAfacilities.jpeg" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
-### ECHO reports for these facilities: 
+<h3><span style="font-size: 18px; padding-left:0px">ECHO reports for these facilities:</span></h3> 
 
 * <font size="2">[`r CAAbadactors[1,6] `](`r CAAbadactors[1,5] `)</font>
 * <font size="2">[`r CAAbadactors[2,6] `](`r CAAbadactors[2,5] `)</font>
@@ -534,7 +531,7 @@ ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width
 
 <a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/CWAfacilities.jpeg" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
-### ECHO reports for these facilities: 
+<h3><span style="font-size: 18px; padding-left:0px">ECHO reports for these facilities:</span></h3> 
 
 * <font size="2">[`r CWAbadactors[1,6] `](`r CWAbadactors[1,5] `)</font>
 * <font size="2">[`r CWAbadactors[2,6] `](`r CWAbadactors[2,5] `)</font>
@@ -549,7 +546,7 @@ ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width
 
 <a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/RCRAfacilities.jpeg" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
-### ECHO reports for these facilities: 
+<h3><span style="font-size: 18px; padding-left:0px">ECHO reports for these facilities:</span></h3> 
 
 * <font size="2">[`r RCRAbadactors[1,6] `](`r RCRAbadactors[1,5] `)</font>
 * <font size="2">[`r RCRAbadactors[2,6] `](`r RCRAbadactors[2,5] `)</font>
@@ -565,7 +562,7 @@ ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-#### DRAFT not for circulation 
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 5</span></h4>
 
 # Clean Air Act
 
@@ -595,7 +592,7 @@ vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, fill=Pre
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAviolations$Count+(.2*max(CAAviolations$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016))+
   theme_meg()+
-  theme(plot.title = element_text(color="#C21807", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #clean up data
@@ -614,7 +611,7 @@ iCAAgraph <- ggplot(CAAinspections, mapping=aes(x=factor(Date), y=Count, fill=Pr
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAinspections$Count+(.2*max(CAAinspections$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #clean up data
@@ -641,7 +638,7 @@ eCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Count, fill=Pr
   scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
   geom_text(aes(label=Count, family="Georgia", fontface="bold"), position = position_dodge(0.9), vjust = -0.1, size=3)+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 fineCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, fill=President, group=1))+
@@ -651,7 +648,7 @@ fineCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Amountintho
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAenforcement$Amountinthousands+(.2*max(CAAenforcement$Amountinthousands)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5), plot.caption = element_text(size=8))
 
 
@@ -668,7 +665,7 @@ These figures show patterns of CAA inspections, violations, enforcement actions 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-#### DRAFT not for circulation 
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 6</span></h4> 
 
 # Clean Water Act 
 
@@ -691,7 +688,7 @@ vCWAgraph <- ggplot(CWAviolations, mapping=aes(x=factor(YEAR), y=Count, fill=Pre
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CWAviolations$Count+(.2*max(CWAviolations$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#50C878", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #clean up data
@@ -710,7 +707,7 @@ iCWAgraph <- ggplot(CWAinspections, mapping=aes(x=factor(Date), y=Count, fill=Pr
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CWAinspections$Count+(.2*max(CWAinspections$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016, 2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #clean up data
@@ -738,7 +735,7 @@ eCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Count, fill=Pr
   scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
   geom_text(aes(label=Count, family="Georgia", fontface="bold"), position = position_dodge(0.9), vjust = -0.1, size=3)+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 fineCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, fill=President, group=1))+
@@ -749,7 +746,7 @@ fineCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Amountintho
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CWAenforcement$Amountinthousands+(.2*max(CWAenforcement$Amountinthousands)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016,2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5), plot.caption = element_text(size=8))
 
 
@@ -758,7 +755,7 @@ fineCWAgraph <- ggplot(CWAenforcement, mapping=aes(x=factor(Date), y=Amountintho
 
 
 ```	
-These figures show patterns of Clean Water Act inspections, violations, enforcement actions and fines in your district since 2001 based on available EPA data (see page 9). The bars are colored by president. Figure transparency illustrates data reliability: the more transparent, the more uncertain the data. Data on CWA violations is particularly reliable as effluent violations are automatically reported to EPA.
+These figures show patterns of Clean Water Act inspections, violations, enforcement actions and fines in this district since 2001 based on available EPA data (see page 9). The bars are colored by president. Figure transparency illustrates data reliability: the more transparent, the more uncertain the data. Data on CWA violations is particularly reliable as effluent violations are automatically reported to EPA.
 <br />
 <br />
 <br />
@@ -767,8 +764,7 @@ These figures show patterns of Clean Water Act inspections, violations, enforcem
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-
-#### DRAFT not for circulation
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 7</span></h4>
 
 # Resource Conservation and Recovery Act 
 
@@ -797,7 +793,7 @@ vRCRAgraph <- ggplot(RCRAviolations, mapping=aes(x=factor(Date), y=Count, fill=P
   scale_y_continuous(expand=c(0,0), limits=c(0,max(RCRAviolations$Count+(.2*max(RCRAviolations$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#C21807", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 #clean up data
@@ -816,7 +812,7 @@ iRCRAgraph <- ggplot(RCRAinspections, mapping=aes(x=factor(Date), y=Count, fill=
   scale_y_continuous(expand=c(0,0), limits=c(0,max(RCRAinspections$Count+(.2*max(RCRAinspections$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012,2016, 2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 
@@ -844,7 +840,7 @@ eRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Count, fill=
   scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
   geom_text(aes(label=Count, family="Georgia", fontface="bold"), position = position_dodge(0.9), vjust = -0.1, size=3)+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
 
 fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountinthousands, fill=President, group=1))+
@@ -854,7 +850,7 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
   scale_y_continuous(expand=c(0,0), limits=c(0,max(RCRAenforcement$Amountinthousands+(.2*max(RCRAenforcement$Amountinthousands)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016,2019))+
   theme_meg()+
-  theme(plot.title = element_text(color="#ffde32", lineheight = .5), axis.text.x=element_text(size=10),
+  theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5), plot.caption = element_text(size=8))
 
 
@@ -863,7 +859,7 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 
 
 ```	
-These figures show patterns of RCRA inspections, violations, enforcement actions and fines in your district since 2001 based on available EPA data (see page 9). The bars are colored by president. Figure transparency illustrates data reliability: the more transparent, the more uncertain the data. Data on RCRA violations is particularly unreliable as violations are not necessarily directly measured. Inspection, enforcement, and fine data can be unreliable state reporting to ECHO may be incomplete.
+These figures show patterns of RCRA inspections, violations, enforcement actions and fines in this district since 2001 based on available EPA data (see page 9). The bars are colored by president. Figure transparency illustrates data reliability: the more transparent, the more uncertain the data. Data on RCRA violations is particularly unreliable as violations are not necessarily directly measured. Inspection, enforcement, and fine data can be unreliable state reporting to ECHO may be incomplete.
 <br />
 <br />
 <br />
@@ -874,16 +870,19 @@ These figures show patterns of RCRA inspections, violations, enforcement actions
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 8</span></h4>
 
-#### DRAFT not for circulation
+```{r echo=FALSE}
 
+VA4 <- housemembers[which(housemembers$CD=="VA4"), ]
+
+```
 # Legislator Information 
 <br />
 <a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/donald_mceachin.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
-## Donald McEachin
 
-<h2><span style="color:#25539f">Democrat</span></h2>
+<h2>[`r VA4[1,2]`](`r VA4[1,7]`) <span style="color:#25539f">(`r VA4[1,3]`)</span></h2>
 
 ## In office since January 3rd, 2017
 
@@ -898,16 +897,19 @@ This Committee is the oldest house Committee with the broadest jurisdiction of a
 <br />
 
 ### Relevant Subcommittees: 
-1. [Energy](https://energycommerce.house.gov/subcommittees/energy-116th-congress)
-2. [Environment and Climate Change](https://energycommerce.house.gov/subcommittees/environment-climate-change-116th-congress)
+[`r VA4[1,8]`](`r VA4[1,9]`)
+<br />
+[`r VA4[1,10]`](`r VA4[1,11]`)
+<br />
+[`r VA4[1,12]`](`r VA4[1,13]`)
+<br />
+[`r VA4[1,14]`](`r VA4[1,15]`)
 
 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-
-
-#### DRAFT not for circulation  
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 9</span></h4> 
 
 # About the EPA Data Analyzed in this Report Card and its Limitations  
 
@@ -953,9 +955,7 @@ Here are just some of the issues that prevent citizens from knowing how well pol
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-
-
-#### DRAFT not for circulation
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 10</span></h4>
 
 # About the Authors
 

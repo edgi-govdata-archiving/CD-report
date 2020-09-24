@@ -14,7 +14,7 @@ h1 {
   font-family: Ubuntu Condensed;
   text-transform: uppercase;
   color: white;
-  background-color: #5D7E78;
+  background-color: #3c5b8c;
   size: 5em;
   padding-left: 40px;
   padding-top: 10px;
@@ -33,9 +33,9 @@ h2 {
 h3 {
   font-family: Open Sans;
   text-transform: none;
-  font-weight: 400;
+  font-weight: 600;
   color: black;
-  size: 4em;
+  font-size: 18px;
   padding-left: 40px;
   padding-bottom: 0px;
   margin-bottom: 0px;
