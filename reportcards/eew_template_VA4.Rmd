@@ -245,7 +245,8 @@ effluentgraph <- ggplot(effluentviolations, mapping=aes(x=factor(Year),
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
   theme(axis.text.x=element_text(size=9),
-        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5), plot.title = element_text(lineheight = .1))
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5, size=9), plot.title = 
+          element_text(lineheight = .1, size=10))
 
 ##Inspections % change and graph
 
@@ -280,7 +281,8 @@ inspectiongraph <- ggplot(inspections, mapping=aes(x=factor(Date),
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
   theme(axis.text.x=element_text(size=9),
-        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5, size=9), plot.title = 
+          element_text(lineheight = .1, size=10))
 
 #enforcement
 ##So, we're going to do the first 3 years of Obama and Trump so average
@@ -330,7 +332,8 @@ enforcementactiongraph <- ggplot(enforcement, mapping=aes(x=factor(Date),y=Count
   geom_text(aes(label=Count, family="Georgia", fontface="bold"), position = position_dodge(0.9), vjust = -0.1, size=3)+
   theme_meg()+
   theme(axis.text.x=element_text(size=9),
-        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5, size=9), plot.title = 
+          element_text(lineheight = .1, size=10))
 
 enforcementfinegraph <- enforcement %>% ggplot()+
   geom_bar(aes(x=factor(Date),y=Amountinthousands , fill=President, group=1),stat="identity", show.legend=FALSE, alpha=.6)+
@@ -340,7 +343,8 @@ enforcementfinegraph <- enforcement %>% ggplot()+
   scale_x_discrete(breaks=c(2004,2008,2012,2016,2019))+
   theme_meg()+
   theme(axis.text.x=element_text(size=9),
-        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5), plot.caption = element_text(size=10))
+        axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5, size=9), plot.caption = element_text(size=10), plot.title = 
+          element_text(lineheight = .1, size=10))
 
 ```
 # Highlights for Virginia's 4th District
@@ -420,18 +424,17 @@ inspect1000bar / violations1000bar
   
 ```
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
+
+These two charts show how inspections and violations in this district compare to the national and state averages per 1000 facilities in 2019. We use data from 2019 as it was the most recent full year and the ECHO database only reports *currently* active facilities. To enable comparison across locations with a differing number of active facilities, we standardize the comparison to a value per 1000 facilities, proportionally adjusting the data if there are more or less than 1000 facilities in a district or state. 
+
 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 <h4>DRAFT not for circulation <span style="padding-left:450px">Page 4</span></h4> 
 
-# Recent Non-Compliance in this District
+<h1><span style="margin-bottom:0px; padding-bottom:0px">Recent Non-Compliance in this District</span></h1>
+
 These figures show the ten facilities in this district with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years (not necessarily consequcetive).
 ```{r, fig.height = 7, fig.width = 5, fig.align = "left"}
 #call in data and clean up 
@@ -516,7 +519,7 @@ ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width
 ```
 <a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/CAAfacilities.jpeg" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
-<h3><span style="font-size: 18px; padding-left:0px">ECHO reports for these facilities:</span></h3> 
+<font size="3">**ECHO reports for facilities:**</font>
 
 * <font size="2">[`r CAAbadactors[1,6] `](`r CAAbadactors[1,5] `)</font>
 * <font size="2">[`r CAAbadactors[2,6] `](`r CAAbadactors[2,5] `)</font>
@@ -531,7 +534,7 @@ ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width
 
 <a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/CWAfacilities.jpeg" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
-<h3><span style="font-size: 18px; padding-left:0px">ECHO reports for these facilities:</span></h3> 
+<font size="3">**ECHO reports for facilities:**</font>
 
 * <font size="2">[`r CWAbadactors[1,6] `](`r CWAbadactors[1,5] `)</font>
 * <font size="2">[`r CWAbadactors[2,6] `](`r CWAbadactors[2,5] `)</font>
@@ -546,7 +549,7 @@ ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width
 
 <a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/RCRAfacilities.jpeg" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
-<h3><span style="font-size: 18px; padding-left:0px">ECHO reports for these facilities:</span></h3> 
+<font size="3">**ECHO reports for facilities:**</font>
 
 * <font size="2">[`r RCRAbadactors[1,6] `](`r RCRAbadactors[1,5] `)</font>
 * <font size="2">[`r RCRAbadactors[2,6] `](`r RCRAbadactors[2,5] `)</font>
@@ -882,9 +885,9 @@ VA4 <- housemembers[which(housemembers$CD=="VA4"), ]
 <a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/donald_mceachin.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
 
-<h2>[`r VA4[1,2]`](`r VA4[1,7]`) <span style="color:#25539f">(`r VA4[1,3]`)</span></h2>
+<h2>[`r VA4[1,2]`](`r VA4[1,9]`) <span style="color:#25539f">(`r VA4[1,3]`)</span></h2>
 
-## In office since January 3rd, 2017
+## In office since `r VA4[1,6]` `r VA4[1,7]`, `r VA4[1,8]`
 
 ## Relevant Committee Membership:  [Energy and Commerce Committee](https://energycommerce.house.gov/)
 <br />
@@ -897,13 +900,19 @@ This Committee is the oldest house Committee with the broadest jurisdiction of a
 <br />
 
 ### Relevant Subcommittees: 
-[`r VA4[1,8]`](`r VA4[1,9]`)
-<br />
 [`r VA4[1,10]`](`r VA4[1,11]`)
+
 <br />
+
 [`r VA4[1,12]`](`r VA4[1,13]`)
+
 <br />
+
 [`r VA4[1,14]`](`r VA4[1,15]`)
+
+<br />
+
+[`r VA4[1,16]`](`r VA4[1,17]`)
 
 
 \pagebreak
@@ -912,45 +921,27 @@ This Committee is the oldest house Committee with the broadest jurisdiction of a
 <h4>DRAFT not for circulation <span style="padding-left:450px">Page 9</span></h4> 
 
 # About the EPA Data Analyzed in this Report Card and its Limitations  
+The data in this report is from EPA’s publicly-available [ECHO database](https://echo.epa.gov/) that compiles information from a number of distinct state and federal sources. However, poor reporting by states and inconsistent reporting schemes result in data gaps and inaccuracies. 
+
+EPA lists numerous specific issues on its [“Known Data Problems”](https://echo.epa.gov/resources/echo-data/known-data-problems) page. In addition, EPA [notes](https://echo.epa.gov/tools/data-downloads) that data on inspections, violations, and enforcement actions from prior to 2001 should be treated as incomplete and unreliable. For that reason, we have only tracked data back to 2001. In addition to many data entry errors -- too numerous to list here -- there are several major problems with ECHO: 
+
+* There is serious under-recording and under-reporting of CAA violations at the state level. Most CAA violations -- [perhaps 85% or more](http://eelp.law.harvard.edu/wp-content/uploads/Cynthia-Giles-Part-2-FINAL.pdf) -- do not make it into ECHO. Violation data is therefore inaccurate and misleading: states which report the fewest violations may be states whose recording and reporting of violations is actually the poorest.
+* Although there is no specific information about the quality of data on RCRA violations, it is likely that this program, like the CAA, has serious reporting problems. Therefore, RCRA violations data should also be considered inaccurate and potentially misleading. The key difference between these and the CWA is that the CWA entails mandatory electronic self-reporting.
+* ECHO does not record how many regulated facilities there were for programs in previous years. Therefore, we cannot calculate the number of inspections, enforcement actions, and violations per regulated facility before 2019.
+
+### Data reliability coding
+
+In this report, we have divided data issues into three categories, using transparencies in graphs as well as subtitles to indicate data reliability and completeness. See the table below: 
+
+(put table here)
+
+<br />
 
 <div class="text-box-info">
-
-<h3>Disclaimer</h3>
-
-<p>On March 26, 2020, the US EPA released [a policy memo](https://www.epa.gov/sites/production/files/2020-03/documents/oecamemooncovid19implications.pdf) suspending pollution monitoring requirements for industries that claim to have been impacted by COVID-19. Since then, as part of EDGI’s ongoing Environmental Enforcement Watch (EEW) project, we have conducted original data science research using EPA’s Enforcement and Compliance History Online ECHO database to investigate the effects of this policy on facility reporting of environmental data and compliance with environmental protection laws. Results show that, despite relatively few facilities claiming the COVID exemption, a much larger proportion of facilities are still failing to report. While both industry non-compliance and EPA non-enforcement reflect longer-term trends (as much as 70% of facilities were already in non-compliance with the nation’s environmental laws for certain regulatory programs pre-COVID, [Giles 2020](http://eelp.law.harvard.edu/wp-content/uploads/Cynthia-Giles-Part-2-FINAL.pdf)), we have decided to exclude 2020 data from this analysis due to EPA’s COVID-19 policy. This decision serves to provide the fairest and most accurate picture of enforcement and compliance trends, and to avoid skewing and misrepresenting the data.
+<h3>Note on 2020 data</h3>
+<p>We do not include data from 2020 because we are only part way through the year. It is important to note, as well, that data from 2020 will be strongly influenced by the EPA’s decision to suspend, from March through August, pollution monitoring requirements for industries that claim to have been impacted by COVID-19. EDGI’s report on this policy [“More Permission to Pollute”](https://envirodatagov.org/more-permission-to-pollute-the-decline-of-epa-enforcement-and-industry-compliance-during-covid/) found that, despite relatively few facilities claiming the COVID exemption, a much larger proportion of facilities are still failing to report. 
 .</p>
 </div>
-
-## What - the Data in this report 
-While ECHO remains the only publicly available and comprehensive source for environmental compliance data, it is known to be extremely unreliable. According to former EPA Administrator Cynthia Giles, states often report less than 5% of violations under the regulations controlling clean air and hazardous waste, which means that ECHO data may exclude more than 95% of such violations. Therefore, other than the Clean Water Act, for which violations are reported through an automated system, violation data should not be considered accurate. It is important to note that states which might have the most violations may actually be the most responsible in terms of their reporting to EPA. Below is a color code of reliability for each data type presented in this report: 
-
-```{r data, eval=TRUE, warning=FALSE, echo=FALSE}
-
-#make dataframe
-
-datacheck <-data.frame("Metric"=c("CWA self-reported violations","CWA, CAA, RCRA inspections; CAA, CWA, RCRA enforcement actions and penalties", "CAA Violations, RCRA violations"),
-                          "Color"=c("Green (data relatively complete)", "Yellow (data may be incomplete)", "Red (data so incomplete as to be misleading)"),
-                          "Why"=c("Mandatory electronic self-reporting to ECHO", "State reporting to ECHO may be incomplete", "No self-reporting; large gaps in state reporting to ECHO"))
-
-head(datacheck) %>%
-  kable() %>%
-  row_spec(c(1), color="black", bold=TRUE, background  = "#50C878") %>%
-  row_spec(c(2), color="black", bold=TRUE, background = "#ffde32") %>%
-  row_spec(c(3), color="black", bold=TRUE, background="#C21807") 
-  
-
-```
-### See part 2 of [this report](http://eelp.law.harvard.edu/wp-content/uploads/Cynthia-Giles-Part-2-FINAL.pdf) for more information about lack of reporting 
-
-The ECHO database compiles information from a number of distinct state and federal databases with inconsistent reporting schemes that lead to data gaps and inaccuracies such as geocoding errors (e.g. a facility in Texas is incorrectly coded as residing in Louisiana); multiple program IDs attributed to a single facility (which can cause one facility to appear as multiple, distinct facilities in the data); and an inability to know what/how maOR facilities operated in the past. EPA acknowledges some of these inconsistencies, and sometimes includes disclaimers on the ECHO website detailing them. The agency’s official position is that ECHO data is reliable-enough from 2001 onward, but former EPA Administrator Cynthia Giles says that states often report as little as 5% of compliance violations to ECHO for certain regulatory programs. 
-Here are just some of the issues that prevent citizens from knowing how well pollution has been, and is, being controlled: 
-
-* Some facilities chronically or repeatedly fail to comply with pollution laws. But available EPA data only goes back X years, so you cannot tell how well facilities in your area have complied with environmental protections over time. 
-* No idea how maOR facilities operated in the past
-* Multiple program IDs for a single facility/permit
-* Geocoding errors
-* Mislabeled times (e.g. the inspections that will occur in 2052)
-* Data entry errors that place inspections and enforcements in the wrong year (some in the future!) and that place facilities in the wrong state or area.
 
 \pagebreak
 
