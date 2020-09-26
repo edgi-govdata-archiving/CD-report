@@ -23,7 +23,44 @@ We'll aim to make an image of the CD that is 490 pixels tall and 550 pixels wide
 5. When you have the image as close as you can get it to 550x490, export it as a PNG file with the name XXN_map.png, where XX is the state abbreviation, and N is the district number, like AZ1_map.png.
     a.  Save your XXN_map.png locally, perhaps in a a folder called CD_76_maps_png that is parallel to where you unpacked CD_76_Dirs.zip.  (We can't put them into the CD directory with the data, because all the data is stored in github in this one zip file, so we will each have our own copy of that data.)
     b.  Upload your XXN_map.png to the CD_76_maps_png directory in the CD-reports github repository, zipfile-csvs branch.
-    
+
+Recommended working directory structure
+
+  CD-reports
+    |
+    |- CD_76_maps_png
+    |    |
+    |    |- AZ1_map.png
+    |    |- CA22_map.png
+    |    |- ...
+    |
+    |- CD_76_images
+    |    |
+    |    |- CA36_raul_ruiz.png
+    |    |- CA44_nanette_barragan.png
+    |    |- ...
+    |    
+    |- CD_76_Dirs
+    |    |
+    |    |- AZ1
+    |    |    |
+    |    |    |- active-facilities_All_pg3_AZ-1-091820.csv
+    |    |    |- ...
+    |    |
+    |    |- CA6
+    |    |    |
+    |    |    |- active-facilities_All_pg3_CA-6-091820.csv
+    |    |    |- ...    |    |
+    |    |- ...
+    |    
+    |- reportcards
+         |
+         |- eew_template_VA4.Rmd
+         |- eew_template_VA4.html
+         |- eew_template_VA4.pdf
+         |- ...
+         
+
 Making a report 
   
 1. Copy the map file into your local directory holding the CD data.
