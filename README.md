@@ -1,13 +1,13 @@
 # CD-report
 making .rmd for EDGI CD reports 
 
-Making CD Reports
+## Making CD Reports
 
 1. Download the CD_76_Dirs.zip and extract it on your computer.  This file has all of the data from the AllPrograms Jupyter notebook for the 76 districts we will be making report cards for.  The data for each CD is in a separate directory.  There should be a png for the representative.  If not you will need to add one.
 2. Download CD_76_maps_html.zip and extract it.  This file has HTML maps that will be used to create the png maps for the notebook.  (See the later instructions for how to do this.)
 3. Download the Rmd template you will be using to construct the final report.
 
-Make a map PNG file of the right size
+## Make a map PNG file of the right size
 
 The HTML maps in CD_76_maps_html.zip are dynamic--they can be zoomed in or out to get the best view of the district.  We need to use a screen shot tool to snip out a static image, then use a photo or image editor to make our image the right size for the report cards.
 We'll aim to make an image of the CD that is 490 pixels tall and 550 pixels wide.  We'll try to get them as close to those dimensions as possible, but being off by 1-5 pixels won't be noticable.
@@ -24,9 +24,10 @@ We'll aim to make an image of the CD that is 490 pixels tall and 550 pixels wide
     a.  Save your XXN_map.png locally, perhaps in a a folder called CD_76_maps_png that is parallel to where you unpacked CD_76_Dirs.zip.  (We can't put them into the CD directory with the data, because all the data is stored in github in this one zip file, so we will each have our own copy of that data.)
     b.  Upload your XXN_map.png to the CD_76_maps_png directory in the CD-reports github repository, zipfile-csvs branch.
 
-Recommended working directory structure
+## Recommended working directory structure
 
-  CD-reports
+```
+CD-reports
     |
     |- CD_76_maps_png
     |    |
@@ -59,7 +60,7 @@ Recommended working directory structure
          |- eew_template_VA4.html
          |- eew_template_VA4.pdf
          |- ...
-         
+```         
 
 Making a report 
   
