@@ -62,9 +62,42 @@ CD-reports
          |- ...
 ```         
 
-Making a report 
+Making a report card
+
+You may need this link to find information for your representative if you don't already have it:  [GovTrack](https://govtrack.us/).
   
-1. Copy the map file into your local directory holding the CD data.
-2. The date stamp in the CSV file names should be the same for all CDs - 091820.
+1. In the reportcards folder make a copy of the most recent eew_template.Rmd.  Name the new file eew_template_XXN.Rmd, where XX is the state abbreviation and N is the district number.
+2. In RStudion use File->File Open to open the new .Rmd file.
+3. Use Command-F (Mac) or Ctrl-F (Windows/Linux) to make these changes.  Use your own state and district in place of California's 36th district in these examples, and the state/district of the file you copied in place of Virginia's 4th.  **Run these replacements in this exact order.**
+```
+    a. Virginia's 4th --> California's 36th  (expect 2 replacements)
+    b. VA 4 --> CA 36  (expect 9 replacements)
+    c. _VA-4 --> _CA-36  (expect 26 replacements)
+    d. VA4 --> CA36 (expect 23 replacements)
+    
+```    
+4. Use the find function (but without any replacement) to look for this string:  'inspectionsper1000_All_pg4', then see what date stamp follows.  The date stamp for all of our data is 091820.  If the date you find is other than that (e.g. 090820), do another global find/replace:
+``` 090820  -->  091820  (expect 6 replacements) ```
+5. Use the find function to search for the string 'seat held by'.  Replace the representative's name with the one for your district.
+6. Add the other information on the legislator.  Search for 'Legislator information' to locate the right section.
+```
+    a. If your directory is set up as above, the link to the image should look like:
+        <a ><img src="../CD_76_images/CA36_raul_ruiz.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+    b. A few lines down, edit to get the correct committees and sub-committees.
+```
+7. Check image locations.  (Use the find function to look for 'png'.)  The logos appear twice, so check both of them.
+``` There should be facilities2.png, eew_logo.png and edgi_logo.png images in the reportscard folder where you are running this from, 
+    so the links should look like this:
+      <a href="https://www.environmentalenforcementwatch.org/"><img src="eew_logo.png" style="float: left; width: 25%; margin-left: 20%" ></a>
 
+      <a href="https://envirodatagov.org/"><img src="edgi_logo.png" style="float: right; width: 35%; margin-right: 20%" ></a>
+    The link to the map file should look like this:
+      <img src="../CD_76_maps_png/CA36_map2.png" alt="Snow" style="width:100%;">
+    The legislator's image should be in the CD_76_images directory, so the link will be like:
+      <a ><img src="../CD_76_images/CA36_raul_ruiz.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
+```
+8. In the Console area of RStudio, enter ```library(pagedown)``` and hit Enter.
+9. In the Console area of RStudio, enter this command and hit Enter, changing it to your state and district:
+``` pagedown::chrome_print( "eew_template_CA36.Rmd" ) ```
+    
