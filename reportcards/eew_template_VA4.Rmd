@@ -387,7 +387,7 @@ inspectionsper1000[2] <-round(inspectionsper1000[2],0)
 #Now let's visualize this 
 inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper1000, x=Program, alpha=Program))+
   geom_bar(position="dodge", stat="identity")+
-  scale_fill_manual(values=c("#999999" , "#333333", "#d43a69"))+
+  scale_fill_manual(values=c("#999999" , "#333333", "#569b5e"))+
   labs(y="Inspections per 1000 Facilities\n", x="")+
   scale_alpha_manual(values=c(.6,1,.6), guide='none')+
   geom_text(aes(label=Inspectionsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
@@ -411,7 +411,7 @@ violationsper1000[2] <-round(violationsper1000[2],0)
 #Now let's visualize this 
 violations1000bar <- ggplot(violationsper1000, aes(fill=Region, y=violationsper1000, x=Program, alpha=Program))+
   geom_bar(position="dodge", stat="identity", show.legend=FALSE)+
-  scale_fill_manual(values=c("#999999" , "#333333", "#d43a69"))+
+  scale_fill_manual(values=c("#999999" , "#333333", "#569b5e"))+
   scale_alpha_manual(values=c(.3,1,.3), guide='none')+
   labs(y="Violations per 1000 Facilities", x="")+
   geom_text(aes(label=violationsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
@@ -900,19 +900,22 @@ This Committee is the oldest house Committee with the broadest jurisdiction of a
 <br />
 
 ### Relevant Subcommittees: 
-[`r VA4[1,10]`](`r VA4[1,11]`)
 
 <br />
 
-[`r VA4[1,12]`](`r VA4[1,13]`)
+<h4><span style="padding-left:30px">[`r VA4[1,10]`](`r VA4[1,11]`)</span></h4>
 
 <br />
 
-[`r VA4[1,14]`](`r VA4[1,15]`)
+<h4><span style="padding-left:30px">[`r VA4[1,12]`](`r VA4[1,13]`)</span></h4>
 
 <br />
 
-[`r VA4[1,16]`](`r VA4[1,17]`)
+<h4><span style="padding-left:30px">[`r VA4[1,14]`](`r VA4[1,15]`)</span></h4>
+
+<br />
+
+<h4><span style="padding-left:30px">[`r VA4[1,16]`](`r VA4[1,17]`)</span></h4>
 
 
 \pagebreak
@@ -933,42 +936,94 @@ EPA lists numerous specific issues on its [“Known Data Problems”](https://ec
 
 In this report, we have divided data issues into three categories, using transparencies in graphs as well as subtitles to indicate data reliability and completeness. See the table below: 
 
-(put table here)
+<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/datareliabilitytable.png" style="float: center; width: 100%" ></a>
 
-<br />
+### Notes on 2020 data
 
-<div class="text-box-info">
-<h3>Note on 2020 data</h3>
-<p>We do not include data from 2020 because we are only part way through the year. It is important to note, as well, that data from 2020 will be strongly influenced by the EPA’s decision to suspend, from March through August, pollution monitoring requirements for industries that claim to have been impacted by COVID-19. EDGI’s report on this policy [“More Permission to Pollute”](https://envirodatagov.org/more-permission-to-pollute-the-decline-of-epa-enforcement-and-industry-compliance-during-covid/) found that, despite relatively few facilities claiming the COVID exemption, a much larger proportion of facilities are still failing to report. 
-.</p>
-</div>
+We do not include data from 2020 because we are only part way through the year. It is important to note, as well, that data from 2020 will be strongly influenced by the EPA’s decision to suspend, from March through August, pollution monitoring requirements for industries that claim to have been impacted by COVID-19. EDGI’s report on this policy [“More Permission to Pollute”](https://envirodatagov.org/more-permission-to-pollute-the-decline-of-epa-enforcement-and-industry-compliance-during-covid/) found that, despite relatively few facilities claiming the COVID exemption, a much larger proportion of facilities are still failing to report. 
 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 <h4>DRAFT not for circulation <span style="padding-left:450px">Page 10</span></h4>
 
-# About the Authors
+# How and why EEW developed the metrics in this report
 
-### About EEW and this Project
+## Page 1: Trump administration grade
 
-Environmental Enforcement Watch (EEW) is a collaborative project across EDGI working groups. The EEW project builds on EDGI’s 2019 [Sheep in the Closet Report](https://envirodatagov.org/publication/a-sheep-in-the-closet-the-erosion-of-enforcement-at-the-epa/) that documents large declines in EPA enforcement of environmental laws. This project and others used data from EPA’s [ECHO](https://echo.epa.gov/) database, revealing how useful ECHO could be for communities to track pollution and EPA responses in their areas. However, they also revealed the inaccessibility of ECHO for non-specialists, along with maOR omissions, errors, and confusions present in the data itself.
+To enable direct comparison between changes in enforcement and violations since the Trump Administration took office we calculate the percent change in Clean Water Act violations and enforcement actions per district or state between Trump’s first three years in office and the historical average in each district from 2001 to 2016. We analyze data since 2001, as EPA is most confident in their own data since 2001. We analyze data just on Clean Water Act violations because that data is the most complete due to routine digital reporting requirements. We analyzed all forms of enforcement actions informal and formal. All data is drawn from the ECHO database. 
 
-A key goal of EEW is to highlight gaps and inadequacies in the enforcement of environmental laws, demonstrating EPA’s failure to fulfill its congressionally mandated duty. To help bring awareness and action to the state of environmental non-compliance across the US, we are using Jupyter Notebooks that utilize ECHO data to present these congressional report cards for the 75 Senators and House Representatives that sit on the House Energy & Commerce Committee and the Senate Environment & Public Works Committee. By providing a novel and poignant look at the chronic state of non-compliance in their states and districts, we hope to provide these key representatives with the information and pressure they need to hold the EPA accountable. 
+We describe rates to be “Much Worse” if the percent increase in violations or decrease in enforcement actions is greater than 100%, “Worse” if the percent change is between 0% and 100% percent and “the same” if there is no change. 
 
+We describe rates to be “Better” if violation rates decreased or enforcement rates increased by 0% to 100% and “Much Better” if rates of enforcement or compliance increased by more than 100%.
+
+<br />
+
+### This District or State in comparison dot plot: 
+
+<br />
+
+The dot plot shows the number of Clean Water Act violations in your state or district compared to all others in this Senate or House committee in 2019. We use Clean Water Act data as it is the most reliable and use 2019 as we have the most confidence about data per 1000 facilities in that year. We provide this metric as some districts' rates of violations and enforcement may not have changed, but that is because they are consistently poor or consistently good.
+
+## Page 2: Highlights from this district
+
+Trump and Obama Administration comparison: To enable comparison to a more recent administration we compare levels of inspection and enforcement in the first three years of the Obama administration compared to the first three years of the Trump administration. For these figures inspections and enforcement numbers for the CWA, CAA and RCRA are combined. We compare to only the first 3 years of each Administration's term for parity.
+
+<br />
+
+### Non-compliant facilities: 
+
+<br />
+
+To highlight the problem of chronic and routine violations of major environmental laws this bullet point provides data on the number of facilities in each Congressional District or state who have been out of compliance with environmental laws for 9 or more months in the past 3 years under the Clean Water Act.
+
+\pagebreak
+
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 11</span></h4>
+
+# How and why EEW developed the metrics in this report (continued)
+
+## Page 3: This District In Comparison
+
+To generate a comparison across Congressional Districts who each have varying numbers of facilities we look at the average number of violations, inspections and enforcement action per 1000 facilities. In states where there are fewer than 1000 facilities this requires us to adjust up their data. 
+
+
+## Page 4: Consistently Bad Actors in this District
+
+To examine facilities with consistent records of noncompliance we provide information on the 10 facilities with the most quarters of non-compliance under the CAA, CWA, and RCRA. Important notes here: The ECHO data we work with shows the number of quarters of non-compliance not exactly which quarters they were out of compliance, so non-compliance here may not be consecutive. Quarters can be a little confusing also: there are 4 quarters in a year, so 12 quarters equals 3 years of time. In some locations there may be more than 10 facilities who are out of compliance for all 12 quarters. We limit to 10 for space and clarity, the full list can be found in the Jupyter notebook for that district. Additionally, you will see the x-axis for these figures display a maximum of 12 quarters for the CAA and RCRA, but 13 for the CWA. This is because the CWA has automatically reported violations, so we have violations information for the first quarter of 2020 for the CWA. 
+
+
+\pagebreak
+
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 12</span></h4>
+
+# About the Authors and Links to Data 
+
+### About EEW 
+
+Environmental Enforcement Watch (EEW) is a collaborative project across working groups of the Environmental Data and Governance Initiative (EDGI). The EEW project builds on EDGI’s 2019 [Sheep in the Closet Report](https://envirodatagov.org/publication/a-sheep-in-the-closet-the-erosion-of-enforcement-at-the-epa/) that documents large declines in EPA enforcement of environmental laws. This project uses data from EPA’s [ECHO database](https://echo.epa.gov/) , revealing how useful ECHO could be for communities to track pollution and EPA responses in their areas. However, it also reveals the inaccessibility of ECHO for non-specialists, and major omissions, errors, and confusions present in the data itself (see page 9). EEW aims to highlight gaps and inadequacies in the enforcement of environmental laws and to help investigate whether EPA is fulfilling its congressionally mandated duty to enforce environmental laws. EEW’s data analysis is conducted using open source and publicly available using Jupyter Notebooks developed by EDGI members.
+
+<h3><span style="color:#569b5e">A full list of EEW members, including their role in this project, can be found here (need link)</span></h3> 
+
+### About this Project 
+
+This EEW project aims to make EPA data more directly accessible to the public and their representatives based on Congressional Districts. Aiming to reach the Representatives and Senators with the most direct role in overseeing the EPA, for this project EEW made report cards for the 76 Senators and House Representatives that sit on the House Energy & Commerce Committee and the Senate Environment & Public Works Committee as these Congressional committees oversee the EPA. By providing a novel look at the chronic state of non-compliance in their states and districts, we hope to provide these key representatives with information they need to evaluate the state of Environmental Law compliance and enforcement in their communities so they might more effectively hold EPA accountable.
+
+For access to the Jupyter Notebooks used to develop this report see our Github repository.(need to figure out which link)
+
+For more on EEW see our website
 
 <div class="text-box-info">
 
 <h3>About EDGI</h3>
 <p>EDGI is an international network of over 175 members from more than 80 different academic institutions and non-profits, comprised foremost by grassroots volunteer efforts. Since 2016, EDGI has served as a preeminent watchdog group for federal environmental data, generating international effort to duplicate and monitor repositories of public data that are vital to environmental health research and knowledge.
-EDGI’s work has been widely acknowledged, leading to EDGI testifying before Congress on declines in EPA enforcement, and hundreds of mentions in leading national and international media such as _The New York Times_,_The Washington Post_, Vice News, and CNN. For more about our work, read our [2019 Annual Report](https://envirodatagov.org/publication/edgi-annual-report-2019/)and [2020 Annual Report](https://envirodatagov.org/publication/edgi-annual-report-2020/).<p>
-
+EDGI’s work has been widely acknowledged, leading to EDGI testifying before Congress on declines in EPA enforcement, and hundreds of mentions in leading national and international media such as _The New York Times_,_The Washington Post_, Vice News, and CNN. For more about our work, read our [2019 Annual Report](https://envirodatagov.org/publication/edgi-annual-report-2019/)and [2020 Annual Report](https://envirodatagov.org/publication/edgi-annual-report-2020/). For more on EDGI see [our website](https://envirodatagov.org/).<p>
 </div>
-
 
 #### [Contact Us](https://www.environmentalenforcementwatch.org/contact/)
 
-<a href="https://www.environmentalenforcementwatch.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/eew_logo.png" style="float: left; width: 25%; margin-left: 20%" ></a>
-
-<a href="https://envirodatagov.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 35%; margin-right: 20%" ></a>
+<a href="https://www.environmentalenforcementwatch.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/eew_logo.png" style="float: left; width: 12%; margin-left: 30%"></a>
+<a href="https://envirodatagov.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" ></a>
 
