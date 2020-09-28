@@ -3,7 +3,7 @@ making .rmd for EDGI CD reports
 
 ## Making CD Reports
 
-1. Download the CD_76_Dirs.zip and extract it on your computer.  This file has all of the data from the AllPrograms Jupyter notebook for the 76 districts we will be making report cards for.  The data for each CD is in a separate directory.  There should be a png for the representative.  If not you will need to add one.
+1. Download the CD_Dirs.zip and State_Dirs.zip archives and extract them on your computer.  These have all of the data from the AllPrograms Jupyter notebook for the districts we will be making report cards for.  The data for each CD is in a separate directory.  There should be a png for the representative.  If not you will need to add one.
 2. Download CD_76_maps_html.zip and extract it.  This file has HTML maps that will be used to create the png maps for the notebook.  (See the later instructions for how to do this.)
 3. Download the Rmd template you will be using to construct the final report.
 
@@ -12,31 +12,31 @@ making .rmd for EDGI CD reports
 ```
 CD-reports
     |
-    |- CD_76_maps_png
+    |- CD_maps
     |    |
     |    |- AZ1_map.png
     |    |- CA22_map.png
     |    |- ...
     |
-    |- CD_76_images
+    |- CD_images
     |    |
     |    |- CA36_raul_ruiz.png
     |    |- CA44_nanette_barragan.png
     |    |- ...
     |    
-    |- CD_76_Dirs
+    |- AZ1
     |    |
-    |    |- AZ1
-    |    |    |
-    |    |    |- active-facilities_All_pg3_AZ-1-091820.csv
-    |    |    |- ...
-    |    |
-    |    |- CA6
-    |    |    |
-    |    |    |- active-facilities_All_pg3_CA-6-091820.csv
-    |    |    |- ...    |    |
+    |    |- active-facilities_All_pg3_AZ-1-091820.csv
     |    |- ...
-    |    
+    |
+    |- CA6
+    |    |
+    |    |- active-facilities_All_pg3_CA-6-091820.csv
+    |    |- ...
+    |    |
+    |
+    |- ...
+    |
     |- reportcards
          |
          |- eew_template_VA4.Rmd
@@ -66,6 +66,8 @@ We'll aim to make an image of the CD that is 490 pixels tall and 550 pixels wide
 ## Making a report card
 
 You may need this link to find information for your representative if you don't already have it:  [GovTrack](https://govtrack.us/).
+
+If you are running this from the CD-reports folder, the paths to the files should be like those shown below.
   
 1. In the reportcards folder make a copy of the most recent eew_template.Rmd.  Name the new file eew_template_XXN.Rmd, where XX is the state abbreviation and N is the district number.
 2. In RStudion use File->File Open to open the new .Rmd file.
@@ -83,22 +85,22 @@ You may need this link to find information for your representative if you don't 
 6. Add the other information on the legislator.  Search for 'Legislator information' to locate the right section.
 ```
     a. If your directory is set up as above, the link to the image should look like:
-        <a ><img src="../CD_76_images/CA36_raul_ruiz.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+        <a ><img src="CD_76_images/CA36_raul_ruiz.png" style="float: left; width: 25%; margin-right: 5%" ></a>
     b. A few lines down, edit to get the correct committees and sub-committees.
 ```
 7. Check image locations.  (Use the find function to look for 'png'.)  The logos appear twice, so check both of them.
 ``` There should be facilities2.png, eew_logo.png and edgi_logo.png images in the reportscard folder where you are running this from, 
     so the links should look like this:
-      <a href="https://www.environmentalenforcementwatch.org/"><img src="eew_logo.png" style="float: left; width: 25%; margin-left: 20%" ></a>
+      <a href="https://www.environmentalenforcementwatch.org/"><img src="reportcards/eew_logo.png" style="float: left; width: 25%; margin-left: 20%" ></a>
 
-      <a href="https://envirodatagov.org/"><img src="edgi_logo.png" style="float: right; width: 35%; margin-right: 20%" ></a>
+      <a href="https://envirodatagov.org/"><img src="reportcards/edgi_logo.png" style="float: right; width: 35%; margin-right: 20%" ></a>
     The link to the map file should look like this:
-      <img src="../CD_76_maps_png/CA36_map2.png" alt="Snow" style="width:100%;">
+      <img src="CD_76_maps_png/CA36_map2.png" alt="Snow" style="width:100%;">
     The legislator's image should be in the CD_76_images directory, so the link will be like:
-      <a ><img src="../CD_76_images/CA36_raul_ruiz.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+      <a ><img src="CD_76_images/CA36_raul_ruiz.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
 ```
 8. In the Console area of RStudio, enter ```library(pagedown)``` and hit Enter.
 9. In the Console area of RStudio, enter this command and hit Enter, changing it to your state and district:
-``` pagedown::chrome_print( "eew_template_CA36.Rmd" ) ```
+``` pagedown::chrome_print( "reportcards/eew_template_CA36.Rmd" ) ```
     
