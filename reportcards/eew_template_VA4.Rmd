@@ -360,8 +360,7 @@ effluentgraph/inspectiongraph/enforcementactiongraph/enforcementfinegraph
 
 ```
 
-### Figures throughout this report indicate reliability by the subtitle and the degree of transparency of the data. See the data limitations page to view the ransparency-coding table and access the data here (NEED LINK HERE).
-
+The reliability of data in figures throughout this report are indicated by the figure subtitle and degree of transparency.See the data limitations page to view the transparency-coding table and access the data here (NEED LINK HERE).
 
 \pagebreak
 
@@ -387,7 +386,7 @@ inspectionsper1000[2] <-round(inspectionsper1000[2],0)
 #Now let's visualize this 
 inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper1000, x=Program, alpha=Program))+
   geom_bar(position="dodge", stat="identity")+
-  scale_fill_manual(values=c("#999999" , "#333333", "#569b5e"))+
+  scale_fill_manual(values=c("#999999" , "#333333", "#d43a69"))+
   labs(y="Inspections per 1000 Facilities\n", x="")+
   scale_alpha_manual(values=c(.6,1,.6), guide='none')+
   geom_text(aes(label=Inspectionsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
@@ -411,7 +410,7 @@ violationsper1000[2] <-round(violationsper1000[2],0)
 #Now let's visualize this 
 violations1000bar <- ggplot(violationsper1000, aes(fill=Region, y=violationsper1000, x=Program, alpha=Program))+
   geom_bar(position="dodge", stat="identity", show.legend=FALSE)+
-  scale_fill_manual(values=c("#999999" , "#333333", "#569b5e"))+
+  scale_fill_manual(values=c("#999999" , "#333333", "#d43a69"))+
   scale_alpha_manual(values=c(.3,1,.3), guide='none')+
   labs(y="Violations per 1000 Facilities", x="")+
   geom_text(aes(label=violationsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
@@ -428,6 +427,7 @@ inspect1000bar / violations1000bar
 These two charts show how inspections and violations in this district compare to the national and state averages per 1000 facilities in 2019. We use data from 2019 as it was the most recent full year and the ECHO database only reports *currently* active facilities. To enable comparison across locations with a differing number of active facilities, we standardize the comparison to a value per 1000 facilities, proportionally adjusting the data if there are more or less than 1000 facilities in a district or state. 
 
 
+
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
@@ -435,7 +435,7 @@ These two charts show how inspections and violations in this district compare to
 
 <h1><span style="margin-bottom:0px; padding-bottom:0px">Recent Non-Compliance in this District</span></h1>
 
-These figures show the ten facilities in this district with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years (not necessarily consequcetive).
+These figures show the ten facilities in this district with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years (not necessarily consecutive).
 ```{r, fig.height = 7, fig.width = 5, fig.align = "left"}
 #call in data and clean up 
 CAAbadactors <- `noncomp_CAA_pg6_VA-4`
@@ -673,8 +673,7 @@ These figures show patterns of CAA inspections, violations, enforcement actions 
 # Clean Water Act 
 
 <div class="text-box-info">
-
-The [Clean Water Act (CWA)](https://www.epa.gov/laws-regulations/summary-clean-water-act) regulates the discharge of hazardous pollutants into and establishes quality standards for the waters of the United States. The CWA established the National Pollutant Discharge Elimination System (NPDES) which permits facilities to discharge certain kinds and amounts of pollutants. Unlike the CAA, effluent (waste emissions) from CWA facilities is routinely reported electronically to ECHO. Levels of contaminants reported over permitted levels triggers a NPDES violation automatically. Therefore, CWA violations are recorded independently of facility inspections and inspections often occur in response to recorded violations.[More info on CWA](https://docs.google.com/presentation/d/1g6ZN3B5jvs3F1VAigiUtNNezjXdJnzuELfo9Deo9Y2w/edit?usp=sharing)
+The [Clean Water Act (CWA)](https://www.epa.gov/laws-regulations/summary-clean-water-act) regulates the discharge of hazardous pollutants into and establishes quality standards for the waters of the United States. The CWA established the National Pollutant Discharge Elimination System (NPDES) which permits facilities to discharge certain kinds and amounts of pollutants. Unlike the CAA, under the CWA effluent (waste emissions) are directly measured and routinely reported electronically to ECHO. CWA violations are automatically triggered if data is not submitted and if contaminant levels in effluent exceed the permitted amount. Such CWA act violations can lead to inspections. [More info on CWA](https://docs.google.com/presentation/d/1g6ZN3B5jvs3F1VAigiUtNNezjXdJnzuELfo9Deo9Y2w/edit?usp=sharing)
 </div>
 <h2>There are `r activefacilities[2,2] ` facilities currently reporting under the 
 `r activefacilities[2,1]`</h2>
@@ -894,7 +893,7 @@ VA4 <- housemembers[which(housemembers$CD=="VA4"), ]
 <br />
 <div class="text-box-info">
 ### The House Energy and Commerce Committee
-This Committee is the oldest house Committee with the broadest jurisdiction of any authorizing committee. The Committee oversees the EPA, and legislates on issues like environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee consists of 55 members – 24 Republicans and 31 Democrats. The subcommittees of primary interest to these reports are Environment & Climate Change and Oversight & Investigations. 
+This Committee is the oldest house Committee with the broadest jurisdiction of any authorizing committee. The Committee oversees the EPA, and legislates on issues like environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee consists of 55 members – 24 Republicans and 31 Democrats. 
 </div>
 
 <br />
@@ -928,7 +927,7 @@ The data in this report is from EPA’s publicly-available [ECHO database](https
 
 EPA lists numerous specific issues on its [“Known Data Problems”](https://echo.epa.gov/resources/echo-data/known-data-problems) page. In addition, EPA [notes](https://echo.epa.gov/tools/data-downloads) that data on inspections, violations, and enforcement actions from prior to 2001 should be treated as incomplete and unreliable. For that reason, we have only tracked data back to 2001. In addition to many data entry errors -- too numerous to list here -- there are several major problems with ECHO: 
 
-* There is serious under-recording and under-reporting of CAA violations at the state level. Most CAA violations -- [perhaps 85% or more](http://eelp.law.harvard.edu/wp-content/uploads/Cynthia-Giles-Part-2-FINAL.pdf) -- do not make it into ECHO. Violation data is therefore inaccurate and misleading: states which report the fewest violations may be states whose recording and reporting of violations is actually the poorest.
+* There is serious under-recording and under-reporting of CAA violations at the state level. Most CAA violations -- [perhaps 85% or more](http://eelp.law.harvard.edu/wp-content/uploads/Cynthia-Giles-Part-2-FINAL.pdf) -- do not make it into ECHO. Violation data is therefore inaccurate and misleading: <span style="color:#569b5e">states which report the fewest violations may be states whose recording and reporting of violations is actually the poorest.</span>
 * Although there is no specific information about the quality of data on RCRA violations, it is likely that this program, like the CAA, has serious reporting problems. Therefore, RCRA violations data should also be considered inaccurate and potentially misleading. The key difference between these and the CWA is that the CWA entails mandatory electronic self-reporting.
 * ECHO does not record how many regulated facilities there were for programs in previous years. Therefore, we cannot calculate the number of inspections, enforcement actions, and violations per regulated facility before 2019.
 
@@ -963,7 +962,7 @@ We describe rates to be “Better” if violation rates decreased or enforcement
 
 <br />
 
-The dot plot shows the number of Clean Water Act violations in your state or district compared to all others in this Senate or House committee in 2019. We use Clean Water Act data as it is the most reliable and use 2019 as we have the most confidence about data per 1000 facilities in that year. We provide this metric as some districts' rates of violations and enforcement may not have changed, but that is because they are consistently poor or consistently good.
+The dot plot shows the number of Clean Water Act violations in your state or district compared to all others in this Senate or House committee in 2019. We use Clean Water Act data as it is the most reliable and use 2019 as we have the most confidence about data per 1000 facilities in that year. We provide this metric as some districts’ rates of violations and enforcement may not have changed because their performance is consistently poor or good.
 
 ## Page 2: Highlights from this district
 
@@ -989,7 +988,7 @@ To highlight the problem of chronic and routine violations of major environmenta
 To generate a comparison across Congressional Districts who each have varying numbers of facilities we look at the average number of violations, inspections and enforcement action per 1000 facilities. In states where there are fewer than 1000 facilities this requires us to adjust up their data. 
 
 
-## Page 4: Consistently Bad Actors in this District
+## Page 4: Recent Noncompliance in this District
 
 To examine facilities with consistent records of noncompliance we provide information on the 10 facilities with the most quarters of non-compliance under the CAA, CWA, and RCRA. Important notes here: The ECHO data we work with shows the number of quarters of non-compliance not exactly which quarters they were out of compliance, so non-compliance here may not be consecutive. Quarters can be a little confusing also: there are 4 quarters in a year, so 12 quarters equals 3 years of time. In some locations there may be more than 10 facilities who are out of compliance for all 12 quarters. We limit to 10 for space and clarity, the full list can be found in the Jupyter notebook for that district. Additionally, you will see the x-axis for these figures display a maximum of 12 quarters for the CAA and RCRA, but 13 for the CWA. This is because the CWA has automatically reported violations, so we have violations information for the first quarter of 2020 for the CWA. 
 
