@@ -3,7 +3,7 @@ title: "Environmental Enforcement Watch"
 output: 
   html_paged:
     number_sections: false
-    css: ["custom3.css"]
+    css: ["custom_current.css"]
 ---
 
 ```{r setup, include=FALSE}
@@ -360,7 +360,7 @@ effluentgraph/inspectiongraph/enforcementactiongraph/enforcementfinegraph
 
 ```
 
-The reliability of data in figures throughout this report are indicated by the figure subtitle and degree of transparency.See the data limitations page to view the transparency-coding table and access the data here (NEED LINK HERE).
+The reliability of data in figures throughout this report is indicated by the figure subtitle and degree of transparency.See the data limitations page to view the transparency-coding table and access the data here (NEED LINK HERE).
 
 \pagebreak
 
@@ -434,8 +434,7 @@ These two charts show how inspections and violations in this district compare to
 <h4>DRAFT not for circulation <span style="padding-left:450px">Page 4</span></h4> 
 
 <h1><span style="margin-bottom:0px; padding-bottom:0px">Recent Non-Compliance in this District</span></h1>
-
-These figures show the ten facilities in this district with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years (not necessarily consecutive).
+<font size="2">These figures show the ten facilities in this district with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years (not necessarily consecutive).</font>
 ```{r, fig.height = 7, fig.width = 5, fig.align = "left"}
 #call in data and clean up 
 CAAbadactors <- `noncomp_CAA_pg6_VA-4`
@@ -574,8 +573,7 @@ ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width
 The [Clean Air Act (CAA)](https://www.epa.gov/laws-regulations/summary-clean-air-act) is the comprehensive federal law that regulates air emissions from stationary and mobile sources such as refineries, power plants and cars. For the CAA, violations are most commonly recognized via inspections. Infrequent inspection usually results in fewer identified violations. If CAA violations have decreased, make sure to check whether inspections have also decreased as recent cuts in inspections are likely related to drops in CAA violations. Unless thorough inspections are occurring regularly, fewer violations does not necessarily mean air quality has improved. 
 [More info on CAA](https://docs.google.com/presentation/d/1MzRQf3QeJqmYMSttdk0ghrXeOmOZgOV_MTynl-ri6Ik/edit?usp=sharing)
 </div>
-<h2>There are `r activefacilities[1,2] ` facilities currently reporting under the  
-`r activefacilities[1,1]`</h2>
+<h2>There are `r activefacilities[1,2] ` facilities currently reporting under the `r activefacilities[1,1]` in this district</h2>
 ```{r, fig.height = 5, fig.width = 8, fig.align = "center"}
 
 #clean up data
@@ -591,7 +589,7 @@ CAAviolations[17:19,3] <- as.character("Trump")
 vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, fill=President, group=1))+
   geom_bar(stat="identity", show.legend = FALSE, alpha=.3)+
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
-  labs(y=" # Violations", x="Year", title="CAA violations\n", subtitle ="Very incomplete data")+
+  labs(y=" # Violations", x="Year", title="CAA Violations\n", subtitle ="Very incomplete data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAviolations$Count+(.2*max(CAAviolations$Count)))))+
   scale_x_discrete(breaks=c(2004,2008,2012, 2016))+
   theme_meg()+
@@ -661,7 +659,7 @@ fineCAAgraph <- ggplot(CAAenforcement, mapping=aes(x=factor(Date), y=Amountintho
 
 
 ```
-These figures show patterns of CAA inspections, violations, enforcement actions and fines in this district since 2001 based on available EPA data (see page 9). The bars are colored by president. Figure transparency illustrates data reliability: the more transparent, the more uncertain the data. Data on CAA violations is particularly unreliable as emissions are often not directly monitored but are estimates. Inspection, enforcement, and fine data can be unreliable state reporting to ECHO may be incomplete.
+These figures show patterns of CAA inspections, violations, enforcement actions and fines in this district since 2001 based on available EPA data (see page 9). The bars are colored by president. Figure transparency illustrates data reliability: the more transparent, the more uncertain the data. Data on CAA violations is particularly unreliable as emissions are often not directly monitored but are estimates. Inspection, enforcement, and fine data can be unreliable because state reporting to ECHO may be incomplete.
 <br />
 <br />
 
@@ -676,7 +674,7 @@ These figures show patterns of CAA inspections, violations, enforcement actions 
 The [Clean Water Act (CWA)](https://www.epa.gov/laws-regulations/summary-clean-water-act) regulates the discharge of hazardous pollutants into and establishes quality standards for the waters of the United States. The CWA established the National Pollutant Discharge Elimination System (NPDES) which permits facilities to discharge certain kinds and amounts of pollutants. Unlike the CAA, under the CWA effluent (waste emissions) are directly measured and routinely reported electronically to ECHO. CWA violations are automatically triggered if data is not submitted and if contaminant levels in effluent exceed the permitted amount. Such CWA act violations can lead to inspections. [More info on CWA](https://docs.google.com/presentation/d/1g6ZN3B5jvs3F1VAigiUtNNezjXdJnzuELfo9Deo9Y2w/edit?usp=sharing)
 </div>
 <h2>There are `r activefacilities[2,2] ` facilities currently reporting under the 
-`r activefacilities[2,1]`</h2>
+`r activefacilities[2,1]` in this district</h2> 
 ```{r, fig.height = 5, fig.width = 8, fig.align = "center"}
 
 #clean up data
@@ -776,7 +774,7 @@ These figures show patterns of Clean Water Act inspections, violations, enforcem
 The [Resource Conservation and Recovery Act (RCRA)](https://www.epa.gov/laws-regulations/summary-resource-conservation-and-recovery-act) gives EPA the authority to control hazardous waste from the "cradle-to-grave", regulating the generation, transportation, treatment, storage, and disposal of hazardous waste. Facilities self-report under RCRA, like the CAA, and violations are most often found after an inspection. If RCRA violations have decreased, make sure to check whether inspections have also decreased as recent cuts in inspections are likely related to drops in RCRA violations. [More info on RCRA](https://docs.google.com/presentation/d/1lV9b_vkcfCbTz8uss1XjXLHy2svpi2tmizb6et1Wfkc/edit?usp=sharing)
 </div>
 <h2>There are `r activefacilities[3,2] ` facilities currently reporting under
-`r activefacilities[3,1]`</h2>
+`r activefacilities[3,1]` in this district</h2>
 ```{r, fig.height = 5, fig.width = 8, fig.align = "center"}
 
 #clean up data
@@ -861,7 +859,7 @@ fineRCRAgraph <- ggplot(RCRAenforcement, mapping=aes(x=factor(Date), y=Amountint
 
 
 ```	
-These figures show patterns of RCRA inspections, violations, enforcement actions and fines in this district since 2001 based on available EPA data (see page 9). The bars are colored by president. Figure transparency illustrates data reliability: the more transparent, the more uncertain the data. Data on RCRA violations is particularly unreliable as violations are not necessarily directly measured. Inspection, enforcement, and fine data can be unreliable state reporting to ECHO may be incomplete.
+These figures show patterns of RCRA inspections, violations, enforcement actions and fines in this district since 2001 based on available EPA data (see page 9). The bars are colored by president. Figure transparency illustrates data reliability: the more transparent, the more uncertain the data. Data on RCRA violations is particularly unreliable as violations are not necessarily directly measured. Inspection, enforcement, and fine data can be unreliable because state reporting to ECHO may be incomplete.
 <br />
 <br />
 <br />
@@ -925,7 +923,7 @@ This Committee is the oldest house Committee with the broadest jurisdiction of a
 # About the EPA Data Analyzed in this Report Card and its Limitations  
 The data in this report is from EPA’s publicly-available [ECHO database](https://echo.epa.gov/) that compiles information from a number of distinct state and federal sources. However, poor reporting by states and inconsistent reporting schemes result in data gaps and inaccuracies. 
 
-EPA lists numerous specific issues on its [“Known Data Problems”](https://echo.epa.gov/resources/echo-data/known-data-problems) page. In addition, EPA [notes](https://echo.epa.gov/tools/data-downloads) that data on inspections, violations, and enforcement actions from prior to 2001 should be treated as incomplete and unreliable. For that reason, we have only tracked data back to 2001. In addition to many data entry errors -- too numerous to list here -- there are several major problems with ECHO: 
+EPA lists numerous specific issues on its [“Known Data Problems”](https://echo.epa.gov/resources/echo-data/known-data-problems) page. In addition, EPA [notes](https://echo.epa.gov/tools/data-downloads) that data on inspections, violations, and enforcement actions prior to 2001 should be treated as incomplete and unreliable. For that reason, we have only tracked data back to 2001. In addition to many data entry errors -- too numerous to list here -- there are several major problems with ECHO: 
 
 * There is serious under-recording and under-reporting of CAA violations at the state level. Most CAA violations -- [perhaps 85% or more](http://eelp.law.harvard.edu/wp-content/uploads/Cynthia-Giles-Part-2-FINAL.pdf) -- do not make it into ECHO. Violation data is therefore inaccurate and misleading: <span style="color:#569b5e">states which report the fewest violations may be states whose recording and reporting of violations is actually the poorest.</span>
 * Although there is no specific information about the quality of data on RCRA violations, it is likely that this program, like the CAA, has serious reporting problems. Therefore, RCRA violations data should also be considered inaccurate and potentially misleading. The key difference between these and the CWA is that the CWA entails mandatory electronic self-reporting.
@@ -950,7 +948,7 @@ We do not include data from 2020 because we are only part way through the year. 
 
 ## Page 1: Trump administration grade
 
-To enable direct comparison between changes in enforcement and violations since the Trump Administration took office we calculate the percent change in Clean Water Act violations and enforcement actions per district or state between Trump’s first three years in office and the historical average in each district from 2001 to 2016. We analyze data since 2001, as EPA is most confident in their own data since 2001. We analyze data just on Clean Water Act violations because that data is the most complete due to routine digital reporting requirements. We analyzed all forms of enforcement actions informal and formal. All data is drawn from the ECHO database. 
+To enable direct comparison between changes in enforcement and violations since the Trump Administration took office we calculate the percent change in Clean Water Act violations and enforcement actions per district or state between Trump’s first three years in office and the historical average in each district from 2001 to 2016. We analyze data since 2001, as EPA is most confident in its own data since 2001. We analyze data just on Clean Water Act violations because that data is the most complete due to routine digital reporting requirements. We analyze all forms of enforcement actions informal and formal. All data is drawn from the ECHO database. 
 
 We describe rates to be “Much Worse” if the percent increase in violations or decrease in enforcement actions is greater than 100%, “Worse” if the percent change is between 0% and 100% percent and “the same” if there is no change. 
 
@@ -962,11 +960,11 @@ We describe rates to be “Better” if violation rates decreased or enforcement
 
 <br />
 
-The dot plot shows the number of Clean Water Act violations in your state or district compared to all others in this Senate or House committee in 2019. We use Clean Water Act data as it is the most reliable and use 2019 as we have the most confidence about data per 1000 facilities in that year. We provide this metric as some districts’ rates of violations and enforcement may not have changed because their performance is consistently poor or good.
+The dot plot shows the number of Clean Water Act violations in this state or district compared to all others in this Senate or House committee in 2019. We use Clean Water Act data as it is the most reliable and use 2019 as we have the most confidence about data per 1000 facilities in that year. We provide this metric as some districts’ rates of violations and enforcement may not have changed because their performance is consistently poor or good.
 
 ## Page 2: Highlights from this district
 
-Trump and Obama Administration comparison: To enable comparison to a more recent administration we compare levels of inspection and enforcement in the first three years of the Obama administration compared to the first three years of the Trump administration. For these figures inspections and enforcement numbers for the CWA, CAA and RCRA are combined. We compare to only the first 3 years of each Administration's term for parity.
+Trump and Obama Administration comparison: To enable comparison to a more recent administration we compare levels of inspection and enforcement in the first three years of the Obama administration to the first three years of the Trump administration. For these figures inspections and enforcement numbers for the CWA, CAA and RCRA are combined. We compare to only the first 3 years of each Administration's term for parity.
 
 <br />
 
@@ -974,7 +972,7 @@ Trump and Obama Administration comparison: To enable comparison to a more recent
 
 <br />
 
-To highlight the problem of chronic and routine violations of major environmental laws this bullet point provides data on the number of facilities in each Congressional District or state who have been out of compliance with environmental laws for 9 or more months in the past 3 years under the Clean Water Act.
+To highlight the problem of chronic and routine violations of major environmental laws, this bullet point provides data on the number of facilities in each Congressional District or state which have been out of compliance with environmental laws for 9 or more months in the past 3 years under the Clean Water Act.
 
 \pagebreak
 
@@ -985,7 +983,7 @@ To highlight the problem of chronic and routine violations of major environmenta
 
 ## Page 3: This District In Comparison
 
-To generate a comparison across Congressional Districts who each have varying numbers of facilities we look at the average number of violations, inspections and enforcement action per 1000 facilities. In states where there are fewer than 1000 facilities this requires us to adjust up their data. 
+To generate a comparison across Congressional Districts,each of which has a different number of facilities, we look at the average number of violations, inspections and enforcement action per 1000 facilities. In states where there are fewer than 1000 facilities this requires us to adjust up their data. 
 
 
 ## Page 4: Recent Noncompliance in this District
@@ -1008,7 +1006,7 @@ Environmental Enforcement Watch (EEW) is a collaborative project across working 
 
 ### About this Project 
 
-This EEW project aims to make EPA data more directly accessible to the public and their representatives based on Congressional Districts. Aiming to reach the Representatives and Senators with the most direct role in overseeing the EPA, for this project EEW made report cards for the 76 Senators and House Representatives that sit on the House Energy & Commerce Committee and the Senate Environment & Public Works Committee as these Congressional committees oversee the EPA. By providing a novel look at the chronic state of non-compliance in their states and districts, we hope to provide these key representatives with information they need to evaluate the state of Environmental Law compliance and enforcement in their communities so they might more effectively hold EPA accountable.
+This EEW project aims to make EPA data more directly accessible to the public and their representatives based on Congressional Districts. Aiming to reach the Representatives and Senators who oversee the EPA, EEW made report cards for the 76 Senators and House Representatives that sit on the House Energy & Commerce Committee and the Senate Environment & Public Works Committee because these committees are responsible for EPA oversight. By providing a novel look at the chronic state of non-compliance in their states and districts, we hope to provide these key representatives with the information they need to evaluate the state of environmental law compliance and enforcement in their communities so they might more effectively hold EPA accountable.
 
 For access to the Jupyter Notebooks used to develop this report see our Github repository.(need to figure out which link)
 
