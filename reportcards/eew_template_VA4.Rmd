@@ -46,6 +46,7 @@ names(USAviolationsper1000_All)[1] <- "Program"
 inflation <- inflation.csv
 names(inflation)[2] <- "base"
 housemembers <- housememberinfo.csv
+CWAper1000 <- violationsper1000_CWA
 
 #each time this section is run, change "here" to specify the subfolder for the district or state 
 #Also, the way it is set up, you're going to need to cntrl f to change the district and date for the files
@@ -75,6 +76,7 @@ theme_meg <- function () {
 ##### Virginia's 4th District; seat held by Donald McEachin since 2017 
  <div class="container">
   <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/CA36/CA2_map2.png" alt="Snow" style="width:100%;">
+   <div class="bottom-left">Map shows congressional district or state with clusters of regulated facilities</div>
   </div>
 <a href="https://www.environmentalenforcementwatch.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/eew_logo.png" style="float: left; width: 12%; margin-left: 30%"></a>
 <a href="https://envirodatagov.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" ></a>
@@ -87,15 +89,23 @@ theme_meg <- function () {
 # Introduction 
 
 ## Why Report Cards on compliance with and enforcement of Environmental Laws?
-The Environmental Protection Agency (EPA) is charged by Congress to  enforce laws that protect people from air pollution, water pollution and hazardous waste. Without effective enforcement, **these laws are meaningless**. Congress can strengthen EPA enforcement by increasing EPA’s budget, passing more effective laws, requiring better data collection, and holding the EPA accountable when it fails to protect people.
 
-This report card analyzes available data from the EPA’s Enforcement and Compliance History Online (ECHO) database regarding violations, inspections and enforcement actions made under the Clean Air Act (CAA), Clean Water Act (CWA) and Resource Conservation and Recovery Act (RCRA).
+The Environmental Protection Agency (EPA) is charged by Congress to enforce laws that protect people from air pollution, water pollution and hazardous waste. Without effective enforcement, **these laws are meaningless**. Based on data from EPA’s Enforcement and Compliance History Online (ECHO) database this report card reviews violations, inspections and enforcement actions under three laws: Clean Air Act (CAA), Clean Water Act (CWA) and Resource Conservation and Recovery Act (RCRA) for this congressional district since 2001. Report cards are available for all members of the key congressional committees that oversee the EPA: the House Energy and Commerce Committee and Senate Environment and Public Works Committee, on the EEW website (NEED LINK) with a summary analysis of nationwide enforcement trends and data issues. For the first time EEW Congressional Report Cards give Congress people and their constituents the chance to evaluate whether EPA is fulfilling its mandate in their district. Congress can strengthen EPA enforcement by increasing its budget, passing more effective laws, requiring better data collection, and holding the EPA accountable when it fails to protect people. 
 
+## What is a "regulated facility"?
 
-## What is a "regulated facility"? 
-<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/facilities2.png" style="float: center; width: 60%" ></a>
+<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/facilities2.png" style="float: center; width: 70%; margin-left: 15%" ></a>
 
-## Key changes in this District under the Trump Administration:*
+<br />
+
+A regulated facility in this report is a facility that reports air or water emissions under the Clean Air Act or Clean Water Act, or generation, transport, and disposal of hazardous waste under the Resource Conservation and Recovery Act.  Regulated facilities can be large-scale e.g. oil refineries, or small-scale e.g. dry cleaners.
+
+\pagebreak
+
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 2</span></h4>
+
+# Key Changes in this District under the Trump Administration:
 
 ```{r echo=FALSE}
 
@@ -147,19 +157,64 @@ actionchange$Value <- ifelse(actionchange$PercentDifference>=0, "increase", "dec
 
 ```
 
-<h3>Clean Water Act Violations: <span style="color:#569b5e">`r vCWAchange[1,4]` `r vCWAchange[1,5]`</span> than the previous 16 years, representing a <span style="color:#569b5e">`r vCWAchange[1,6]`% `r vCWAchange[1,7]`</span> in violations</h3>
+<h3>Clean Water Act Violations*: <span style="color:#569b5e">`r vCWAchange[1,4]` `r vCWAchange[1,5]`</span> than the previous 16 years, representing a <span style="color:#569b5e">`r vCWAchange[1,6]`% `r vCWAchange[1,7]`</span> in violations</h3>
 
 <br />
 
-<h3>Enforcement Actions under CAA, CWA, and RCRA: <span style="color:#569b5e">`r actionchange[1,4]` `r actionchange[1,5]`</span> than the previous 16 years, representing a <span style="color:#569b5e">`r actionchange[1,6]`% `r actionchange[1,7]`</span> in enforcement actions</h3>
+<h3>Enforcement Actions under CAA, CWA, and RCRA*: <span style="color:#569b5e">`r actionchange[1,4]` `r actionchange[1,5]`</span> than the previous 16 years, representing a <span style="color:#569b5e">`r actionchange[1,6]`% `r actionchange[1,7]`</span> in enforcement actions</h3>
 
 *see data limitations page for metric calculations
 
+<br />
+
+```{r, fig.height = 7, fig.width = 5, fig.align = "left"}
+
+CWAper1000$Num.per.1000 <- as.numeric(round(CWAper1000$Num.per.1000,0))
+CWAper10002 <- CWAper1000
+CWAper10002$Test <- as.numeric(0)
+CWAper10002$Highlight <- ifelse(CWAper10002$CD.State=="VA4", "VA4", "Other")
+CWAper1000$Highlight <- ifelse(CWAper1000$CD.State=="VA4", "VA4", "Other")
+
+
+#make a dataframe that is per 100
+
+CWAper100 <- CWAper10002
+CWAper100$Per100 <- as.numeric(CWAper100$Num.per.1000/10)
+#removing NY9 and WA5 and MI7, AK, and IA2
+CWAper100 <- CWAper100[-c(38,52,29,15,54),]
+
+
+dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
+  geom_dotplot(binaxis='y', stackdir='centerwhole', stackratio=2.5, binwidth=15,
+               dotsize=2)+
+  geom_hline(yintercept=100, linetype="dashed", color="#e56d13")+
+  scale_fill_manual(values=c("#ffffff","#569b5e"))+
+  labs(title="CWA Violations per 100 Facilities", x="CD/State", y="")+
+  geom_text(aes(label="1 violation for\nevery facility", family="Georgia"),
+            x=1.55, y=160, color="#e56d13", size=3)+
+  theme_meg()+
+  theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
+        legend.title = element_blank(), axis.text.x=element_text(size=10))
+
+
+VA4_dot <- CWAper100[which(CWAper100$CD.State=="VA4"), ]
+
+
+ggsave("dotplot_VA4.jpeg", dotplot, path=here("VA4"), scale = 2, width=7, height=5, units=c("cm"))
+
+```
+ 
+<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/dotplot_VA4.jpeg" style="float: left; width: 100%; height: 60%; margin-right: 5%" ></a>
+
+<br />
+<br />
+
+<h3>In VA4, there are <span style="color:#569b5e">`r VA4_dot[1,6]`</span> Clean Water Act violations per 100 regulated facilities</h3>
 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 2</span></h4>
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 3</span></h4>
 ```{r echo=FALSE}
 #CAA
 
@@ -365,7 +420,7 @@ The reliability of data in figures throughout this report is indicated by the fi
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 3</span></h4>
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 4</span></h4>
 
 # This District in Comparison
 ```{r, fig.height = 6, fig.width = 8, fig.align = "left"}
@@ -431,7 +486,7 @@ These two charts show how inspections and violations in this district compare to
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 4</span></h4> 
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 5</span></h4> 
 
 <h1><span style="margin-bottom:0px; padding-bottom:0px">Recent Non-Compliance in this District</span></h1>
 <font size="2">These figures show the ten facilities in this district with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years (not necessarily consecutive).</font>
@@ -564,7 +619,7 @@ ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 5</span></h4>
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 6</span></h4>
 
 # Clean Air Act
 
@@ -666,7 +721,7 @@ These figures show patterns of CAA inspections, violations, enforcement actions 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 6</span></h4> 
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 7</span></h4> 
 
 # Clean Water Act 
 
@@ -764,7 +819,7 @@ These figures show patterns of Clean Water Act inspections, violations, enforcem
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 7</span></h4>
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 8</span></h4>
 
 # Resource Conservation and Recovery Act 
 
@@ -870,7 +925,7 @@ These figures show patterns of RCRA inspections, violations, enforcement actions
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 8</span></h4>
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 9</span></h4>
 
 ```{r echo=FALSE}
 
@@ -891,7 +946,7 @@ VA4 <- housemembers[which(housemembers$CD=="VA4"), ]
 <br />
 <div class="text-box-info">
 ### The House Energy and Commerce Committee
-This Committee is the oldest house Committee with the broadest jurisdiction of any authorizing committee. The Committee oversees the EPA, and legislates on issues like environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee consists of 55 members – 24 Republicans and 31 Democrats. 
+This Committee is the oldest house Committee with the broadest jurisdiction of any authorizing committee. The Committee oversees the EPA, and legislates on issues such as environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee consists of 55 members – 24 Republicans and 31 Democrats. 
 </div>
 
 <br />
@@ -918,7 +973,7 @@ This Committee is the oldest house Committee with the broadest jurisdiction of a
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 9</span></h4> 
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 10</span></h4> 
 
 # About the EPA Data Analyzed in this Report Card and its Limitations  
 The data in this report is from EPA’s publicly-available [ECHO database](https://echo.epa.gov/) that compiles information from a number of distinct state and federal sources. However, poor reporting by states and inconsistent reporting schemes result in data gaps and inaccuracies. 
@@ -942,7 +997,7 @@ We do not include data from 2020 because we are only part way through the year. 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 10</span></h4>
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 11</span></h4>
 
 # How and why EEW developed the metrics in this report
 
@@ -977,36 +1032,36 @@ To highlight the problem of chronic and routine violations of major environmenta
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 11</span></h4>
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 12</span></h4>
 
 # How and why EEW developed the metrics in this report (continued)
 
 ## Page 3: This District In Comparison
 
-To generate a comparison across Congressional Districts,each of which has a different number of facilities, we look at the average number of violations, inspections and enforcement action per 1000 facilities. In states where there are fewer than 1000 facilities this requires us to adjust up their data. 
+To generate a comparison across Congressional Districts, each of which has a different number of facilities, we look at the average number of violations, inspections and enforcement actions per 1000 facilities. In states where there are fewer than 1000 facilities this requires us to adjust up their data. 
 
 
 ## Page 4: Recent Noncompliance in this District
 
-To examine facilities with consistent records of noncompliance we provide information on the 10 facilities with the most quarters of non-compliance under the CAA, CWA, and RCRA. Important notes here: The ECHO data we work with shows the number of quarters of non-compliance not exactly which quarters they were out of compliance, so non-compliance here may not be consecutive. Quarters can be a little confusing also: there are 4 quarters in a year, so 12 quarters equals 3 years of time. In some locations there may be more than 10 facilities who are out of compliance for all 12 quarters. We limit to 10 for space and clarity, the full list can be found in the Jupyter notebook for that district. Additionally, you will see the x-axis for these figures display a maximum of 12 quarters for the CAA and RCRA, but 13 for the CWA. This is because the CWA has automatically reported violations, so we have violations information for the first quarter of 2020 for the CWA. 
+To examine facilities with consistent records of noncompliance we provide information on the 10 facilities with the most quarters of non-compliance under the CAA, CWA, and RCRA. Important notes here: The ECHO data we work with shows the number of quarters of non-compliance, not exactly *which* quarters they were out of compliance. Non-compliance shown here may not be consecutive. Quarters can be a little confusing also: there are 4 quarters in a year, so 12 quarters equals 3 years of time. In some locations there may be more than 10 facilities out of compliance for all 12 quarters. We limit our figures to 10 facilities for space and clarity. A list of 20 facilities can be found in the Jupyter notebook for that district or state. Additionally, the x-axis for these figures displays a maximum of 12 quarters for the CAA and RCRA, but 13 for the CWA. This is because the CWA has automatically reported violations, so we have violations information for the first quarter of 2020 for the CWA. 
 
 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 12</span></h4>
+<h4>DRAFT not for circulation <span style="padding-left:450px">Page 13</span></h4>
 
 # About the Authors and Links to Data 
 
 ### About EEW 
 
-Environmental Enforcement Watch (EEW) is a collaborative project across working groups of the Environmental Data and Governance Initiative (EDGI). The EEW project builds on EDGI’s 2019 [Sheep in the Closet Report](https://envirodatagov.org/publication/a-sheep-in-the-closet-the-erosion-of-enforcement-at-the-epa/) that documents large declines in EPA enforcement of environmental laws. This project uses data from EPA’s [ECHO database](https://echo.epa.gov/) , revealing how useful ECHO could be for communities to track pollution and EPA responses in their areas. However, it also reveals the inaccessibility of ECHO for non-specialists, and major omissions, errors, and confusions present in the data itself (see page 9). EEW aims to highlight gaps and inadequacies in the enforcement of environmental laws and to help investigate whether EPA is fulfilling its congressionally mandated duty to enforce environmental laws. EEW’s data analysis is conducted using open source and publicly available using Jupyter Notebooks developed by EDGI members.
+Environmental Enforcement Watch (EEW) is a collaborative project across working groups of the Environmental Data and Governance Initiative (EDGI). The EEW project builds on EDGI’s 2019 [Sheep in the Closet Report](https://envirodatagov.org/publication/a-sheep-in-the-closet-the-erosion-of-enforcement-at-the-epa/) that documents large declines in EPA enforcement of environmental laws. This project uses data from EPA’s [ECHO database](https://echo.epa.gov/) , revealing how useful ECHO could be for communities to track pollution and EPA responses in their areas. However, it also reveals the inaccessibility of ECHO for non-specialists, and major omissions, errors, and confusions present in the data itself (see page 9). EEW aims to highlight gaps and inadequacies in the enforcement of environmental laws and to help investigate whether EPA is fulfilling its congressionally mandated duty to enforce environmental laws. EEW’s data analysis is conducted using open source and publicly available data using Jupyter Notebooks developed by EDGI members.
 
-<h3><span style="color:#569b5e">A full list of EEW members, including their role in this project, can be found here (need link)</span></h3> 
+<h3><span style="color:#569b5e">A full list of EEW members, including their roles in this project, can be found here (need link)</span></h3> 
 
 ### About this Project 
 
-This EEW project aims to make EPA data more directly accessible to the public and their representatives based on Congressional Districts. Aiming to reach the Representatives and Senators who oversee the EPA, EEW made report cards for the 76 Senators and House Representatives that sit on the House Energy & Commerce Committee and the Senate Environment & Public Works Committee because these committees are responsible for EPA oversight. By providing a novel look at the chronic state of non-compliance in their states and districts, we hope to provide these key representatives with the information they need to evaluate the state of environmental law compliance and enforcement in their communities so they might more effectively hold EPA accountable.
+This EEW project aims to make EPA data more directly accessible to the public and their representatives based on Congressional Districts. With the goal of reaching the the Representatives and Senators who oversee the EPA, EEW made report cards for the 76 Senators and House Representatives that sit on the House Energy & Commerce Committee and the Senate Environment & Public Works Committee because these committees are responsible for EPA oversight. By providing a novel look at the chronic state of non-compliance in their states and districts, we hope to provide these key representatives with the information they need to evaluate the state of environmental law compliance and enforcement in their communities so they might more effectively hold EPA accountable.
 
 For access to the Jupyter Notebooks used to develop this report see our Github repository.(need to figure out which link)
 

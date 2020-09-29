@@ -1,0 +1,64 @@
+---
+title: "Environmental Enforcement Watch's"
+output: 
+  html_paged:
+    number_sections: false
+    css: ["custom_current.css"]
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(pagedown)
+library(palmerpenguins)
+library(patchwork)
+library(here)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(shiny)
+library(extrafont)
+library(viridis)
+library(grid)
+library(gridSVG)
+library(gridExtra)
+library(fishualize)
+library(kableExtra)
+library(ggrepel)
+loadfonts()
+
+
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+ <div class="title"><span style="padding-left: 150px">
+ Congressional Report Card
+ </span></div>
+ <hr style="height:3px;border-width:0; margin-left:15px; margin-right:15px;color: #b9b9b9;background-color: #b9b9b9; margin-top: 0em; margin-bottom: 0em">
+##### California's 36th District; seat held by Raul Ruiz since 2013 
+ <div class="container">
+  <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/CA36/CA2_map2.png" alt="Snow" style="width:100%;">
+  <div class="bottom-left">Map shows district/state with clusters of regulated facilities</div>
+  </div>
+  <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/eew_logo.png" style="float: left; width: 12%; margin-left: 30%">
+  <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" >
+  <br />
+  <br />
+\pagebreak
+
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
+#### DRAFT not for circulation
+
+# Introduction 
+
+## Why
+It is Congress's job to oversee how the laws it passes are implemented by agencies like the Environmental Protection Agency (EPA). Congress has charged the EPA with enforcing most of the laws that protect environmental health by controlling the release of pollution and hazardous materials into the air, water and land. Without effective enforcement, **these laws are meaningless**. Congress can strengthen EPA enforcement by increasing resources to the EPA, passing more effective laws, requiring better data collection, and general oversight. In the **House of Representatives**, the **Energy and Commerce Committee** is the main committee that oversees the EPA.  In the **Senate**, the **Environment and Public Works Committee** is the main committee that oversees the EPA. 
+
+
+<h3><span style="font-size: 18px; padding-left:0px">ECHO reports for these facilities:</span></h3>
+
+<h3><span style="size: 1em; padding-left:0px">ECHO reports for these facilities:</span></h3> 
+
+### ECHO reports for these facilities
+
+#### ECHO reports for these facilities
+
+
