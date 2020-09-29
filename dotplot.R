@@ -31,14 +31,22 @@ dotplot <-ggplot(CWAper100, aes(x=Group, y=Per100, fill=Highlight))+
 dotplot
 
 
-dotplot <-ggplot(CWAper100, aes(x=Group, y=Per100, fill=Highlight))+
-  geom_dotplot(binaxis='y', stackdir='center', stackratio=1.5, binwidth=15, dotsize=1.5 )+
-  scale_fill_manual(values=c("#ffffff","#569b5e"))+
+dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
+  geom_dotplot(binaxis='y', stackdir='centerwhole', stackratio=2.5, binwidth=15,
+               dotsize=2)+
+  geom_hline(yintercept=100, linetype="dashed", color="#e56d13")+
+  geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
+  scale_fill_manual(values=c("#ffffff","#e56d13"))+
   labs(title="CWA Violations per 100 Facilities", x="CD/State", y="")+
-  geom_text_repel(aes(label=CD.State, family="Georgia"), size=3)+
+  geom_text(aes(label="100 violations:\n1:1 ratio of violations\nto # of facilities", family="Georgia"),
+            x=2.35, y=180, color="#e56d13", size=3)+
+  geom_text(aes(label="0 violations", family="Georgia"),
+            x=2.4, y=15, color="#569b5e", size=3)+
+  geom_label(aes(family="Georgia"),label="Outliers:\nNY9-2650 violations\nWA5-1029 violatns\nMI7-865 violations\nAK-841 violations\nIA2-826 violations",
+            x=2.3, y=600, color="black", size=3, show.legend = FALSE)+
   theme_meg()+
-    theme(axis.text.x=element_blank(), axis.line.x=element_blank(), axis.title.x=element_blank(),
-          legend.title = element_blank())
+  theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
+        legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
 
 dotplot
 

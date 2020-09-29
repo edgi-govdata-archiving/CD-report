@@ -105,7 +105,7 @@ A regulated facility in this report is a facility that reports air or water emis
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
 <h4>DRAFT not for circulation <span style="padding-left:450px">Page 2</span></h4>
 
-# Key Changes in this District under the Trump Administration:
+# Key Changes in this District under the Trump Administration
 
 ```{r echo=FALSE}
 
@@ -174,33 +174,38 @@ CWAper10002 <- CWAper1000
 CWAper10002$Test <- as.numeric(0)
 CWAper10002$Highlight <- ifelse(CWAper10002$CD.State=="VA4", "VA4", "Other")
 CWAper1000$Highlight <- ifelse(CWAper1000$CD.State=="VA4", "VA4", "Other")
+CWAper1000$Per100 <- as.numeric(CWAper1000$Num.per.1000/10)
 
 
 #make a dataframe that is per 100
 
 CWAper100 <- CWAper10002
-CWAper100$Per100 <- as.numeric(CWAper100$Num.per.1000/10)
 #removing NY9 and WA5 and MI7, AK, and IA2
 CWAper100 <- CWAper100[-c(38,52,29,15,54),]
 
+##THIS CODE WILL NOT WORK FOR NY9 and WA5 and MI7, AK, and IA2. Please see the read.me to get the proper code for these districts/state
 
 dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_dotplot(binaxis='y', stackdir='centerwhole', stackratio=2.5, binwidth=15,
                dotsize=2)+
   geom_hline(yintercept=100, linetype="dashed", color="#e56d13")+
-  scale_fill_manual(values=c("#ffffff","#569b5e"))+
+  geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
+  scale_fill_manual(values=c("#ffffff","#e56d13"))+
   labs(title="CWA Violations per 100 Facilities", x="CD/State", y="")+
-  geom_text(aes(label="1 violation for\nevery facility", family="Georgia"),
-            x=1.55, y=160, color="#e56d13", size=3)+
+  geom_text(aes(label="100 violations:\n1:1 ratio of violations\nto # of facilities", family="Georgia"),
+            x=2.35, y=180, color="#e56d13", size=3)+
+  geom_text(aes(label="0 violations", family="Georgia"),
+            x=2.4, y=15, color="#569b5e", size=3)+
+  annotate("text", label="Outliers:\nNY9-2650 violations\nWA5-1029 violations\nMI7-865 violations\nAK-841 violations\nIA2-826 violations",
+             x=2.3, y=600, color="black", size=3, family="Georgia")+
   theme_meg()+
   theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
-        legend.title = element_blank(), axis.text.x=element_text(size=10))
+        legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
+
+VA4_dot <- CWAper1000[which(CWAper1000$CD.State=="VA4"), ]
 
 
-VA4_dot <- CWAper100[which(CWAper100$CD.State=="VA4"), ]
-
-
-ggsave("dotplot_VA4.jpeg", dotplot, path=here("VA4"), scale = 2, width=7, height=5, units=c("cm"))
+ggsave("dotplot_VA4.jpeg", dotplot, path=here("VA4"), scale = 2, width=8, height=5, units=c("cm"))
 
 ```
  
@@ -209,7 +214,7 @@ ggsave("dotplot_VA4.jpeg", dotplot, path=here("VA4"), scale = 2, width=7, height
 <br />
 <br />
 
-<h3>In VA4, there are <span style="color:#569b5e">`r VA4_dot[1,6]`</span> Clean Water Act violations per 100 regulated facilities</h3>
+<h3>In VA4, there are <span style="color:#569b5e">`r VA4_dot[1,5]`</span> Clean Water Act violations per 100 regulated facilities</h3>
 
 \pagebreak
 
