@@ -8,7 +8,6 @@ output:
 
 ```{r setup, include=FALSE}
 library(tidyverse)
-library(pagedown)
 library(palmerpenguins)
 library(patchwork)
 library(here)
@@ -50,11 +49,11 @@ CWAper1000 <- violationsper1000_CWA
 
 #each time this section is run, change "here" to specify the subfolder for the district or state 
 #Also, the way it is set up, you're going to need to cntrl f to change the district and date for the files
-filenames = list.files(here("VA4"), pattern = ".csv")
+filenames = list.files(here("CD_Dirs/VA4"), pattern = ".csv")
 file_count = length(filenames)
 for (i in filenames){  
   name <- gsub("^([^_]*_[^_]*_[^_]*_[^-]*-[^-]*)-.*$","\\1", i)
-  assign(name, read.csv(here("VA4", i)))
+  assign(name, read.csv(here("CD_Dirs/VA4", i)))
 }
 
 activefacilities <- `active-facilities_All_pg3_VA-4`
@@ -78,13 +77,13 @@ theme_meg <- function () {
   <img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/CA36/CA2_map2.png" alt="Snow" style="width:100%;">
    <div class="bottom-left">Map shows congressional district or state with clusters of regulated facilities</div>
   </div>
-<a href="https://www.environmentalenforcementwatch.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/eew_logo.png" style="float: left; width: 12%; margin-left: 30%"></a>
-<a href="https://envirodatagov.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" ></a>
+<a href="https://www.environmentalenforcementwatch.org/"><img src="../logosandimages/eew_logo.png" style="float: left; width: 12%; margin-left: 30%"></a>
+<a href="https://envirodatagov.org/"><img src="../logosandimages/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" ></a>
 
 \pagebreak
 
 
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 1</span></h4>
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 1</span></h4>
 
 # Introduction 
 
@@ -94,7 +93,7 @@ The Environmental Protection Agency (EPA) is charged by Congress to enforce laws
 
 ## What is a "regulated facility"?
 
-<a ><img src="facilities2.png" style="float: center; width: 70%; margin-left: 15%" ></a>
+<a ><img src="../logosandimages/facilities2.png" style="float: center; width: 70%; margin-left: 15%" ></a>
 
 <br />
 
@@ -103,7 +102,7 @@ A regulated facility in this report is a facility that reports air or water emis
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 2</span></h4>
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 2</span></h4>
 
 # Key Changes in this District under the Trump Administration
 
@@ -194,7 +193,7 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
   scale_fill_manual(values=c("#ffffff","#e56d13"))+
   labs(title="CWA Violations per 100 Facilities in 2019", x="CD/State", y="")+
-  geom_text(aes(label="100 violations:\n1:1 ratio of violations\nto # of facilities", family="Georgia"),
+  geom_text(aes(label="100 violations per\n100 facilities*", family="Georgia"),
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
@@ -204,13 +203,13 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
         legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
 
-ggsave("dotplot_VA4.png", dotplot, path=here("VA4"), scale = 2, width=8, height=5, units=c("cm"))
+ggsave("dotplot_VA4.png", dotplot, path=here("CD_Dirs/VA4"), scale = 2, width=8, height=5, units=c("cm"))
 
 ```
  
 <a ><img src="../VA4/dotplot_VA4.png" style="float: left; width: 100%; height: 60%; margin-right: 5%" ></a>
 
-<br />
+*This is an average, it does not mean that every facility has a violation. Some facilities may have many more than 1 or zero.
 <br />
 <br />
 
@@ -219,7 +218,7 @@ ggsave("dotplot_VA4.png", dotplot, path=here("VA4"), scale = 2, width=8, height=
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 3</span></h4>
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 3</span></h4>
 ```{r echo=FALSE}
 #CAA
 
@@ -282,7 +281,7 @@ RCRArecurring[3] <-round(RCRArecurring[3],2)
 ##So, we're going to do the first 3 years of Obama and Trump so average
 #[9:11,2] Obama
 # [17:19,2] Trump
-effluentviolations <- `effluent-violations_CWA_pg3_VA-4`
+effluentviolations <- `violations_CWA_pg3_VA-4`
 effluentviolations <- effluentviolations[-c(20),]
 effluentchange <- data.frame("Obama Average" =mean(effluentviolations[9:11,2]),
                              "Trump Average" =mean(effluentviolations[17:19,2]))
@@ -425,7 +424,7 @@ The reliability of data in figures throughout this report is indicated by the fi
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 4</span></h4>
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 4</span></h4>
 
 # This District in Comparison
 ```{r, fig.height = 6, fig.width = 8, fig.align = "left"}
@@ -435,11 +434,11 @@ The reliability of data in figures throughout this report is indicated by the fi
 #let's combine the inspections data at national, state, CD level 
 names(USAinspectionsper1000_All)[2] <- "Inspectionsper1000"
 USAinspectionsper1000_All$Region <- as.factor("National")
-names(`inspectionsper1000_All_pg4_VA-090820.csv`)[2] <- "Inspectionsper1000"
-`inspectionsper1000_All_pg4_VA-090820.csv`$Region <- as.factor("State")
+names(`inspectionsper1000_All_pg4_VA-091820.csv`)[2] <- "Inspectionsper1000"
+`inspectionsper1000_All_pg4_VA-091820.csv`$Region <- as.factor("State")
 names(`inspectionsper1000_All_pg4_VA-4`)[2] <- "Inspectionsper1000"
 `inspectionsper1000_All_pg4_VA-4`$Region <- as.factor("Congressional District")
-inspectionsper1000 <- rbind(USAinspectionsper1000_All, `inspectionsper1000_All_pg4_VA-090820.csv`, `inspectionsper1000_All_pg4_VA-4`)
+inspectionsper1000 <- rbind(USAinspectionsper1000_All, `inspectionsper1000_All_pg4_VA-091820.csv`, `inspectionsper1000_All_pg4_VA-4`)
 inspectionsper1000$Inspectionsper1000 <- as.numeric(inspectionsper1000$Inspectionsper1000)
 inspectionsper1000[2] <-round(inspectionsper1000[2],0) 
 
@@ -459,11 +458,11 @@ inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper10
 #let's combine the violations data at national, state, CD level 
 names(USAviolationsper1000_All)[2] <- "violationsper1000"
 USAviolationsper1000_All$Region <- as.factor("National")
-names(`violationsper1000_All_pg4_VA-090820.csv`)[2] <- "violationsper1000"
-`violationsper1000_All_pg4_VA-090820.csv`$Region <- as.factor("State")
+names(`violationsper1000_All_pg4_VA-091820.csv`)[2] <- "violationsper1000"
+`violationsper1000_All_pg4_VA-091820.csv`$Region <- as.factor("State")
 names(`violationsper1000_All_pg4_VA-4`)[2] <- "violationsper1000"
 `violationsper1000_All_pg4_VA-4`$Region <- as.factor("Congressional District")
-violationsper1000 <- rbind(USAviolationsper1000_All, `violationsper1000_All_pg4_VA-090820.csv`, `violationsper1000_All_pg4_VA-4`)
+violationsper1000 <- rbind(USAviolationsper1000_All, `violationsper1000_All_pg4_VA-091820.csv`, `violationsper1000_All_pg4_VA-4`)
 violationsper1000$violationsper1000 <- as.numeric(violationsper1000$violationsper1000)
 violationsper1000[2] <-round(violationsper1000[2],0)
 
@@ -491,7 +490,7 @@ For access to the Jupyter Notebooks which pull data from ECHO at the state and c
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 5</span></h4> 
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 5</span></h4> 
 
 <h1><span style="margin-bottom:0px; padding-bottom:0px">Recent Non-Compliance in this District</span></h1>
 <font size="2">These figures show the ten facilities in this district with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years (not necessarily consecutive).</font>
@@ -624,13 +623,13 @@ ggsave("RCRAfacilities.jpeg", RCRAfacilities, path=here("VA4"), scale = 3, width
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 6</span></h4>
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 6</span></h4>
 
 # Clean Air Act
 
 <div class="text-box-info">
 
-The [Clean Air Act (CAA)](https://www.epa.gov/laws-regulations/summary-clean-air-act) is the comprehensive federal law that regulates air emissions from stationary and mobile sources such as refineries, power plants and cars. For the CAA, violations are most commonly recognized via inspections. Infrequent inspection usually results in fewer identified violations. If CAA violations have decreased, make sure to check whether inspections have also decreased as recent cuts in inspections are likely related to drops in CAA violations. Unless thorough inspections are occurring regularly, fewer violations does not necessarily mean air quality has improved. 
+The [Clean Air Act (CAA)](https://www.epa.gov/laws-regulations/summary-clean-air-act) is the comprehensive federal law that regulates air emissions from stationary and mobile sources such as refineries, power plants and cars. *Please note, in this report, we are only utilizing data about stationary air emission sources.* For the CAA, violations are most commonly recognized via inspections. Infrequent inspection usually results in fewer identified violations. If CAA violations have decreased, make sure to check whether inspections have also decreased as recent cuts in inspections are likely related to drops in CAA violations. Unless thorough inspections are occurring regularly, fewer violations does not necessarily mean air quality has improved. 
 [More info on CAA](https://docs.google.com/presentation/d/1MzRQf3QeJqmYMSttdk0ghrXeOmOZgOV_MTynl-ri6Ik/edit?usp=sharing)
 </div>
 <h2>There are `r activefacilities[1,2] ` facilities currently reporting under the `r activefacilities[1,1]` in this district</h2>
@@ -728,7 +727,7 @@ For access to the Jupyter Notebook which pulls data from ECHO at the state and c
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 7</span></h4> 
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 7</span></h4> 
 
 # Clean Water Act 
 
@@ -829,7 +828,7 @@ For access to the Jupyter Notebook which pulls data from ECHO at the state and c
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 8</span></h4>
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 8</span></h4>
 
 # Resource Conservation and Recovery Act 
 
@@ -936,7 +935,7 @@ For access to the Jupyter Notebooks which pull data from ECHO at the state and c
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 9</span></h4>
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 9</span></h4>
 
 ```{r echo=FALSE}
 
@@ -957,7 +956,7 @@ VA4 <- housemembers[which(housemembers$CD=="VA4"), ]
 <br />
 <div class="text-box-info">
 ### The House Energy and Commerce Committee
-This Committee is the oldest house Committee with the broadest jurisdiction of any authorizing committee. The Committee oversees the EPA, and legislates on issues such as environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee consists of 55 members – 24 Republicans and 31 Democrats. 
+This Committee is the oldest house Committee with the broadest jurisdiction of any authorizing committee. The Committee oversees the EPA, and legislates on issues including environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee consists of 55 members – 24 Republicans and 31 Democrats. 
 </div>
 
 <br />
@@ -984,7 +983,7 @@ This Committee is the oldest house Committee with the broadest jurisdiction of a
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 10</span></h4> 
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 10</span></h4> 
 
 # About the EPA Data Analyzed in this Report Card and its Limitations  
 The data in this report is from EPA’s publicly-available [ECHO database](https://echo.epa.gov/) that compiles information from a number of distinct state and federal sources. However, poor reporting by states and inconsistent reporting schemes result in data gaps and inaccuracies. 
@@ -999,7 +998,7 @@ EPA lists numerous specific issues on its [“Known Data Problems”](https://ec
 
 In this report, we have divided data issues into three categories, using transparencies in graphs as well as subtitles to indicate data reliability and completeness. See the table below: 
 
-<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/datareliabilitytable.png" style="float: center; width: 100%" ></a>
+<a ><img src="../logosandimages/datareliabilitytable.png" style="float: center; width: 100%" ></a>
 
 ### Notes on 2020 data
 
@@ -1008,7 +1007,7 @@ We do not include data from 2020 because we are only part way through the year. 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 11</span></h4>
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 11</span></h4>
 
 # How and why EEW developed the metrics in this report
 
@@ -1043,7 +1042,7 @@ To highlight the problem of chronic and routine violations of major environmenta
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 12</span></h4>
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 12</span></h4>
 
 # How and why EEW developed the metrics in this report (continued)
 
@@ -1060,7 +1059,7 @@ To examine facilities with consistent records of noncompliance we provide inform
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>DRAFT not for circulation <span style="padding-left:450px">Page 13</span></h4>
+<h4>Report Generated on 9.30.2020<span style="padding-left:450px">Page 13</span></h4>
 
 # About the Authors and Links to Data 
 
@@ -1085,6 +1084,6 @@ This EEW project aims to make EPA data more directly accessible to the public an
 EDGI’s work has been widely acknowledged, leading to EDGI testifying before Congress on declines in EPA enforcement, and hundreds of mentions in leading national and international media such as _The New York Times_,_The Washington Post_, Vice News, and CNN. For more about our work, read our [2019 Annual Report](https://envirodatagov.org/publication/edgi-annual-report-2019/)and [2020 Annual Report](https://envirodatagov.org/publication/edgi-annual-report-2020/). For more on EDGI see [our website](https://envirodatagov.org/).</font>
 </div>
 
-<a href="https://www.environmentalenforcementwatch.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/eew_logo.png" style="float: left; width: 12%; margin-left: 30%"></a>
-<a href="https://envirodatagov.org/"><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" ></a>
+<a href="https://www.environmentalenforcementwatch.org/"><img src="../logosandimages/eew_logo.png" style="float: left; width: 12%; margin-left: 30%"></a>
+<a href="https://envirodatagov.org/"><img src="../logosandimages/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" ></a>
 

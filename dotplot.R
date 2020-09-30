@@ -35,7 +35,7 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
   scale_fill_manual(values=c("#ffffff","#e56d13"))+
   labs(title="CWA Violations per 100 Facilities in 2019", x="CD/State", y="")+
-  geom_text(aes(label="100 violations:\n1:1 ratio of violations\nto # of facilities", family="Georgia"),
+  geom_text(aes(label="100 violations per\n100 facilities*", family="Georgia"),
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
@@ -62,7 +62,7 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
   scale_fill_manual(values=c("#ffffff","#e56d13"))+
   labs(title="CWA Violations per 100 Facilities in 2019", x="CD/State", y="")+
-  geom_text(aes(label="100 violations:\n1:1 ratio of violations\nto # of facilities", family="Georgia"),
+  geom_text(aes(label="100 violations per\n100 facilities*", family="Georgia"),
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
@@ -88,7 +88,7 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
   scale_fill_manual(values=c("#ffffff","#e56d13"))+
   labs(title="CWA Violations per 100 Facilities in 2019", x="CD/State", y="")+
-  geom_text(aes(label="100 violations:\n1:1 ratio of violations\nto # of facilities", family="Georgia"),
+  geom_text(aes(label="100 violations per\n100 facilities*", family="Georgia"),
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
@@ -113,7 +113,7 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
   scale_fill_manual(values=c("#ffffff","#e56d13"))+
   labs(title="CWA Violations per 100 Facilities in 2019", x="CD/State", y="")+
-  geom_text(aes(label="100 violations:\n1:1 ratio of violations\nto # of facilities", family="Georgia"),
+  geom_text(aes(label="100 violations per\n100 facilities*", family="Georgia"),
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
@@ -139,7 +139,7 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
   scale_fill_manual(values=c("#ffffff","#e56d13"))+
   labs(title="CWA Violations per 100 Facilities in 2019", x="CD/State", y="")+
-  geom_text(aes(label="100 violations:\n1:1 ratio of violations\nto # of facilities", family="Georgia"),
+  geom_text(aes(label="100 violations per\n100 facilities*", family="Georgia"),
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
