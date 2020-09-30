@@ -2,6 +2,8 @@
 # CD-report
 making .rmd for EDGI CD reports 
 
+## General note, I'm still making a few changes to make the .rmd work for Senators, but it will definitely be done tonight or early tomororow. Let's focus on CDs for now. 
+
 ## Making CD Reports
 
 1. Clone this repository or get the zip file on your computer. 
@@ -9,8 +11,49 @@ making .rmd for EDGI CD reports
 3. Downlaod the "national stats" folder
 4. Download the "logosandimages" folder. 
 5. Download the Rmd template you will be using to construct the final report.
-6. Download the file custom_current.css from the "reportcards" foler in this branch. 
-7. Create a local folder called "reportcards" that contain the files from steps #4-6.
+    THE CURRENT RMD TO COPY FROM IS "VA4_2020.Rmd"
+6. Download the file custom_current.css from the "reportcards" folder in this branch. 
+7. Create a local folder called "reportcards" that contains the copy of the most recent .rmd and teh custom_current.css.
+
+
+## Notes on Naming and Special Districts (For Maalvika and Steve) 
+
+We've decided our urls will be "/XXN-2020" with XX being the state code and N being the district number. Example: VA4_2020. Let's name the .rmds accordingly so I can very quickly make the links live.
+
+For districts that do not have a # because they are small (i.e Deleware, we are going to name the file DE00_2020 so we can differentiate from the senator report card which would be DE_2020. 
+
+### Special Districts 
+
+AK, IA2, MI7, NY9 and WA5 are outliers on the "grade" dot plot, and therefore the dotplot code will not work for these 5 districts. In case one of you run them and I don't, here's what you need to do:
+1. locate the folder "outlierdotplots" in the master branch and download it.
+2. move the correct dot plot into your local file folder for the district you're working on
+3. # out or delete code lines 189-208 in the .rmd - in case the line #s change slightly, this code looks like this: 
+```
+dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
+  geom_dotplot(binaxis='y', stackdir='centerwhole', stackratio=2.5, binwidth=15,
+               dotsize=2)+
+  geom_hline(yintercept=100, linetype="dashed", color="#e56d13")+
+  geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
+  scale_fill_manual(values=c("#ffffff","#e56d13"))+
+  labs(title="CWA Violations per 100 Facilities in 2019", x="CD/State", y="")+
+  geom_text(aes(label="100 violations per\n100 facilities*", family="Georgia"),
+            x=2.35, y=180, color="#e56d13", size=3)+
+  geom_text(aes(label="0 violations", family="Georgia"),
+            x=2.4, y=15, color="#569b5e", size=3)+
+  annotate("text", label="Outliers:\nNY9-2650 violations\nWA5-1029 violations\nMI7-865 violations\nAK-841 violations\nIA2-826 violations",
+             x=2.3, y=600, color="black", size=3, family="Georgia")+
+  theme_meg()+
+  theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
+        legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
+
+ggsave("dotplot_VA4.png", dotplot, path=here("CD_Dirs/VA4"), scale = 2, width=8, height=5, units=c("cm"))
+```
+
+## Keeping Track of what districts we've run 
+
+Let's use [this spreadsheet](https://docs.google.com/spreadsheets/d/1dXJLIVnqKmhn95RRCgp7yw_a5UPGPgW4PyT264QTeTQ/edit?usp=sharing)
+
+The first column of both sheets in this spreadsheet is titled "Report Card Completed". Let's color the cell yellow if the html is complete and in the reportcards folder green if the html is complete and I've made it live and blank if it has not been completed.
 
 ## Recommended working directory structure
 
@@ -61,6 +104,8 @@ CD-reports
 ``` 
 
 ## Make a map PNG file of the right size
+
+### All maps should be done for the 76 House E&C and Senator EPW
 
 The HTML maps in CD_76_maps_html.zip are dynamic--they can be zoomed in or out to get the best view of the district.  We need to use a screen shot tool to snip out a static image, then use a photo or image editor to make our image the right size for the report cards.
 We'll aim to make an image of the CD that is 490 pixels tall and 550 pixels wide.  We'll try to get them as close to those dimensions as possible, but being off by 1-5 pixels won't be noticable.
