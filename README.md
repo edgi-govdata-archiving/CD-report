@@ -134,8 +134,8 @@ If you are running this from the CD-reports folder, the paths to the files shoul
     a. Virginia's 4th --> California's 36th  (expect 2 replacements)
     b. VA 4 --> CA 36  (expect 9 replacements)
     c. _VA-4 --> _CA-36  (expect 26 replacements)
-    d. VA4 --> CA36 (expect 23 replacements)
-    e. _VA- --> _CA- (need to check how many replacements, but needed to replace for the state files)
+    d. VA4 --> CA36 (expect 38 replacements)
+    e. _VA- --> _CA- (expect 6 replacements)
     
 ```    
 4. Use the find function (but without any replacement) to look for this string:  'inspectionsper1000_All_pg4', then see what date stamp follows.  The date stamp for all of our data is 091820.  If the date you find is other than that (e.g. 090820), do another global find/replace:
