@@ -27,7 +27,7 @@ For districts that do not have a # because they are small (i.e Deleware, we are 
 AK, IA2, MI7, NY9 and WA5 are outliers on the "grade" dot plot, and therefore the dotplot code will not work for these 5 districts. In case one of you run them and I don't, here's what you need to do:
 1. locate the folder "outlierdotplots" in the master branch and download it.
 2. move the correct dot plot into your local file folder for the district you're working on
-3. # out or delete code lines 189-208 in the .rmd - in case the line #s change slightly, this code looks like this: 
+3.  block out or delete code lines 189-208 in the .rmd - in case the line #s change slightly, this code looks like this: 
 ```
 dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_dotplot(binaxis='y', stackdir='centerwhole', stackratio=2.5, binwidth=15,
