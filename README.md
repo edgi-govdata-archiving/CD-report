@@ -27,7 +27,7 @@ For districts that do not have a # because they are small (i.e Deleware, we are 
 AK, IA2, MI7, NY9 and WA5 are outliers on the "grade" dot plot, and therefore the dotplot code will not work for these 5 districts. In case one of you run them and I don't, here's what you need to do:
 1. locate the folder "outlierdotplots" in the master branch and download it.
 2. move the correct dot plot into your local file folder for the district you're working on
-3. # out or delete code lines 189-208 in the .rmd - in case the line #s change slightly, this code looks like this: 
+3.  block out or delete code lines 189-208 in the .rmd - in case the line #s change slightly, this code looks like this: 
 ```
 dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_dotplot(binaxis='y', stackdir='centerwhole', stackratio=2.5, binwidth=15,
@@ -134,8 +134,8 @@ If you are running this from the CD-reports folder, the paths to the files shoul
     a. Virginia's 4th --> California's 36th  (expect 2 replacements)
     b. VA 4 --> CA 36  (expect 9 replacements)
     c. _VA-4 --> _CA-36  (expect 26 replacements)
-    d. VA4 --> CA36 (expect 23 replacements)
-    e. _VA- --> _CA- (need to check how many replacements, but needed to replace for the state files)
+    d. VA4 --> CA36 (expect 38 replacements)
+    e. _VA- --> _CA- (expect 6 replacements)
     
 ```    
 4. Use the find function (but without any replacement) to look for this string:  'inspectionsper1000_All_pg4', then see what date stamp follows.  The date stamp for all of our data is 091820.  If the date you find is other than that (e.g. 090820), do another global find/replace:
