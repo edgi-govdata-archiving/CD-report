@@ -1,6 +1,3 @@
-# CD-report
-making .rmd for EDGI CD reports 
-
 
 # CD-report
 making .rmd for EDGI CD reports 
