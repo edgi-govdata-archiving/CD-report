@@ -94,7 +94,7 @@ The Environmental Protection Agency (EPA) is charged by Congress to enforce laws
 
 ## What is a "regulated facility"?
 
-<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/reportcards/facilities2.png" style="float: center; width: 70%; margin-left: 15%" ></a>
+<a ><img src="facilities2.png" style="float: center; width: 70%; margin-left: 15%" ></a>
 
 <br />
 
@@ -208,7 +208,7 @@ ggsave("dotplot_VA4.png", dotplot, path=here("VA4"), scale = 2, width=8, height=
 
 ```
  
-<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/dotplot_VA4.png" style="float: left; width: 100%; height: 60%; margin-right: 5%" ></a>
+<a ><img src="../VA4/dotplot_VA4.png" style="float: left; width: 100%; height: 60%; margin-right: 5%" ></a>
 
 <br />
 <br />
@@ -945,7 +945,7 @@ VA4 <- housemembers[which(housemembers$CD=="VA4"), ]
 ```
 # Legislator Information 
 <br />
-<a ><img src="/Users/mraisle/Documents/OneDrive - University of North Carolina at Chapel Hill/CD-report/VA4/donald_mceachin.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+<a ><img src="../CD_images/VA4_donald_mceachin.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
 
 <h2>[`r VA4[1,2]`](`r VA4[1,9]`) <span style="color:#25539f">(`r VA4[1,3]`)</span></h2>

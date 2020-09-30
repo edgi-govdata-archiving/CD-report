@@ -1,0 +1,21 @@
+REGISTRY_ID,FAC_NAME,noncomp_count,CWA_FORMAL_ACTION_COUNT,DFR_URL,FAC_LAT,FAC_LONG
+110009842830,ANSON COUNTY WTP,13,16.0,http://echo.epa.gov/detailed-facility-report?fid=110009842830,34.970833,-79.931944
+110000560982,CITY OF ALBEMARLE,13,11.0,http://echo.epa.gov/detailed-facility-report?fid=110000560982,35.335592,-80.213516
+110006367458,CITY OF HAMLET,13,6.0,http://echo.epa.gov/detailed-facility-report?fid=110006367458,34.855388,-79.724998
+110017425614,ALCOA - BADIN WORKS,13,3.0,http://echo.epa.gov/detailed-facility-report?fid=110017425614,35.4155,-80.11825999999999
+110006644364,CITY OF THOMASVILLE,13,1.0,http://echo.epa.gov/detailed-facility-report?fid=110006644364,35.858032,-80.10423399999999
+110031469300,HILDRETH READY MIX #2,13,,http://echo.epa.gov/detailed-facility-report?fid=110031469300,34.95521,-79.80256999999999
+110001487819,"VON DREHLE CORDOVA, LLC",13,,http://echo.epa.gov/detailed-facility-report?fid=110001487819,34.9194,-79.8291
+110043968613,HILDRETH REDI-MIX AND SEPTIC SERVICES,13,,http://echo.epa.gov/detailed-facility-report?fid=110043968613,34.8416,-80.0991
+110006711022,ST. PAULS WWTP,12,18.0,http://echo.epa.gov/detailed-facility-report?fid=110006711022,34.798293,-78.969142
+110009720506,GRASSY BRANCH WWTP,12,10.0,http://echo.epa.gov/detailed-facility-report?fid=110009720506,35.130556,-80.494444
+110006707661,ANSONVILLE WWTP,12,6.0,http://echo.epa.gov/detailed-facility-report?fid=110006707661,35.115449,-80.07038100000001
+110006674517,CROOKED CREEK WWTP #2,12,6.0,http://echo.epa.gov/detailed-facility-report?fid=110006674517,35.068753,-80.633831
+110009845463,DENTON WWTP,12,5.0,http://echo.epa.gov/detailed-facility-report?fid=110009845463,35.620938,-80.129471
+110009843116,ROWLAND WWTP,12,4.0,http://echo.epa.gov/detailed-facility-report?fid=110009843116,34.555462,-79.363667
+110006522904,CITY OF LUMBERTON,12,4.0,http://echo.epa.gov/detailed-facility-report?fid=110006522904,34.604568,-78.99126
+110001480861,RICHMOND PLANT,12,3.0,http://echo.epa.gov/detailed-facility-report?fid=110001480861,34.916031,-79.824463
+110006367430,ANSON COUNTY REGIONAL WWTP,12,3.0,http://echo.epa.gov/detailed-facility-report?fid=110006367430,34.899863,-80.00308000000001
+110006644186,CITY OF LAURINBURG,12,2.0,http://echo.epa.gov/detailed-facility-report?fid=110006644186,34.763953,-79.447066
+110006710602,TOWN OF TROY,12,2.0,http://echo.epa.gov/detailed-facility-report?fid=110006710602,35.375886,-79.86071700000001
+110040034245,TOWN OF FAIRMONT,12,1.0,http://echo.epa.gov/detailed-facility-report?fid=110040034245,34.49154,-79.10558499999999
