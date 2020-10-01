@@ -68,26 +68,30 @@ CD-reports
     |
     |- CD_images
     |    |
-    |    |- CA36_raul_ruiz.png
-    |    |- CA44_nanette_barragan.png
     |    |- ...
-    |    
-    |- AZ1
-    |    |
-    |    |- active-facilities_All_pg3_AZ-1-091820.csv
+    |    |- CA36_rep.png
+    |    |- CA44_rep.png
     |    |- ...
-    |
-    |- CA6
-    |    |
-    |    |- active-facilities_All_pg3_CA-6-091820.csv
+    |    |- DE_sen.png
     |    |- ...
+    | 
+    |- CD_Dirs
+    |    |- AZ1
+    |    |    |
+    |    |    |- active-facilities_All_pg3_AZ-1-091820.csv
+    |    |    |- ...
     |    |
+    |    |- CA6
+    |    |    |
+    |    |    |- active-facilities_All_pg3_CA-6-091820.csvinspectionsper
+    |    |    |- ...
+    |    |    |
     |
     |- ...
     |
     |- nationalstats
     |    |
-    |    |- USA....csv
+    |    |- USA....csvinspectionsper
     |    |- ...
     |
     |- logosandimages
@@ -143,7 +147,7 @@ If you are running this from the CD-reports folder, the paths to the files shoul
 
 ```
     a. If your directory is set up as above, the link to the image should look like:
-        <a ><img src="CD_76_images/CA36_raul_ruiz.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+        <a ><img src="CD_images/CA36_rep.png" style="float: left; width: 25%; margin-right: 5%" ></a>
     b. A few lines down, edit to get the correct committees and sub-committees.
 ```
 5. Check image locations.  (Use the find function to look for 'png'.)  The logos appear twice, so check both of them.
@@ -153,13 +157,14 @@ If you are running this from the CD-reports folder, the paths to the files shoul
 
       <a href="https://envirodatagov.org/"><img src="reportcards/logos/edgi_logo.png" style="float: right; width: 35%; margin-right: 20%" ></a>
     The link to the map file should look like this:
-      <img src="CD_76_maps_png/CA36_map2.png" alt="Snow" style="width:100%;">
+      <img src="CD_maps/CA36_map.png" alt="Snow" style="width:100%;">
     The legislator's image should be in the CD_76_images directory, so the link will be like:
-      <a ><img src="CD_76_images/CA36_raul_ruiz.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+      <a ><img src="CD_images/CA36_re.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
 ```
-8. In the Console area of RStudio, enter ```library(pagedown)``` and hit Enter.
-9. In the Console area of RStudio, enter this command and hit Enter, changing it to your state and district:
-``` pagedown::chrome_print( "reportcards/eew_template_CA36.Rmd" ) ```
+6. In the RStudio Session menu, Set Working Directory to the reportcards directory.
+7. In the Console area of RStudio, enter ```library(pagedown)``` and hit Enter.
+8. In the Console area of RStudio, enter this command and hit Enter, changing it to your state and district:
+``` pagedown::chrome_print( "WV1_2020.Rmd" ) ```
     
 
