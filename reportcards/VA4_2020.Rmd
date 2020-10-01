@@ -1059,11 +1059,12 @@ Environmental Enforcement Watch (EEW) is a collaborative project across working 
 This EEW project aims to make EPA data more directly accessible to the public and their representatives. With the goal of reaching the Representatives and Senators who oversee the EPA, EEW has made report cards for the 76 Senators and House Representatives that sit on the House Energy & Commerce Committee and the Senate Environment & Public Works Committee, as these committees are responsible for EPA oversight. By providing a novel look at the chronic state of non-compliance in their states and districts, we hope to provide these key representatives with the information they need to evaluate the state of environmental law compliance and enforcement in their communities so they might more effectively hold EPA accountable.
 
 ### Useful Links
-* [State and Congressional District Jupyter Notebooks](https://colab.research.google.com/github/edgi-govdata-archiving/ECHO-Cross-Program/blob/master/AllPrograms.ipynb)
-* [National-Level Jupyter Notebook](https://colab.research.google.com/github/edgi-govdata-archiving/ECHO-Cross-Program/blob/master/ECHO_National.ipynb)
-* [Github Repository to produce reports](https://github.com/edgi-govdata-archiving/CD-report)
-* [EEW website](https://www.environmentalenforcementwatch.org)
-* <a href = "mailto: environmentalenforcementwatch@gmail.com">Contact Us</a>
+[State and Congressional District Jupyter Notebooks](https://colab.research.google.com/github/edgi-govdata-archiving/ECHO-Cross-Program/blob/master/AllPrograms.ipynb) | 
+[National-Level Jupyter Notebook](https://colab.research.google.com/github/edgi-govdata-archiving/ECHO-Cross-Program/blob/master/ECHO_National.ipynb) |
+[Github Repository to produce reports](https://github.com/edgi-govdata-archiving/CD-report) | 
+[EEW website](https://www.environmentalenforcementwatch.org) |
+<a href = "mailto: environmentalenforcementwatch@gmail.com">Contact Us</a> |
+[Link to download PDF version of this report](https://github.com/edgi-govdata-archiving/CD-report/blob/master/reportcards/VA4_2020.pdf)
 
 <div class="text-box-info">
 <h3>About EDGI</h3>
