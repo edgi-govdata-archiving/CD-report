@@ -586,15 +586,16 @@ ggsave("RCRAfacilities.png", RCRAfacilities, path=here("CD_Dirs/NY16"), scale = 
 <font size="3">**ECHO reports for facilities:**</font>
 
 * <font size="2">[`r CAAbadactors[1,8] `](`r CAAbadactors[1,5] `)</font>
-* <font size="2">[`r CAAbadactors[2,8] `](`r CAAbadactors[2,5] `)</font>
-* <font size="2">[`r CAAbadactors[3,8] `](`r CAAbadactors[3,5] `)</font>
-* <font size="2">[`r CAAbadactors[4,8] `](`r CAAbadactors[4,5] `)</font>
-* <font size="2">[`r CAAbadactors[5,8] `](`r CAAbadactors[5,5] `)</font>
-* <font size="2">[`r CAAbadactors[8,8] `](`r CAAbadactors[6,5] `)</font>
-* <font size="2">[`r CAAbadactors[7,8] `](`r CAAbadactors[7,5] `)</font>
-* <font size="2">[`r CAAbadactors[8,8] `](`r CAAbadactors[8,5] `)</font>
-* <font size="2">[`r CAAbadactors[9,8] `](`r CAAbadactors[9,5] `)</font>
-* <font size="2">[`r CAAbadactors[10,8] `](`r CAAbadactors[10,5] `)</font>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 <a ><img src="../CD_Dirs/NY16/CWAfacilities.png" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
@@ -620,11 +621,10 @@ ggsave("RCRAfacilities.png", RCRAfacilities, path=here("CD_Dirs/NY16"), scale = 
 * <font size="2">[`r RCRAbadactors[3,8] `](`r RCRAbadactors[3,5] `)</font>
 * <font size="2">[`r RCRAbadactors[4,8] `](`r RCRAbadactors[4,5] `)</font>
 * <font size="2">[`r RCRAbadactors[5,8] `](`r RCRAbadactors[5,5] `)</font>
-* <font size="2">[`r RCRAbadactors[6,8] `](`r RCRAbadactors[6,5] `)</font>
-* <font size="2">[`r RCRAbadactors[7,8] `](`r RCRAbadactors[7,5] `)</font>
-* <font size="2">[`r RCRAbadactors[8,8] `](`r RCRAbadactors[8,5] `)</font>
-* <font size="2">[`r RCRAbadactors[9,8] `](`r RCRAbadactors[9,5] `)</font>
-* <font size="2">[`r RCRAbadactors[10,8] `](`r RCRAbadactors[10,5] `)</font>
+
+<br />
+<br />
+<br />
 
 \pagebreak
 
