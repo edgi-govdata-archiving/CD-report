@@ -173,6 +173,20 @@ If you are running this from the CD-reports folder, the paths to the files shoul
 8. In the Console area of RStudio, enter this command and hit Enter, changing it to your state and district:
 ``` pagedown::chrome_print( "WV1_2020.Rmd" ) ```
     
-9. If a bad actors graph shows only one facility, make this change and re-run: Go to line 199 ( where the dotplot creating code is) and change this: ```scale_fill_manual(values=c("#FFFFFF","#E56D13"))+ ```
-to this: 
-```scale_fill_manual(values=c("#E56D13", "#FFFFFF"))+```
+9. If the dotplot colors reverse so that all are red and the current district white, make this change and re-run: Go to line 199 ( where the dotplot creating code is) and change this: ```scale_fill_manual(values=c("#FFFFFF","#E56D13"))+ ``` to this: ```scale_fill_manual(values=c("#E56D13", "#FFFFFF"))+```
+10. If there is only one bad actor and the horizontal bar graph just has one black box, make this change and re-run:
+```
+CAAfacilities <- CAAbadactors %>%
+  mutate(Facility = fct_reorder(Facility, noncomp_count)) %>%
+  ggplot(aes(x=Facility, y=noncomp_count))+
+  geom_col(width = 0.1)+
+  scale_fill_viridis(discrete = TRUE, option="B")+
+  labs(y="Quarters in Violation", x="", title="CAA Violators")+
+  scale_y_continuous(expand=c(0,0))+
+  # scale_x_discrete(expand=c(0,0))+
+ theme_meg()+
+  theme(axis.text.y=element_text(size=12, face = "bold", color="black"), axis.title.x = element_text(size=14), axis.text.x=
+          element_text(size=14,face = "bold"), plot.title=element_text(size=16))+
+  coord_flip()
+```
+For CAA this is at line 514, for CWA it is line 538, and for RCRA it is at 564.
