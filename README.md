@@ -58,7 +58,7 @@ The first column of both sheets in this spreadsheet is titled "Report Card Compl
 Additional 2 columns to fill out: 
 1. Dotplot check? 
     Mark this column red if the dotplot has inverted colors (all dots orange) OR the correct dot is not displayed
-2. Map checl? 
+2. Map check? 
     Mark this column red if the EEW and EDGI logos do not appear on the first page
 
 ## Recommended working directory structure
