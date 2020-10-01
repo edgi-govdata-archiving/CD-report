@@ -80,8 +80,8 @@ VA4 <- housemembers[which(housemembers$CD=="VA4"), ]
   <img src="../CD_maps/VA4_map.png" alt="Snow" style="width:100%;">
    <div class="bottom-left">Map shows congressional district or state with clusters of regulated facilities</div>
   </div>
-<a href="https://www.environmentalenforcementwatch.org/"><img src="../logosandimages/eew_logo.png" style="float: left; width: 12%; margin-left: 30%"></a>
-<a href="https://envirodatagov.org/"><img src="../logosandimages/edgi_logo.png" style="float: right; width: 20%; margin-right: 30%" ></a>
+<a href="https://www.environmentalenforcementwatch.org/"><img src="../logosandimages/eew_logo.png" style="float: left; width: 9%; margin-left: 30%"></a>
+<a href="https://envirodatagov.org/"><img src="../logosandimages/edgi_logo.png" style="float: right; width: 15%; margin-right: 30%" ></a>
 
 \pagebreak
 
@@ -192,8 +192,8 @@ VA4_dot <- CWAper1000[which(CWAper1000$CD.State=="VA4"), ]
 ##THIS CODE WILL NOT WORK FOR NY9 and WA5 and MI7, AK, and IA2. Omit this chunk of code for those districts (here to the end of this r chunk)
 
 dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
-  geom_dotplot(binaxis='y', stackdir='centerwhole', stackratio=2.5, binwidth=15,
-               dotsize=2)+
+  geom_dotplot(binaxis='y', stackdir='center', stackratio=1.5, binwidth=15,
+               dotsize=1.5)+
   geom_hline(yintercept=100, linetype="dashed", color="#e56d13")+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
   scale_fill_manual(values=c("#ffffff","#e56d13"))+
@@ -935,7 +935,7 @@ These figures show patterns of RCRA inspections, violations, enforcement actions
 
 # Legislator Information 
 <br />
-<a ><img src="../CD_images/VA4_donald_mceachin.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+<a ><img src="../CD_images/VA4_rep.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
 
 <h2>[`r VA4[1,2]`](`r VA4[1,9]`) (`r VA4[1,3]`)</h2>
