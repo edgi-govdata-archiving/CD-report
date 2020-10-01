@@ -144,7 +144,7 @@ If you are running this from the CD-reports folder, the paths to the files shoul
     a. Virginia's 4th --> California's 36th  (expect 2 replacements)
     b. VA 4 --> CA 36  (expect 9 replacements)
     c. _VA-4 --> _CA-36  (expect 26 replacements)
-    d. VA4 --> CA36 (expect 38 replacements)
+    d. VA4 --> CA36 (expect 42 replacements)
     e. _VA- --> _CA- (expect 6 replacements)
     
 ```    
