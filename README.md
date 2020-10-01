@@ -173,4 +173,6 @@ If you are running this from the CD-reports folder, the paths to the files shoul
 8. In the Console area of RStudio, enter this command and hit Enter, changing it to your state and district:
 ``` pagedown::chrome_print( "WV1_2020.Rmd" ) ```
     
-
+9. If a bad actors graph shows only one facility, make this change and re-run: Go to line 199 ( where the dotplot creating code is) and change this: ```scale_fill_manual(values=c("#FFFFFF","#E56D13"))+ ```
+to this: 
+```scale_fill_manual(values=c("#E56D13", "#FFFFFF"))+```
