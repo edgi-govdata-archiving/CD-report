@@ -517,7 +517,7 @@ CAAfacilities <- CAAbadactors %>%
   geom_bar(stat="identity", show.legend = FALSE, width=.8)+
   scale_fill_viridis(discrete = TRUE, option="B")+
   labs(y="Quarters in Violation", x="", title="CAA Violators")+
-  scale_y_continuous(expand=c(0,0))+
+  scale_y_continuous(expand=c(0,0), limits=c(0,12))+
   scale_x_discrete(expand=c(0,0))+
   theme_meg()+
   theme(axis.text.y=element_text(size=12, face = "bold", color="black"), axis.title.x = element_text(size=14), axis.text.x=element_text(size=14,face = "bold"), plot.title=element_text(size=16))+
@@ -541,7 +541,7 @@ CWAfacilities <- CWAbadactors %>%
   geom_bar(stat="identity", show.legend = FALSE, width=.8)+
   scale_fill_viridis(discrete = TRUE, option="B")+
   labs(y="Quarters in Violation", x="", title="CWA Violators")+
-  scale_y_continuous(expand=c(0,0),breaks=c(0,3,6,9,13))+
+  scale_y_continuous(expand=c(0,0),breaks=c(0,3,6,9,13), limits=c(0,13))+
   scale_x_discrete(expand=c(0,0))+
   theme_meg()+
   theme(axis.text.y=element_text(size=12, face = "bold", color="black"), axis.title.x = element_text(size=14), axis.text.x=
@@ -567,7 +567,7 @@ RCRAfacilities <- RCRAbadactors %>%
   geom_bar(stat="identity", show.legend = FALSE, width=.8)+
   scale_fill_viridis(discrete = TRUE, option="B")+
   labs(y="Quarters in Violation", x="", title="RCRA Violators")+
-  scale_y_continuous(expand=c(0,0))+
+  scale_y_continuous(expand=c(0,0), limits=c(0,12))+
   scale_x_discrete(expand=c(0,0))+
   theme_meg()+
   theme(axis.text.y=element_text(size=12, face = "bold", color="black"), axis.title.x = element_text(size=14), axis.text.x=
