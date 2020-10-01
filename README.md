@@ -68,8 +68,11 @@ CD-reports
     |
     |- CD_images
     |    |
-    |    |- CA36_raul_ruiz.png
-    |    |- CA44_nanette_barragan.png
+    |    |- ...
+    |    |- CA36_rep.png
+    |    |- CA44_rep.png
+    |    |- ...
+    |    |- DE_sen.png
     |    |- ...
     |    
     |- AZ1
@@ -79,7 +82,7 @@ CD-reports
     |
     |- CA6
     |    |
-    |    |- active-facilities_All_pg3_CA-6-091820.csv
+    |    |- active-facilities_All_pg3_CA-6-091820.csvinspectionsper
     |    |- ...
     |    |
     |
@@ -87,7 +90,7 @@ CD-reports
     |
     |- nationalstats
     |    |
-    |    |- USA....csv
+    |    |- USA....csvinspectionsper
     |    |- ...
     |
     |- logosandimages
@@ -143,7 +146,7 @@ If you are running this from the CD-reports folder, the paths to the files shoul
 
 ```
     a. If your directory is set up as above, the link to the image should look like:
-        <a ><img src="CD_76_images/CA36_raul_ruiz.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+        <a ><img src="CD_images/CA36_rep.png" style="float: left; width: 25%; margin-right: 5%" ></a>
     b. A few lines down, edit to get the correct committees and sub-committees.
 ```
 5. Check image locations.  (Use the find function to look for 'png'.)  The logos appear twice, so check both of them.
