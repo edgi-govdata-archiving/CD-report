@@ -2,7 +2,7 @@
 # CD-report
 making .rmd for EDGI CD reports 
 
-## General note, I'm still making a few changes to make the .rmd work for Senators, but it will definitely be done tonight or early tomororow. Let's focus on CDs for now. 
+## General note, I'm still making a few changes to make the .rmd work for Senators. Let's focus on CDs for now. 
 
 ## Making CD Reports
 
@@ -54,6 +54,12 @@ ggsave("dotplot_VA4.png", dotplot, path=here("CD_Dirs/VA4"), scale = 2, width=8,
 Let's use [this spreadsheet](https://docs.google.com/spreadsheets/d/1dXJLIVnqKmhn95RRCgp7yw_a5UPGPgW4PyT264QTeTQ/edit?usp=sharing)
 
 The first column of both sheets in this spreadsheet is titled "Report Card Completed". Let's color the cell yellow if the html is complete and in the reportcards folder green if the html is complete and I've made it live and blank if it has not been completed.
+
+Additional 2 columns to fill out: 
+1. Dotplot check? 
+    Mark this column red if the dotplot has inverted colors (all dots orange) OR the correct dot is not displayed
+2. Map checl? 
+    Mark this column red if the EEW and EDGI logos do not appear on the first page
 
 ## Recommended working directory structure
 
