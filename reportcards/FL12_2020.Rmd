@@ -193,7 +193,7 @@ FL12_dot <- CWAper1000[which(CWAper1000$CD.State=="FL12"), ]
 
 dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_dotplot(binaxis='y', stackdir='center', stackratio=1.5, binwidth=15,
-               dotsize=1.5)+
+               dotsize=1.5, position=position_dodge(0.3))+
   geom_hline(yintercept=100, linetype="dashed", color="#e56d13")+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
   scale_fill_manual(values=c("#e56d13","#ffffff"))+
@@ -513,15 +513,18 @@ CAAbadactors$Facility <- strtrim(CAAbadactors$Facility, 35)
 
 CAAfacilities <- CAAbadactors %>%
   mutate(Facility = fct_reorder(Facility, noncomp_count)) %>%
-  ggplot( mapping=aes(x=Facility, y=noncomp_count, fill=Facility, group=1))+
-  geom_bar(stat="identity", show.legend = FALSE, width=.8)+
+  ggplot(aes(x=Facility, y=noncomp_count))+
+  geom_col(width = 0.1)+
   scale_fill_viridis(discrete = TRUE, option="B")+
   labs(y="Quarters in Violation", x="", title="CAA Violators")+
-  scale_y_continuous(expand=c(0,0), limits=c(0,12))+
-  scale_x_discrete(expand=c(0,0))+
-  theme_meg()+
-  theme(axis.text.y=element_text(size=12, face = "bold", color="black"), axis.title.x = element_text(size=14), axis.text.x=element_text(size=14,face = "bold"), plot.title=element_text(size=16))+
+  scale_y_continuous(expand=c(0,0))+
+  # scale_x_discrete(expand=c(0,0))+
+ theme_meg()+
+  theme(axis.text.y=element_text(size=12, face = "bold", color="black"), axis.title.x = element_text(size=14), axis.text.x=
+          element_text(size=14,face = "bold"), plot.title=element_text(size=16))+
   coord_flip()
+
+
 
 
 #call in data and clean up 
