@@ -44,16 +44,16 @@ names(USAinspectionsper1000_All)[1] <- "Program"
 names(USAviolationsper1000_All)[1] <- "Program"
 inflation <- inflation.csv
 names(inflation)[2] <- "base"
-housemembers <- housememberinfo.csv
+senators <- senatorinfo.csv
 CWAper1000 <- violationsper1000_CWA
 
 #each time this section is run, change "here" to specify the subfolder for the district or state 
 #Also, the way it is set up, you're going to need to cntrl f to change the district and date for the files
-filenames = list.files(here("CD_Dirs/WY"), pattern = ".csv")
+filenames = list.files(here("State_Dirs/WY"), pattern = ".csv")
 file_count = length(filenames)
 for (i in filenames){  
-  name <- gsub("^([^_]*_[^_]*_[^_]*_[^-]*-[^-]*)-.*$","\\1", i)
-  assign(name, read.csv(here("CD_Dirs/WY", i)))
+  name <- gsub("^([^_]*_[^_]*_[^_]*_[^-]*)-.*$","\\1", i)
+  assign(name, read.csv(here("State_Dirs/WY", i)))
 }
 
 activefacilities <- `active-facilities_All_pg3_WY`
@@ -67,7 +67,7 @@ theme_meg <- function () {
           axis.text.x=element_text(face = "bold", size = 14), axis.text.y=element_text(face = "bold", size = 8))
 }
 
-WY <- housemembers[which(housemembers$CD=="WY"), ]
+WY <- senators[which(senators$state=="WY"), ]
 
 ```
 
@@ -77,7 +77,7 @@ WY <- housemembers[which(housemembers$CD=="WY"), ]
  <hr style="height:3px;border-width:0; margin-left:15px; margin-right:15px;color: #b9b9b9;background-color: #b9b9b9; margin-top: 0em; margin-bottom: 0em">
 ##### Wyoming; seat held by `r WY[1,2]` since `r WY[1,8]` 
  <div class="container">
-  <img src="../CD_maps/WY_map.png" alt="Snow" style="width:100%;">
+  <img src="../State_maps/WY_map.png" alt="Snow" style="width:100%;">
   </div>
 <a href="https://www.environmentalenforcementwatch.org/"><img src="../logosandimages/eew_logo.png" style="float: left; width: 9%; margin-left: 30%"></a>
 <a href="https://envirodatagov.org/"><img src="../logosandimages/edgi_logo.png" style="float: right; width: 15%; margin-right: 30%" ></a>
@@ -85,7 +85,7 @@ WY <- housemembers[which(housemembers$CD=="WY"), ]
 \pagebreak
 
 
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 1</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 1</span></h4>
 
 # Introduction 
 
@@ -106,14 +106,14 @@ A regulated facility in this report is a facility that reports air or water emis
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 2</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 2</span></h4>
 
 # Key Changes in this State under the Trump Administration
 
 ```{r echo=FALSE}
 
 ##getting %difference CWA violations
-CWAviolations <- `violations_CWA_pg6_WY`
+CWAviolations <- violations_CWA_pg6_WY
 names(CWAviolations)[2] <- "Count"
 names(CWAviolations)[1] <- "YEAR"
 CWAviolations <- CWAviolations[-c(20),]
@@ -135,7 +135,7 @@ vCWAchange$Positive <- abs(vCWAchange$PercentDifference)
 vCWAchange$Value <- ifelse(vCWAchange$PercentDifference>=0, "increase", "decrease")
 
 #enforcement % difference
-enforcement <- `enforcements_All_pg3_WY`
+enforcement <- enforcements_All_pg3_WY
 names(enforcement)[1] <- "Date"
 enforcement <- enforcement[-c(20),]
 enforcement$Amount <- round(enforcement$Amount,2)
@@ -192,10 +192,10 @@ WY_dot <- CWAper1000[which(CWAper1000$CD.State=="WY"), ]
 
 dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_dotplot(binaxis='y', stackdir='center', stackratio=1.5, binwidth=15,
-               dotsize=1.5)+
+               dotsize=1.5, position=position_dodge(.3))+
   geom_hline(yintercept=100, linetype="dashed", color="#e56d13")+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
-  scale_fill_manual(values=c("#e56d13", "#ffffff"))+
+  scale_fill_manual(values=c("#ffffff","#e56d13"))+
   labs(title="CWA Violations per 100 Facilities in 2019", x="CD/State", y="")+
   geom_text(aes(label="100 violations per\n100 facilities*", family="Georgia"),
             x=2.35, y=180, color="#e56d13", size=3)+
@@ -207,11 +207,11 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
         legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
 
-ggsave("dotplot_WY.png", dotplot, path=here("CD_Dirs/WY"), scale = 2, width=8, height=5, units=c("cm"))
+ggsave("dotplot_WY.png", dotplot, path=here("State_Dirs/WY"), scale = 2, width=8, height=5, units=c("cm"))
 
 ```
  
-<a ><img src="../CD_Dirs/WY/dotplot_WY.png" style="float: left; width: 100%; height: 60%; margin-right: 5%" ></a>
+<a ><img src="../State_Dirs/WY/dotplot_WY.png" style="float: left; width: 100%; height: 60%; margin-right: 5%" ></a>
 
 *This is an average, it does not mean that every facility has a violation. Some facilities may have many more than 1 or zero.
 <br />
@@ -222,7 +222,7 @@ ggsave("dotplot_WY.png", dotplot, path=here("CD_Dirs/WY"), scale = 2, width=8, h
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 3</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 3</span></h4>
 ```{r echo=FALSE}
 #CAA
 
@@ -230,7 +230,7 @@ ggsave("dotplot_WY.png", dotplot, path=here("CD_Dirs/WY"), scale = 2, width=8, h
 #ok so We'll put the % in the title for the state, and try to figure out the same for WY
 CAArecurring <- `recurring-violations_All_pg3_WY`[-c(2,3,5,6),]
 CAArecurring <- CAArecurring %>%
-  select(CD,Facilities, Percent)
+  select(State,Facilities, Percent)
 names(CAArecurring)[1] <- "Region"
 CAArecurring[1,1] <- as.character("Rest of State")
 CAArecurring[2,1] <- as.character("WY")
@@ -248,7 +248,7 @@ CAArecurring[3] <-round(CAArecurring[3],2)
 #ok so We'll put the % in the title for the state, and try to figure out the same for WY
 CWArecurring <- `recurring-violations_All_pg3_WY`[-c(1,3,4,6),]
 CWArecurring <- CWArecurring %>%
-  select(CD,Facilities, Percent)
+  select(State,Facilities, Percent)
 names(CWArecurring)[1] <- "Region"
 CWArecurring[1,1] <- as.character("Rest of State")
 CWArecurring[2,1] <- as.character("WY")
@@ -266,7 +266,7 @@ CWArecurring[3] <-round(CWArecurring[3],0)
 #ok so We'll put the % in the title for the state, and try to figure out the same for WY
 RCRArecurring <- `recurring-violations_All_pg3_WY`[-c(1,2,4,5),]
 RCRArecurring <- RCRArecurring %>%
-  select(CD,Facilities, Percent)
+  select(State,Facilities, Percent)
 names(RCRArecurring)[1] <- "Region"
 RCRArecurring[1,1] <- as.character("Rest of State")
 RCRArecurring[2,1] <- as.character("WY")
@@ -428,7 +428,7 @@ The reliability of data in figures throughout this report is indicated by the fi
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 4</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 4</span></h4>
 
 # This State in Comparison
 ```{r, fig.height = 6, fig.width = 8, fig.align = "left"}
@@ -438,18 +438,16 @@ The reliability of data in figures throughout this report is indicated by the fi
 #let's combine the inspections data at national, state, CD level 
 names(USAinspectionsper1000_All)[2] <- "Inspectionsper1000"
 USAinspectionsper1000_All$Region <- as.factor("National")
-names(`inspectionsper1000_All_pg4_WY-091820.csv`)[2] <- "Inspectionsper1000"
-`inspectionsper1000_All_pg4_WY-091820.csv`$Region <- as.factor("State")
 names(`inspectionsper1000_All_pg4_WY`)[2] <- "Inspectionsper1000"
-`inspectionsper1000_All_pg4_WY`$Region <- as.factor("Congressional District")
-inspectionsper1000 <- rbind(USAinspectionsper1000_All, `inspectionsper1000_All_pg4_WY-091820.csv`, `inspectionsper1000_All_pg4_WY`)
+`inspectionsper1000_All_pg4_WY`$Region <- as.factor("State")
+inspectionsper1000 <- rbind(USAinspectionsper1000_All, `inspectionsper1000_All_pg4_WY`)
 inspectionsper1000$Inspectionsper1000 <- as.numeric(inspectionsper1000$Inspectionsper1000)
 inspectionsper1000[2] <-round(inspectionsper1000[2],0) 
 
 #Now let's visualize this 
 inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper1000, x=Program, alpha=Program))+
   geom_bar(position="dodge", stat="identity")+
-  scale_fill_manual(values=c("#999999" , "#333333", "#d43a69"))+
+  scale_fill_manual(values=c("#333333", "#d43a69"))+
   labs(y="Inspections per 1000 Facilities\n", x="")+
   scale_alpha_manual(values=c(.6,1,.6), guide='none')+
   geom_text(aes(label=Inspectionsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
@@ -462,18 +460,16 @@ inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper10
 #let's combine the violations data at national, state, CD level 
 names(USAviolationsper1000_All)[2] <- "violationsper1000"
 USAviolationsper1000_All$Region <- as.factor("National")
-names(`violationsper1000_All_pg4_WY-091820.csv`)[2] <- "violationsper1000"
-`violationsper1000_All_pg4_WY-091820.csv`$Region <- as.factor("State")
 names(`violationsper1000_All_pg4_WY`)[2] <- "violationsper1000"
-`violationsper1000_All_pg4_WY`$Region <- as.factor("Congressional District")
-violationsper1000 <- rbind(USAviolationsper1000_All, `violationsper1000_All_pg4_WY-091820.csv`, `violationsper1000_All_pg4_WY`)
+`violationsper1000_All_pg4_WY`$Region <- as.factor("State")
+violationsper1000 <- rbind(USAviolationsper1000_All, `violationsper1000_All_pg4_WY`)
 violationsper1000$violationsper1000 <- as.numeric(violationsper1000$violationsper1000)
 violationsper1000[2] <-round(violationsper1000[2],0)
 
 #Now let's visualize this 
 violations1000bar <- ggplot(violationsper1000, aes(fill=Region, y=violationsper1000, x=Program, alpha=Program))+
   geom_bar(position="dodge", stat="identity", show.legend=FALSE)+
-  scale_fill_manual(values=c("#999999" , "#333333", "#d43a69"))+
+  scale_fill_manual(values=c("#333333", "#d43a69"))+
   scale_alpha_manual(values=c(.3,1,.3), guide='none')+
   labs(y="Violations per 1000 Facilities", x="")+
   geom_text(aes(label=violationsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
@@ -495,7 +491,7 @@ The reliability of data in figures throughout this report is indicated by the fi
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 5</span></h4> 
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 5</span></h4> 
 
 <h1><span style="margin-bottom:0px; padding-bottom:0px">Recent Non-Compliance in this State</span></h1>
 <font size="2">These figures show the ten facilities in this state with the worst history of environmental compliance based on their number of noncompliant quarters in the past 3 years (not necessarily consecutive).</font>
@@ -505,7 +501,7 @@ CAAbadactors <- `noncomp_CAA_pg6_WY`
 CAAbadactors <-CAAbadactors[!(CAAbadactors$noncomp_count==0),]
 CAAbadactors <- CAAbadactors[-c(11:20),]
 CAAbadactors$Facility <- CAAbadactors$FAC_NAME
-CAAbadactors$Facility <- strtrim(CAAbadactors$Facility, 35)
+CAAbadactors$Facility <- strtrim(CAAbadactors$Facility, 30)
 
 
 #Let's try the CAA plot 
@@ -528,7 +524,7 @@ CWAbadactors <- `noncomp_CWA_pg6_WY`
 CWAbadactors <-CWAbadactors[!(CWAbadactors$noncomp_count==0),]
 CWAbadactors <- CWAbadactors[-c(11:20),]
 CWAbadactors$Facility <- CWAbadactors$FAC_NAME
-CWAbadactors$Facility <- strtrim(CWAbadactors$Facility, 35)
+CWAbadactors$Facility <- strtrim(CWAbadactors$Facility, 30)
 
 
 
@@ -554,7 +550,7 @@ RCRAbadactors <- `noncomp_RCRA_pg7_WY`
 RCRAbadactors <-RCRAbadactors[!(RCRAbadactors$noncomp_count==0),]
 RCRAbadactors <- RCRAbadactors[-c(11:20),]
 RCRAbadactors$Facility <- RCRAbadactors$FAC_NAME
-RCRAbadactors$Facility <- strtrim(RCRAbadactors$Facility, 35)
+RCRAbadactors$Facility <- strtrim(RCRAbadactors$Facility, 30)
 
 
 
@@ -575,12 +571,12 @@ RCRAfacilities <- RCRAbadactors %>%
 
 #CAAfacilities / CWAfacilities / RCRAfacilities 
 
-ggsave("CAAfacilities.png", CAAfacilities, path=here("CD_Dirs/WY"), scale = 3, width=7, height=4, units=c("cm"))
-ggsave("CWAfacilities.png", CWAfacilities, path=here("CD_Dirs/WY"), scale = 3, width=7, height=4, units=c("cm"))
-ggsave("RCRAfacilities.png", RCRAfacilities, path=here("CD_Dirs/WY"), scale = 3, width=7, height=4, units=c("cm"))
+ggsave("CAAfacilities.png", CAAfacilities, path=here("State_Dirs/WY"), scale = 3, width=7, height=4, units=c("cm"))
+ggsave("CWAfacilities.png", CWAfacilities, path=here("State_Dirs/WY"), scale = 3, width=7, height=4, units=c("cm"))
+ggsave("RCRAfacilities.png", RCRAfacilities, path=here("State_Dirs/WY"), scale = 3, width=7, height=4, units=c("cm"))
 
 ```
-<a ><img src="../CD_Dirs/WY/CAAfacilities.png" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
+<a ><img src="../State_Dirs/WY/CAAfacilities.png" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
 <font size="3">**ECHO reports for facilities:**</font>
 
@@ -595,7 +591,7 @@ ggsave("RCRAfacilities.png", RCRAfacilities, path=here("CD_Dirs/WY"), scale = 3,
 * <font size="2">[`r CAAbadactors[9,8] `](`r CAAbadactors[9,5] `)</font>
 * <font size="2">[`r CAAbadactors[10,8] `](`r CAAbadactors[10,5] `)</font>
 
-<a ><img src="../CD_Dirs/WY/CWAfacilities.png" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
+<a ><img src="../State_Dirs/WY/CWAfacilities.png" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
 <font size="3">**ECHO reports for facilities:**</font>
 
@@ -610,7 +606,7 @@ ggsave("RCRAfacilities.png", RCRAfacilities, path=here("CD_Dirs/WY"), scale = 3,
 * <font size="2">[`r CWAbadactors[9,8] `](`r CWAbadactors[9,5] `)</font>
 * <font size="2">[`r CWAbadactors[10,8] `](`r CWAbadactors[10,5] `)</font>
 
-<a ><img src="../CD_Dirs/WY/RCRAfacilities.png" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
+<a ><img src="../State_Dirs/WY/RCRAfacilities.png" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
 <font size="3">**ECHO reports for facilities:**</font>
 
@@ -628,7 +624,7 @@ ggsave("RCRAfacilities.png", RCRAfacilities, path=here("CD_Dirs/WY"), scale = 3,
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 6</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 6</span></h4>
 
 # Clean Air Act
 
@@ -729,7 +725,7 @@ These figures show patterns of CAA inspections, violations, enforcement actions 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 7</span></h4> 
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 7</span></h4> 
 
 # Clean Water Act 
 
@@ -827,7 +823,7 @@ For access to the Jupyter Notebook which pulls data from ECHO at the state and c
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 8</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 8</span></h4>
 
 # Resource Conservation and Recovery Act 
 
@@ -930,23 +926,23 @@ These figures show patterns of RCRA inspections, violations, enforcement actions
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 9</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 9</span></h4>
 
 # Legislator Information 
 <br />
-<a ><img src="../CD_images/WY_rep.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+<a ><img src="../CD_images/WY_sen.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
 
 <h2>[`r WY[1,2]`](`r WY[1,9]`) (`r WY[1,3]`)</h2>
 
 ## In office since `r WY[1,6]` `r WY[1,7]`, `r WY[1,8]`
 
-## Relevant Committee Membership:  [Energy and Commerce Committee](https://energycommerce.house.gov/)
+## Relevant Committee Membership:  [Environment and Public Works](https://www.epw.senate.gov/public/index.cfm/home)
 <br />
 <br />
 <div class="text-box-info">
-### The House Energy and Commerce Committee
-This Committee is the oldest house Committee with the broadest jurisdiction of any authorizing committee. The Committee oversees the EPA, and legislates on issues including environmental protection, clean air, climate change, safe drinking water, toxic chemicals and hazardous waste, and nuclear facilities. Currently, the Committee consists of 55 members – 24 Republicans and 31 Democrats. 
+### The Senate Environment and Public Works Commmittee 
+This standing committee has broad jurisdiction that has expanded significantly since its creation in 1837. The committee legislates on a myriad of issues including fisheries and wildlife, maintaining and authorizing public works, water pollution and air pollution, among others. It has oversight over seven independent agencies including the EPA. Currently, the Committee consists of 21 members – 11 Republicans and 10 Democrats. 
 </div>
 
 <br />
@@ -973,7 +969,7 @@ This Committee is the oldest house Committee with the broadest jurisdiction of a
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 10</span></h4> 
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 10</span></h4> 
 
 # About the EPA Data Analyzed in this Report Card and its Limitations  
 The data in this report is from EPA’s publicly-available [ECHO database](https://echo.epa.gov/) that compiles information from a number of distinct state and federal sources. However, poor reporting by states and inconsistent reporting schemes result in data gaps and inaccuracies. EPA lists numerous specific issues on its [“Known Data Problems”](https://echo.epa.gov/resources/echo-data/known-data-problems) page. In addition, EPA [notes](https://echo.epa.gov/tools/data-downloads) that data on inspections, violations, and enforcement actions prior to 2001 should be treated as incomplete and unreliable. For that reason, we have only tracked data back to 2001. In addition to many data entry errors -- too numerous to list here -- there are several major problems with ECHO: 
@@ -993,7 +989,7 @@ We do not include data from 2020 because we are only part way through the year. 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 11</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 11</span></h4>
 
 # How and why EEW developed the metrics in this report
 
@@ -1028,7 +1024,7 @@ To highlight the problem of chronic and routine violations of major environmenta
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 12</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 12</span></h4>
 
 # How and why EEW developed the metrics in this report (continued)
 
@@ -1045,7 +1041,7 @@ To examine facilities with consistent records of noncompliance, we provide infor
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 9.30.2020<span style="padding-left:400px">Page 13</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 13</span></h4>
 
 # About the Authors and Links to Data 
 
