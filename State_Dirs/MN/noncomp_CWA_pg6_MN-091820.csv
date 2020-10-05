@@ -1,0 +1,21 @@
+REGISTRY_ID,FAC_NAME,noncomp_count,CWA_FORMAL_ACTION_COUNT,DFR_URL,FAC_LAT,FAC_LONG
+110008799247,US STEEL CORP - MINNTAC,13,1.0,http://echo.epa.gov/detailed-facility-report?fid=110008799247,47.565,-92.6328
+110000545116,MET COUNCIL - EMPIRE WWTP,13,1.0,http://echo.epa.gov/detailed-facility-report?fid=110000545116,44.664278,-93.104361
+110039737522,BRAINERD WWTP,13,1.0,http://echo.epa.gov/detailed-facility-report?fid=110039737522,46.33987,-94.22739
+110000545278,CITY OF FARIBAULT WASTEWATER TREATMENT PLANT,13,1.0,http://echo.epa.gov/detailed-facility-report?fid=110000545278,44.309722,-93.266111
+110008796348,MAHNOMEN WWTP,13,,http://echo.epa.gov/detailed-facility-report?fid=110008796348,47.31422,-95.968705
+110043182631,UPPER SIOUX COMMUNITY,13,,http://echo.epa.gov/detailed-facility-report?fid=110043182631,44.746755,-95.49663699999999
+110009891037,NETT LAKE WWSL,13,,http://echo.epa.gov/detailed-facility-report?fid=110009891037,48.14031,-93.063213
+110008796981,CALLAWAY WWTP,13,,http://echo.epa.gov/detailed-facility-report?fid=110008796981,46.98123,-95.90929
+110020564003,MILLE LACS WWTF,13,,http://echo.epa.gov/detailed-facility-report?fid=110020564003,46.17607,-93.80249
+110008749667,BUFFALO WWTP,12,1.0,http://echo.epa.gov/detailed-facility-report?fid=110008749667,45.115359999999995,-93.89093000000001
+110008815862,ZUMBROTA WWTP,12,1.0,http://echo.epa.gov/detailed-facility-report?fid=110008815862,44.299085999999996,-92.666439
+110011114070,LOWER SIOUX WWSL,12,,http://echo.epa.gov/detailed-facility-report?fid=110011114070,44.538834,-95.10531999999999
+110011114203,USDI BIA GRND PRTG IND RES,12,,http://echo.epa.gov/detailed-facility-report?fid=110011114203,47.965,-89.688333
+110009049564,BEJOU,12,,http://echo.epa.gov/detailed-facility-report?fid=110009049564,47.448536,-95.986834
+110008796525,WAUBUN,11,,http://echo.epa.gov/detailed-facility-report?fid=110008796525,47.185,-95.9483
+110023151747,SHAKOPEE MDEWAKANTON CASINO HOTEL,11,,http://echo.epa.gov/detailed-facility-report?fid=110023151747,44.73738,-93.47272
+110008796767,OGEMA WWTP,11,,http://echo.epa.gov/detailed-facility-report?fid=110008796767,47.102778,-95.925
+110009891224,MILLE LACS BAND OF CHIPPEWA,11,,http://echo.epa.gov/detailed-facility-report?fid=110009891224,46.181256,-93.731737
+110014423230,WHITE EARTH WWSL,11,,http://echo.epa.gov/detailed-facility-report?fid=110014423230,47.085822,-95.858685
+110006645309,NORTHFIELD WWTP,10,2.0,http://echo.epa.gov/detailed-facility-report?fid=110006645309,44.471094,-93.156441
