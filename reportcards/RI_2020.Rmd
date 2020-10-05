@@ -409,7 +409,7 @@ enforcementfinegraph <- enforcement %>% ggplot()+
 
 <br />
 
-* <h3>Under the Clean Water Act, the law whose regulation is best documented by available EPA data, <span style="color:#569b5e">`r CWArecurring[1,2]` facilities, representing `r CWArecurring[1,3]`% of all regulated facilities in AR,</span> were in violation for <span style="color:#569b5e">at least 9 months of the last 3 years.</span></h3>
+* <h3>Under the Clean Water Act, the law whose regulation is best documented by available EPA data, <span style="color:#569b5e">`r CWArecurring[1,2]` facilities, representing `r CWArecurring[1,3]`% of all regulated facilities in RI,</span> were in violation for <span style="color:#569b5e">at least 9 months of the last 3 years.</span></h3>
 ```{r echo=FALSE, out.width= "95%", out.extra='style="float:center; padding:0px"'}
 
 effluentgraph/inspectiongraph/enforcementactiongraph/enforcementfinegraph
@@ -645,7 +645,7 @@ vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, fill=Pre
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Violations", x="Year", title="CAA Violations\n", subtitle ="Very incomplete data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAviolations$Count+(.2*max(CAAviolations$Count)))))+
-  scale_x_discrete(breaks=c(2004,2008,2012, 2016))+
+  scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
   theme_meg()+
   theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
