@@ -75,7 +75,7 @@ MD <- senators[which(senators$state=="MD"), ]
  Congressional Report Card
  </span></div>
  <hr style="height:3px;border-width:0; margin-left:15px; margin-right:15px;color: #b9b9b9;background-color: #b9b9b9; margin-top: 0em; margin-bottom: 0em">
-##### Maryland; seat held by `r MD[1,2]` since `r MD[1,8]` 
+##### Maryland; seats held by `r MD[1,2]` since `r MD[1,8]` and `r MD[2,2]` since `r MD[2,8]`
  <div class="container">
   <img src="../State_maps/MD_map.png" alt="Snow" style="width:100%;">
   </div>
@@ -958,11 +958,52 @@ This standing committee has broad jurisdiction that has expanded significantly s
 
 <h4><span style="padding-left:30px">[`r MD[1,16]`](`r MD[1,17]`)</span></h4>
 
+\pagebreak
+
+<hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 10</span></h4>
+
+# Legislator Information 
+<br />
+<a ><img src="../CD_images/MD_sen_chris.png" style="float: left; width: 25%; margin-right: 5%" ></a>
+
+
+<h2>[`r MD[2,2]`](`r MD[2,9]`) (`r MD[2,3]`)</h2>
+
+## In office since `r MD[2,6]` `r MD[2,7]`, `r MD[2,8]`
+
+## Relevant Committee Membership:  [Environment and Public Works](https://www.epw.senate.gov/public/index.cfm/home)
+<br />
+<br />
+<div class="text-box-info">
+### The Senate Environment and Public Works Commmittee 
+This standing committee has broad jurisdiction that has expanded significantly since its creation in 1837. The committee legislates on a myriad of issues including fisheries and wildlife, maintaining and authorizing public works, water pollution and air pollution, among others. It has oversight over seven independent agencies including the EPA. Currently, the Committee consists of 21 members – 11 Republicans and 10 Democrats. 
+</div>
+
+<br />
+
+### Relevant Subcommittees: 
+
+<br />
+
+<h4><span style="padding-left:30px">[`r MD[2,10]`](`r MD[2,11]`)</span></h4>
+
+<br />
+
+<h4><span style="padding-left:30px">[`r MD[2,12]`](`r MD[2,13]`)</span></h4>
+
+<br />
+
+<h4><span style="padding-left:30px">[`r MD[2,14]`](`r MD[2,15]`)</span></h4>
+
+<br />
+
+<h4><span style="padding-left:30px">[`r MD[2,16]`](`r MD[2,17]`)</span></h4>
 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 10</span></h4> 
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 11</span></h4> 
 
 # About the EPA Data Analyzed in this Report Card and its Limitations  
 The data in this report is from EPA’s publicly-available [ECHO database](https://echo.epa.gov/) that compiles information from a number of distinct state and federal sources. However, poor reporting by states and inconsistent reporting schemes result in data gaps and inaccuracies. EPA lists numerous specific issues on its [“Known Data Problems”](https://echo.epa.gov/resources/echo-data/known-data-problems) page. In addition, EPA [notes](https://echo.epa.gov/tools/data-downloads) that data on inspections, violations, and enforcement actions prior to 2001 should be treated as incomplete and unreliable. For that reason, we have only tracked data back to 2001. In addition to many data entry errors -- too numerous to list here -- there are several major problems with ECHO: 
@@ -982,7 +1023,7 @@ We do not include data from 2020 because we are only part way through the year. 
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 11</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 12</span></h4>
 
 # How and why EEW developed the metrics in this report
 
@@ -1017,7 +1058,7 @@ To highlight the problem of chronic and routine violations of major environmenta
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 12</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 13</span></h4>
 
 # How and why EEW developed the metrics in this report (continued)
 
@@ -1034,7 +1075,7 @@ To examine facilities with consistent records of noncompliance, we provide infor
 \pagebreak
 
 <hr style="height:3px;border-width:0;color: #C1E0D7;background-color: #C1E0D7; margin-top: 2em">
-<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 13</span></h4>
+<h4>Report Generated on 10.2.2020<span style="padding-left:400px">Page 14</span></h4>
 
 # About the Authors and Links to Data 
 
