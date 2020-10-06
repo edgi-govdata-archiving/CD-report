@@ -75,7 +75,7 @@ IL9 <- housemembers[which(housemembers$CD=="IL9"), ]
  Congressional Report Card
  </span></div>
  <hr style="height:3px;border-width:0; margin-left:15px; margin-right:15px;color: #b9b9b9;background-color: #b9b9b9; margin-top: 0em; margin-bottom: 0em">
-##### Illinois' 9th District; seat held by `r IL9[1,2]` since `r IL9[1,8]` 
+##### Illinois's 9th District; seat held by `r IL9[1,2]` since `r IL9[1,8]` 
  <div class="container">
   <img src="../CD_maps/IL9_map.png" alt="Snow" style="width:100%;">
    <div class="bottom-left">Map shows congressional district or state with clusters of regulated facilities</div>
@@ -193,10 +193,10 @@ IL9_dot <- CWAper1000[which(CWAper1000$CD.State=="IL9"), ]
 
 dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_dotplot(binaxis='y', stackdir='center', stackratio=1.5, binwidth=15,
-               dotsize=1.5, position=position_dodge(0.3))+
+               dotsize=1.5, position=position_dodge(.3))+
   geom_hline(yintercept=100, linetype="dashed", color="#e56d13")+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
-  scale_fill_manual(values=c("#e56d13", "#ffffff"))+
+  scale_fill_manual(values=c("#e56d13","#ffffff"))+
   labs(title="CWA Violations per 100 Facilities in 2019", x="CD/State", y="")+
   geom_text(aes(label="100 violations per\n100 facilities*", family="Georgia"),
             x=2.35, y=180, color="#e56d13", size=3)+
@@ -411,7 +411,7 @@ enforcementfinegraph <- enforcement %>% ggplot()+
           element_text(lineheight = .1, size=10))
 
 ```
-# Highlights for Illinois' 9th District
+# Highlights for Illinois's 9th District
 
 * <h3>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been a <span style="color:#569b5e">`r inspectionchange[1,5]`% `r inspectionchange[1,4]` in inspections,  `r enforcementchange[1,10]`%  `r enforcementchange[1,9]` in fines</span>, and a <span style="color:#569b5e">`r enforcementchange[1,8]`% `r enforcementchange[1,7]` in enforcement actions.</span></h3>
 
@@ -506,7 +506,7 @@ CAAbadactors <- `noncomp_CAA_pg6_IL-9`
 CAAbadactors <-CAAbadactors[!(CAAbadactors$noncomp_count==0),]
 CAAbadactors <- CAAbadactors[-c(11:20),]
 CAAbadactors$Facility <- CAAbadactors$FAC_NAME
-CAAbadactors$Facility <- strtrim(CAAbadactors$Facility, 35)
+CAAbadactors$Facility <- strtrim(CAAbadactors$Facility, 30)
 
 
 #Let's try the CAA plot 
@@ -514,7 +514,7 @@ CAAbadactors$Facility <- strtrim(CAAbadactors$Facility, 35)
 CAAfacilities <- CAAbadactors %>%
   mutate(Facility = fct_reorder(Facility, noncomp_count)) %>%
   ggplot( mapping=aes(x=Facility, y=noncomp_count, fill=Facility, group=1))+
-  geom_bar(stat="identity", show.legend = FALSE, width=.8)+
+  geom_bar(stat="identity", show.legend = FALSE, width=.6)+
   scale_fill_viridis(discrete = TRUE, option="B")+
   labs(y="Quarters in Violation", x="", title="CAA Violators")+
   scale_y_continuous(expand=c(0,0), limits=c(0,12))+
@@ -529,7 +529,7 @@ CWAbadactors <- `noncomp_CWA_pg6_IL-9`
 CWAbadactors <-CWAbadactors[!(CWAbadactors$noncomp_count==0),]
 CWAbadactors <- CWAbadactors[-c(11:20),]
 CWAbadactors$Facility <- CWAbadactors$FAC_NAME
-CWAbadactors$Facility <- strtrim(CWAbadactors$Facility, 35)
+CWAbadactors$Facility <- strtrim(CWAbadactors$Facility, 30)
 
 
 
@@ -555,7 +555,7 @@ RCRAbadactors <- `noncomp_RCRA_pg7_IL-9`
 RCRAbadactors <-RCRAbadactors[!(RCRAbadactors$noncomp_count==0),]
 RCRAbadactors <- RCRAbadactors[-c(11:20),]
 RCRAbadactors$Facility <- RCRAbadactors$FAC_NAME
-RCRAbadactors$Facility <- strtrim(RCRAbadactors$Facility, 35)
+RCRAbadactors$Facility <- strtrim(RCRAbadactors$Facility, 30)
 
 
 
@@ -564,7 +564,7 @@ RCRAbadactors$Facility <- strtrim(RCRAbadactors$Facility, 35)
 RCRAfacilities <- RCRAbadactors %>%
   mutate(Facility = fct_reorder(Facility, noncomp_count)) %>%
   ggplot( mapping=aes(x=Facility, y=noncomp_count, fill=Facility, group=1))+
-  geom_bar(stat="identity", show.legend = FALSE, width=.8)+
+  geom_bar(stat="identity", show.legend = FALSE, width=.6)+
   scale_fill_viridis(discrete = TRUE, option="B")+
   labs(y="Quarters in Violation", x="", title="RCRA Violators")+
   scale_y_continuous(expand=c(0,0), limits=c(0,12))+
@@ -589,12 +589,13 @@ ggsave("RCRAfacilities.png", RCRAfacilities, path=here("CD_Dirs/IL9"), scale = 3
 * <font size="2">[`r CAAbadactors[2,8] `](`r CAAbadactors[2,5] `)</font>
 * <font size="2">[`r CAAbadactors[3,8] `](`r CAAbadactors[3,5] `)</font>
 * <font size="2">[`r CAAbadactors[4,8] `](`r CAAbadactors[4,5] `)</font>
-* <font size="2">[`r CAAbadactors[5,8] `](`r CAAbadactors[5,5] `)</font>
-* <font size="2">[`r CAAbadactors[6,8] `](`r CAAbadactors[6,5] `)</font>
-* <font size="2">[`r CAAbadactors[7,8] `](`r CAAbadactors[7,5] `)</font>
-* <font size="2">[`r CAAbadactors[8,8] `](`r CAAbadactors[8,5] `)</font>
-* <font size="2">[`r CAAbadactors[9,8] `](`r CAAbadactors[9,5] `)</font>
-* <font size="2">[`r CAAbadactors[10,8] `](`r CAAbadactors[10,5] `)</font>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 <a ><img src="../CD_Dirs/IL9/CWAfacilities.png" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
@@ -619,12 +620,12 @@ ggsave("RCRAfacilities.png", RCRAfacilities, path=here("CD_Dirs/IL9"), scale = 3
 * <font size="2">[`r RCRAbadactors[2,8] `](`r RCRAbadactors[2,5] `)</font>
 * <font size="2">[`r RCRAbadactors[3,8] `](`r RCRAbadactors[3,5] `)</font>
 * <font size="2">[`r RCRAbadactors[4,8] `](`r RCRAbadactors[4,5] `)</font>
-* <font size="2">[`r RCRAbadactors[5,8] `](`r RCRAbadactors[5,5] `)</font>
-* <font size="2">[`r RCRAbadactors[6,8] `](`r RCRAbadactors[6,5] `)</font>
-* <font size="2">[`r RCRAbadactors[7,8] `](`r RCRAbadactors[7,5] `)</font>
-* <font size="2">[`r RCRAbadactors[8,8] `](`r RCRAbadactors[8,5] `)</font>
-* <font size="2">[`r RCRAbadactors[9,8] `](`r RCRAbadactors[9,5] `)</font>
-* <font size="2">[`r RCRAbadactors[10,8] `](`r RCRAbadactors[10,5] `)</font>
+
+<br />
+<br />
+<br />
+<br />
+
 
 \pagebreak
 
@@ -657,7 +658,7 @@ vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, fill=Pre
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Violations", x="Year", title="CAA Violations\n", subtitle ="Very incomplete data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAviolations$Count+(.2*max(CAAviolations$Count)))))+
-  scale_x_discrete(breaks=c(2004,2008,2012, 2016))+
+  scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
   theme_meg()+
   theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))

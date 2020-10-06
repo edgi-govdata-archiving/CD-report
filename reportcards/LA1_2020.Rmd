@@ -184,8 +184,8 @@ CWAper1000$Per100 <- as.numeric(CWAper1000$Num.per.1000/10)
 #make a dataframe that is per 100
 
 CWAper100 <- CWAper1000
-#removing NY9 and WA5 and MI7, AK, and IA2
-CWAper100 <- CWAper100[-c(38,52,29,15,54),]
+#removing NY9 and WA5 and MI7, AK, and IA2 and extra CA9
+CWAper100 <- CWAper100[-c(38,52,29,15,54,8),]
 
 LA1_dot <- CWAper1000[which(CWAper1000$CD.State=="LA1"), ]
 
@@ -193,10 +193,10 @@ LA1_dot <- CWAper1000[which(CWAper1000$CD.State=="LA1"), ]
 
 dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_dotplot(binaxis='y', stackdir='center', stackratio=1.5, binwidth=15,
-               dotsize=1.5)+
+               dotsize=1.5, position=position_dodge(.3))+
   geom_hline(yintercept=100, linetype="dashed", color="#e56d13")+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
-  scale_fill_manual(values=c("#E56D13", "#FFFFFF"))+
+  scale_fill_manual(values=c("#e56d13","#ffffff"))+
   labs(title="CWA Violations per 100 Facilities in 2019", x="CD/State", y="")+
   geom_text(aes(label="100 violations per\n100 facilities*", family="Georgia"),
             x=2.35, y=180, color="#e56d13", size=3)+
@@ -506,7 +506,7 @@ CAAbadactors <- `noncomp_CAA_pg6_LA-1`
 CAAbadactors <-CAAbadactors[!(CAAbadactors$noncomp_count==0),]
 CAAbadactors <- CAAbadactors[-c(11:20),]
 CAAbadactors$Facility <- CAAbadactors$FAC_NAME
-CAAbadactors$Facility <- strtrim(CAAbadactors$Facility, 35)
+CAAbadactors$Facility <- strtrim(CAAbadactors$Facility, 30)
 
 
 #Let's try the CAA plot 
@@ -529,7 +529,7 @@ CWAbadactors <- `noncomp_CWA_pg6_LA-1`
 CWAbadactors <-CWAbadactors[!(CWAbadactors$noncomp_count==0),]
 CWAbadactors <- CWAbadactors[-c(11:20),]
 CWAbadactors$Facility <- CWAbadactors$FAC_NAME
-CWAbadactors$Facility <- strtrim(CWAbadactors$Facility, 35)
+CWAbadactors$Facility <- strtrim(CWAbadactors$Facility, 30)
 
 
 
@@ -555,7 +555,7 @@ RCRAbadactors <- `noncomp_RCRA_pg7_LA-1`
 RCRAbadactors <-RCRAbadactors[!(RCRAbadactors$noncomp_count==0),]
 RCRAbadactors <- RCRAbadactors[-c(11:20),]
 RCRAbadactors$Facility <- RCRAbadactors$FAC_NAME
-RCRAbadactors$Facility <- strtrim(RCRAbadactors$Facility, 35)
+RCRAbadactors$Facility <- strtrim(RCRAbadactors$Facility, 30)
 
 
 
@@ -658,7 +658,7 @@ vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, fill=Pre
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Violations", x="Year", title="CAA Violations\n", subtitle ="Very incomplete data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAviolations$Count+(.2*max(CAAviolations$Count)))))+
-  scale_x_discrete(breaks=c(2004,2008,2012, 2016))+
+  scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
   theme_meg()+
   theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
