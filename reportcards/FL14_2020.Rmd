@@ -184,8 +184,8 @@ CWAper1000$Per100 <- as.numeric(CWAper1000$Num.per.1000/10)
 #make a dataframe that is per 100
 
 CWAper100 <- CWAper1000
-#removing NY9 and WA5 and MI7, AK, and IA2
-CWAper100 <- CWAper100[-c(38,52,29,15,54),]
+#removing NY9 and WA5 and MI7, AK, and IA2 and extra CA9
+CWAper100 <- CWAper100[-c(38,52,29,15,54,8),]
 
 FL14_dot <- CWAper1000[which(CWAper1000$CD.State=="FL14"), ]
 
@@ -193,7 +193,7 @@ FL14_dot <- CWAper1000[which(CWAper1000$CD.State=="FL14"), ]
 
 dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_dotplot(binaxis='y', stackdir='center', stackratio=1.5, binwidth=15,
-               dotsize=1.5, position=position_dodge(0.3))+
+               dotsize=1.5, position=position_dodge(.3))+
   geom_hline(yintercept=100, linetype="dashed", color="#e56d13")+
   geom_hline(yintercept=0, linetype="dashed", color="#569b5e")+
   scale_fill_manual(values=c("#e56d13","#ffffff"))+
@@ -228,15 +228,15 @@ ggsave("dotplot_FL14.png", dotplot, path=here("CD_Dirs/FL14"), scale = 2, width=
 #CAA
 
 ##first let's fix up the data
-#ok so We'll put the % in the title for the state, and try to figure out the same for FL 14
+#ok so We'll put the % in the title for the state, and try to figure out the same for Fl 14
 CAArecurring <- `recurring-violations_All_pg3_FL-14`[-c(2,3,5,6),]
 CAArecurring <- CAArecurring %>%
   select(CD,Facilities, Percent)
 names(CAArecurring)[1] <- "Region"
 CAArecurring[1,1] <- as.character("Rest of State")
-CAArecurring[2,1] <- as.character("FL 14")
+CAArecurring[2,1] <- as.character("Fl 14")
 CAArecurring$Region2 <- as.character("All of OR")
-CAArecurring[2,4] <- as.character("FL 14")
+CAArecurring[2,4] <- as.character("Fl 14")
 CAArecurring$RecurringViolators <- (as.numeric(CAArecurring[1,2]-CAArecurring[2,2]))
 CAArecurring[2,5] <- as.numeric(CAArecurring[2,2])
 CAArecurring$Proportional <- (as.numeric((100/(CAArecurring[1,2]))*CAArecurring[1,5]))
@@ -246,15 +246,15 @@ CAArecurring[3] <-round(CAArecurring[3],2)
 #CWA
 
 ##first let's fix up the data
-#ok so We'll put the % in the title for the state, and try to figure out the same for FL 14
+#ok so We'll put the % in the title for the state, and try to figure out the same for Fl 14
 CWArecurring <- `recurring-violations_All_pg3_FL-14`[-c(1,3,4,6),]
 CWArecurring <- CWArecurring %>%
   select(CD,Facilities, Percent)
 names(CWArecurring)[1] <- "Region"
 CWArecurring[1,1] <- as.character("Rest of State")
-CWArecurring[2,1] <- as.character("FL 14")
+CWArecurring[2,1] <- as.character("Fl 14")
 CWArecurring$Region2 <- as.character("All of OR")
-CWArecurring[2,4] <- as.character("FL 14")
+CWArecurring[2,4] <- as.character("Fl 14")
 CWArecurring$RecurringViolators <- (as.numeric(CWArecurring[1,2]-CWArecurring[2,2]))
 CWArecurring[2,5] <- as.numeric(CWArecurring[2,2])
 CWArecurring$Proportional <- (as.numeric((100/(CWArecurring[1,2]))*CWArecurring[1,5]))
@@ -264,15 +264,15 @@ CWArecurring[3] <-round(CWArecurring[3],0)
 #RCRA
 
 ##first let's fix up the data
-#ok so We'll put the % in the title for the state, and try to figure out the same for FL 14
+#ok so We'll put the % in the title for the state, and try to figure out the same for Fl 14
 RCRArecurring <- `recurring-violations_All_pg3_FL-14`[-c(1,2,4,5),]
 RCRArecurring <- RCRArecurring %>%
   select(CD,Facilities, Percent)
 names(RCRArecurring)[1] <- "Region"
 RCRArecurring[1,1] <- as.character("Rest of State")
-RCRArecurring[2,1] <- as.character("FL 14")
+RCRArecurring[2,1] <- as.character("Fl 14")
 RCRArecurring$Region2 <- as.character("All of OR")
-RCRArecurring[2,4] <- as.character("FL 14")
+RCRArecurring[2,4] <- as.character("Fl 14")
 RCRArecurring$RecurringViolators <- (as.numeric(RCRArecurring[1,2]-RCRArecurring[2,2]))
 RCRArecurring[2,5] <- as.numeric(RCRArecurring[2,2])
 RCRArecurring$Proportional <- (as.numeric((100/(RCRArecurring[1,2]))*RCRArecurring[1,5]))
@@ -506,7 +506,7 @@ CAAbadactors <- `noncomp_CAA_pg6_FL-14`
 CAAbadactors <-CAAbadactors[!(CAAbadactors$noncomp_count==0),]
 CAAbadactors <- CAAbadactors[-c(11:20),]
 CAAbadactors$Facility <- CAAbadactors$FAC_NAME
-CAAbadactors$Facility <- strtrim(CAAbadactors$Facility, 35)
+CAAbadactors$Facility <- strtrim(CAAbadactors$Facility, 30)
 
 
 #Let's try the CAA plot 
@@ -529,7 +529,7 @@ CWAbadactors <- `noncomp_CWA_pg6_FL-14`
 CWAbadactors <-CWAbadactors[!(CWAbadactors$noncomp_count==0),]
 CWAbadactors <- CWAbadactors[-c(11:20),]
 CWAbadactors$Facility <- CWAbadactors$FAC_NAME
-CWAbadactors$Facility <- strtrim(CWAbadactors$Facility, 35)
+CWAbadactors$Facility <- strtrim(CWAbadactors$Facility, 30)
 
 
 
@@ -555,7 +555,7 @@ RCRAbadactors <- `noncomp_RCRA_pg7_FL-14`
 RCRAbadactors <-RCRAbadactors[!(RCRAbadactors$noncomp_count==0),]
 RCRAbadactors <- RCRAbadactors[-c(11:20),]
 RCRAbadactors$Facility <- RCRAbadactors$FAC_NAME
-RCRAbadactors$Facility <- strtrim(RCRAbadactors$Facility, 35)
+RCRAbadactors$Facility <- strtrim(RCRAbadactors$Facility, 30)
 
 
 
@@ -657,7 +657,7 @@ vCAAgraph <- ggplot(CAAviolations, mapping=aes(x=factor(Date), y=Count, fill=Pre
   scale_fill_manual(values=c("#450d54", "#22908d", "#e56d13"))+
   labs(y=" # Violations", x="Year", title="CAA Violations\n", subtitle ="Very incomplete data")+
   scale_y_continuous(expand=c(0,0), limits=c(0,max(CAAviolations$Count+(.2*max(CAAviolations$Count)))))+
-  scale_x_discrete(breaks=c(2004,2008,2012, 2016))+
+  scale_x_discrete(breaks=c(2004,2008,2012, 2016, 2019))+
   theme_meg()+
   theme(axis.text.x=element_text(size=10),
         axis.title.x = element_blank(), plot.subtitle = element_text(hjust=.5))
