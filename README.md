@@ -2,7 +2,6 @@
 # CD-report
 making .rmd for EDGI CD reports 
 
-## General note, I'm still making a few changes to make the .rmd work for Senators. Let's focus on CDs for now. 
 
 ## Making CD Reports
 
