@@ -75,7 +75,7 @@ DE <- housemembers[which(housemembers$CD=="DE"), ]
  Congressional Report Card
  </span></div>
  <hr style="height:3px;border-width:0; margin-left:15px; margin-right:15px;color: #b9b9b9;background-color: #b9b9b9; margin-top: 0em; margin-bottom: 0em">
-##### Deleware's Congressional District; seat held by `r DE[1,2]` since `r DE[1,8]` 
+##### Delaware's Congressional District; seat held by `r DE[1,2]` since `r DE[1,8]` 
  <div class="container">
   <img src="../State_maps/DE_map.png" alt="Snow" style="width:100%;">
   </div>
@@ -201,11 +201,11 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
-  annotate("text", label="Outliers:\nNY9-2650 violations\nWA5-1029 violations\nMI7-865 violations\nAK-841 violations\nIA2-826 violations",
+  annotate("text", label="Outliers (not displayed):\nNY9-2650 violations\nWA5-1029 violations\nMI7-865 violations\nAK-841 violations\nIA2-826 violations",
              x=2.3, y=600, color="black", size=3, family="Georgia")+
   theme_meg()+
   theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
-        legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
+        legend.title = element_blank(), axis.text.x=element_text(size=10, hjust=.6), legend.position = c(0.1,.8), axis.ticks.x=element_blank())+scale_x_discrete(labels=c("Energy and Commerce\nCongressional Districts","Environment and Public\nWorks States"))
 
 ggsave("dotplot_DE.png", dotplot, path=here("State_Dirs/DE"), scale = 2, width=8, height=5, units=c("cm"))
 
@@ -375,8 +375,8 @@ enforcement$Amountinthousands <-round(enforcement$Amountinthousands,2)
 
 #add presidental years
 enforcement$President <- as.character("Bush")
-enforcement[9:16,5] <- as.character("Obama")
-enforcement[17:19,5] <- as.character("Trump")
+enforcement[9:16,8] <- as.character("Obama")
+enforcement[17:19,8] <- as.character("Trump")
 
 #plot change in enforcement
 enforcementactiongraph <- ggplot(enforcement, mapping=aes(x=factor(Date),y=Count, fill=President, group=1))+
@@ -403,7 +403,7 @@ enforcementfinegraph <- enforcement %>% ggplot()+
           element_text(lineheight = .1, size=10))
 
 ```
-# Highlights for Deleware
+# Highlights for Delaware
 
 * <h3>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been a <span style="color:#569b5e">`r inspectionchange[1,5]`% `r inspectionchange[1,4]` in inspections,  `r enforcementchange[1,10]`%  `r enforcementchange[1,9]` in fines</span>, and a <span style="color:#569b5e">`r enforcementchange[1,8]`% `r enforcementchange[1,7]` in enforcement actions.</span></h3>
 
@@ -445,7 +445,7 @@ inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper10
   scale_alpha_manual(values=c(.6,1,.6), guide='none')+
   geom_text(aes(label=Inspectionsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
   ggtitle("Inspections per 1000 Facilities in 2019")+
-  scale_y_continuous(expand=c(0,0),limits=c(0,max(inspectionsper1000$Inspectionsper1000+(.2*max(inspectionsper1000$Inspectionsper1000)))))+
+  scale_y_continuous(expand=c(0,0),limits=c(0,1200))+geom_hline(yintercept=1000, linetype="dashed", color="black")+geom_text(aes(label="Average of 1 inspection per facility",family="Georgia"),x=2,y=1050,color="black",size=4)+
   theme_meg()
   
 
@@ -986,7 +986,7 @@ We do not include data from 2020 because we are only part way through the year. 
 
 # How and why EEW developed the metrics in this report
 
-## Page 1: Trump administration grade
+## Page 2: Trump Administration Grade
 
 To enable direct comparison between changes in enforcement and violations since the Trump Administration took office, we calculate the percent change in Clean Water Act violations and enforcement actions per district or state between Trump’s first three years in office, and the historical average in each state from 2001 to 2016. We analyze data since 2001, as EPA is most confident in its own data since 2001. We analyze violations data just for the Clean Water Act because that data is the most complete due to routine digital reporting requirements. We analyze all forms of enforcement actions, informal and formal. All data is drawn from the ECHO database. 
 
