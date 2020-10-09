@@ -24,9 +24,9 @@ CWAper1000$Per100 <- as.numeric(CWAper1000$Num.per.1000/10)
 
 CWAper100 <- CWAper1000
 #removing NY9 and WA5 and MI7, AK, and IA2
-CWAper100 <- CWAper100[-c(38,52,29,15,54),]
+CWAper100 <- CWAper100[-c(38,52,29,15,54,8),]
 
-
+#ny9
 
 dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
   geom_dotplot(binaxis='y', stackdir='centerwhole', stackratio=2.5, binwidth=15,
@@ -39,7 +39,7 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
-  annotate("text", label="Outliers:",
+  annotate("text", label="Outliers (not displayed):",
              x=2.3, y=600, color="black", size=3, family="Georgia")+
   annotate("text", label="NY9-2650 violations",
            x=2.3, y=573, color="#e56d13", size=3, family="Georgia", fontface="bold")+
@@ -47,7 +47,9 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
            x=2.3, y=480, color="black", size=3, family="Georgia")+
   theme_meg()+
   theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
-        legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
+        legend.title = element_blank(), axis.text.x=element_text(size=10, hjust=.6), legend.position = c(0.1,.8), axis.ticks.x=element_blank())+
+  scale_x_discrete(labels=c("Energy and Commerce\nCongressional Districts","Environment and Public\nWorks States"))
+
 
 
 ggsave("dotplot_NY9.png", dotplot, path=here("outlierdotplots"), scale = 2, width=8, height=5, units=c("cm"))
@@ -66,7 +68,7 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
-  annotate("text", label="Outliers:\nNY9-2650 violations",
+  annotate("text", label="Outliers (not displayed):\nNY9-2650 violations",
            x=2.3, y=600, color="black", size=3, family="Georgia")+
   annotate("text", label="WA5-1029 violations",
            x=2.3, y=550, color="#e56d13", size=3, family="Georgia", fontface="bold")+
@@ -74,7 +76,8 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
            x=2.3, y=480, color="black", size=3, family="Georgia")+
   theme_meg()+
   theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
-        legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
+        legend.title = element_blank(), axis.text.x=element_text(size=10, hjust=.6), legend.position = c(0.1,.8), axis.ticks.x=element_blank())+
+  scale_x_discrete(labels=c("Energy and Commerce\nCongressional Districts","Environment and Public\nWorks States"))
 
 ggsave("dotplot_WA5.png", dotplot, path=here("outlierdotplots"), scale = 2, width=8, height=5, units=c("cm"))
 
@@ -92,7 +95,7 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
-  annotate("text", label="Outliers:\nNY9-2650 violations\nWA5-1029 violations",
+  annotate("text", label="Outliers (not displayed):\nNY9-2650 violations\nWA5-1029 violations",
            x=2.3, y=600, color="black", size=3, family="Georgia")+
   annotate("text", label="MI7-865 violations",
            x=2.3, y=525, color="#e56d13", size=3, family="Georgia", fontface="bold")+
@@ -100,7 +103,8 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
            x=2.3, y=470, color="black", size=3, family="Georgia")+
   theme_meg()+
   theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
-        legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
+        legend.title = element_blank(), axis.text.x=element_text(size=10, hjust=.6), legend.position = c(0.1,.8), axis.ticks.x=element_blank())+
+  scale_x_discrete(labels=c("Energy and Commerce\nCongressional Districts","Environment and Public\nWorks States"))
 
 ggsave("dotplot_MI7.png", dotplot, path=here("outlierdotplots"), scale = 2, width=8, height=5, units=c("cm"))
 
@@ -117,7 +121,7 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
-  annotate("text", label="Outliers:\nNY9-2650 violations\nWA5-1029 violations\nMI7-865 violations",
+  annotate("text", label="Outliers (not displayed):\nNY9-2650 violations\nWA5-1029 violations\nMI7-865 violations",
            x=2.3, y=600, color="black", size=3, family="Georgia")+
   annotate("text", label="AK-841 violations",
            x=2.3, y=505, color="#e56d13", size=3, family="Georgia", fontface="bold")+
@@ -125,7 +129,8 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
            x=2.3, y=467, color="black", size=3, family="Georgia")+
   theme_meg()+
   theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
-        legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
+        legend.title = element_blank(), axis.text.x=element_text(size=10, hjust=.6), legend.position = c(0.1,.8), axis.ticks.x=element_blank())+
+  scale_x_discrete(labels=c("Energy and Commerce\nCongressional Districts","Environment and Public\nWorks States"))
 
 ggsave("dotplot_AK.png", dotplot, path=here("outlierdotplots"), scale = 2, width=8, height=5, units=c("cm"))
 
@@ -143,13 +148,14 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
-  annotate("text", label="Outliers:\nNY9-2650 violations\nWA5-1029 violations\nMI7-865 violations\nAK-841 violations",
+  annotate("text", label="Outliers (not displayed):\nNY9-2650 violations\nWA5-1029 violations\nMI7-865 violations\nAK-841 violations",
            x=2.3, y=600, color="black", size=3, family="Georgia")+
   annotate("text", label="IA2-826 violations",
            x=2.3, y=485, color="#e56d13", size=3, family="Georgia", fontface="bold")+
   theme_meg()+
   theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
-        legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
+        legend.title = element_blank(), axis.text.x=element_text(size=10, hjust=.6), legend.position = c(0.1,.8), axis.ticks.x=element_blank())+
+  scale_x_discrete(labels=c("Energy and Commerce\nCongressional Districts","Environment and Public\nWorks States"))
 
 ggsave("dotplot_IA2.png", dotplot, path=here("outlierdotplots"), scale = 2, width=8, height=5, units=c("cm"))
 
