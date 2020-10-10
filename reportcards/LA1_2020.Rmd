@@ -202,11 +202,11 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
             x=2.35, y=180, color="#e56d13", size=3)+
   geom_text(aes(label="0 violations", family="Georgia"),
             x=2.4, y=15, color="#569b5e", size=3)+
-  annotate("text", label="Outliers:\nNY9-2650 violations\nWA5-1029 violations\nMI7-865 violations\nAK-841 violations\nIA2-826 violations",
+  annotate("text", label="Outliers (not displayed):\nNY9-2650 violations\nWA5-1029 violations\nMI7-865 violations\nAK-841 violations\nIA2-826 violations",
              x=2.3, y=600, color="black", size=3, family="Georgia")+
   theme_meg()+
   theme(axis.line.x=element_blank(), axis.title.x=element_blank(),
-        legend.title = element_blank(), axis.text.x=element_text(size=10), legend.position = c(0.1,.8))
+        legend.title = element_blank(), axis.text.x=element_text(size=10, hjust=.6), legend.position = c(0.1,.8), axis.ticks.x=element_blank())+scale_x_discrete(labels=c("Energy and Commerce\nCongressional Districts","Environment and Public\nWorks States"))
 
 ggsave("dotplot_LA1.png", dotplot, path=here("CD_Dirs/LA1"), scale = 2, width=8, height=5, units=c("cm"))
 
@@ -383,8 +383,8 @@ enforcement$Amountinthousands <-round(enforcement$Amountinthousands,2)
 
 #add presidental years
 enforcement$President <- as.character("Bush")
-enforcement[9:16,5] <- as.character("Obama")
-enforcement[17:19,5] <- as.character("Trump")
+enforcement[9:16,8] <- as.character("Obama")
+enforcement[17:19,8] <- as.character("Trump")
 
 #plot change in enforcement
 enforcementactiongraph <- ggplot(enforcement, mapping=aes(x=factor(Date),y=Count, fill=President, group=1))+
@@ -455,7 +455,7 @@ inspect1000bar <- ggplot(inspectionsper1000, aes(fill=Region, y=Inspectionsper10
   scale_alpha_manual(values=c(.6,1,.6), guide='none')+
   geom_text(aes(label=Inspectionsper1000, family="Georgia"), position = position_dodge(0.9), vjust = -0.1, size=4)+
   ggtitle("Inspections per 1000 Facilities in 2019")+
-  scale_y_continuous(expand=c(0,0),limits=c(0,max(inspectionsper1000$Inspectionsper1000+(.2*max(inspectionsper1000$Inspectionsper1000)))))+
+  scale_y_continuous(expand=c(0,0),limits=c(0,1200))+geom_hline(yintercept=1000, linetype="dashed", color="black")+geom_text(aes(label="Average of 1 inspection per facility",family="Georgia"),x=2,y=1050,color="black",size=4)+
   theme_meg()
   
 
@@ -999,7 +999,7 @@ We do not include data from 2020 because we are only part way through the year. 
 
 # How and why EEW developed the metrics in this report
 
-## Page 1: Trump administration grade
+## Page 2: Trump Administration Grade
 
 To enable direct comparison between changes in enforcement and violations since the Trump Administration took office, we calculate the percent change in Clean Water Act violations and enforcement actions per district or state between Trump’s first three years in office, and the historical average in each district from 2001 to 2016. We analyze data since 2001, as EPA is most confident in its own data since 2001. We analyze violations data just for the Clean Water Act because that data is the most complete due to routine digital reporting requirements. We analyze all forms of enforcement actions, informal and formal. All data is drawn from the ECHO database. 
 
@@ -1015,7 +1015,7 @@ We describe rates to be “Better” if violation rates decreased or enforcement
 
 The dot plot shows the number of Clean Water Act violations in this state or district compared to all others in this Senate or House committee in 2019. We use Clean Water Act data as it is the most reliable and use 2019 as we have the most confidence about data per 1000 facilities in that year. We provide this metric as some districts’ rates of violations and enforcement may not have changed because their performance is consistently poor or good.
 
-## Page 2: Highlights from this district
+## Page 3: Highlights from this District
 
 Trump and Obama Administration comparison: To enable comparison to a more recent administration we compare levels of inspection and enforcement in the first three years of the Obama administration to the first three years of the Trump administration. For these figures inspections and enforcement numbers for the CWA, CAA and RCRA are combined. We compare to only the first 3 years of each Administration's term for parity.
 
@@ -1034,12 +1034,12 @@ To highlight the problem of chronic and routine violations of major environmenta
 
 # How and why EEW developed the metrics in this report (continued)
 
-## Page 3: This District In Comparison
+## Page 4: This District in Comparison
 
 To generate a comparison across Congressional Districts, each of which has a different number of facilities, we look at the average number of violations, inspections and enforcement actions per 1000 facilities. In states where there are fewer than 1000 facilities this requires us to scale up their data. 
 
 
-## Page 4: Recent Noncompliance in this District
+## Page 5: Recent Noncompliance in this District
 
 To examine facilities with consistent records of noncompliance, we provide information on the 10 facilities with the most quarters of non-compliance under the CAA, CWA, and RCRA. Important notes here: These charts show the number of quarters of non-compliance, not exactly *which* quarters they were out of compliance. Non-compliance shown here may not be consecutive. Quarters can also be confusing: there are 4 quarters in a year, so 12 quarters equals 3 years of time. In some locations there may be more than 10 facilities out of compliance for all 12 quarters. We limit our figures to 10 facilities for space and clarity. A list of 20 facilities can be found in the Jupyter notebook for that district or state. Additionally, the x-axis for these figures displays a maximum of 12 quarters for the CAA and RCRA, but 13 for the CWA. Under the CWA, violations are reported automatically, so we have violations information for the first three quarters of 2020 for the CWA, and only the first two quarters of 2020 for CAA and RCRA. 
 
