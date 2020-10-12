@@ -1052,7 +1052,7 @@ This EEW project aims to make EPA data more directly accessible to the public an
 [Github Repository to produce reports](https://github.com/edgi-govdata-archiving/CD-report) | 
 [EEW website](https://www.environmentalenforcementwatch.org) |
 <a href = "mailto: environmentalenforcementwatch@gmail.com">Contact Us</a> |
-[Link to download PDF version of this report](https://github.com/edgi-govdata-archiving/CD-report/blob/master/reportcards/DE_2020.pdf)
+[Link to download PDF version of this report](https://github.com/edgi-govdata-archiving/CD-report/blob/master/reportcards/DE00_2020.pdf)
 
 <div class="text-box-info">
 <h3>About EDGI</h3>

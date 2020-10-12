@@ -75,7 +75,7 @@ NM3 <- housemembers[which(housemembers$CD=="NM3"), ]
  Congressional Report Card
  </span></div>
  <hr style="height:3px;border-width:0; margin-left:15px; margin-right:15px;color: #b9b9b9;background-color: #b9b9b9; margin-top: 0em; margin-bottom: 0em">
-##### New Mexico's 3rd District; seat held by `r NM3[1,2]` since `r NM3[1,8]` 
+##### New Mexico's 3rd District; seat held by Ben Ray Luján since `r NM3[1,8]` 
  <div class="container">
   <img src="../CD_maps/NM3_map.png" alt="Snow" style="width:100%;">
    <div class="bottom-left">Map shows congressional district or state with clusters of regulated facilities</div>
@@ -939,7 +939,7 @@ These figures show patterns of RCRA inspections, violations, enforcement actions
 <a ><img src="../CD_images/NM3_rep.png" style="float: left; width: 25%; margin-right: 5%" ></a>
 
 
-<h2>[`r NM3[1,2]`](`r NM3[1,9]`) (`r NM3[1,3]`)</h2>
+<h2>[Ben Ray Luján](`r NM3[1,9]`) (`r NM3[1,3]`)</h2>
 
 ## In office since `r NM3[1,6]` `r NM3[1,7]`, `r NM3[1,8]`
 

@@ -77,7 +77,7 @@ AK <- senators[which(senators$state=="AK"), ]
  <hr style="height:3px;border-width:0; margin-left:15px; margin-right:15px;color: #b9b9b9;background-color: #b9b9b9; margin-top: 0em; margin-bottom: 0em">
 ##### Alaska; seat held by `r AK[1,2]` since `r AK[1,8]` 
  <div class="container">
-  <img src="../State_maps/AK_Map_BigScale.png" alt="Snow" style="width:100%;">
+  <img src="../State_maps/AK_map.png" alt="Snow" style="width:100%;">
   </div>
 <a href="https://www.environmentalenforcementwatch.org/"><img src="../logosandimages/eew_logo.png" style="float: left; width: 9%; margin-left: 30%"></a>
 <a href="https://envirodatagov.org/"><img src="../logosandimages/edgi_logo.png" style="float: right; width: 15%; margin-right: 30%" ></a>
@@ -391,7 +391,7 @@ enforcementfinegraph <- enforcement %>% ggplot()+
 
 <br />
 
-* <h3>Under the Clean Water Act, the law whose regulation is best documented by available EPA data, <span style="color:#569b5e">`r CWArecurring[2,2]` facilities, representing `r CWArecurring[2,3]`% of all regulated facilities in AK,</span> were in violation for <span style="color:#569b5e">at least 9 months of the last 3 years.</span></h3>
+* <h3>Under the Clean Water Act, the law whose regulation is best documented by available EPA data, <span style="color:#569b5e">`r CWArecurring[1,2]` facilities, representing `r CWArecurring[1,3]`% of all regulated facilities in AK,</span> were in violation for <span style="color:#569b5e">at least 9 months of the last 3 years.</span></h3>
 ```{r echo=FALSE, out.width= "95%", out.extra='style="float:center; padding:0px"'}
 
 effluentgraph/inspectiongraph/enforcementactiongraph/enforcementfinegraph
