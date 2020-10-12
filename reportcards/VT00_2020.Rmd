@@ -175,8 +175,8 @@ actionchange$Value <- ifelse(actionchange$PercentDifference>=0, "increase", "dec
 CWAper1000$Num.per.1000 <- as.numeric(round(CWAper1000$Num.per.1000,0))
 CWAper10002 <- CWAper1000
 CWAper10002$Test <- as.numeric(0)
-CWAper10002$Highlight <- ifelse(CWAper10002$CD.State=="VT", "VT", "Other")
-CWAper1000$Highlight <- ifelse(CWAper1000$CD.State=="VT", "VT", "Other")
+CWAper10002$Highlight <- ifelse(CWAper10002$CD.State=="VT00", "VT", "Other")
+CWAper1000$Highlight <- ifelse(CWAper1000$CD.State=="VT00", "VT", "Other")
 CWAper1000$Per100 <- as.numeric(CWAper1000$Num.per.1000/10)
 
 

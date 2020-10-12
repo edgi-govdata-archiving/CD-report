@@ -279,7 +279,7 @@ RCRArecurring[3] <-round(RCRArecurring[3],2)
 #[9:11,2] Obama
 # [17:19,2] Trump
 effluentviolations <- `violations_CWA_pg3_MS`
-effluentviolations <- effluentviolations[-c(20),]
+effluentviolations <- effluentviolations[-c(20:21),]
 effluentchange <- data.frame("Obama Average" =mean(effluentviolations[9:11,2]),
                              "Trump Average" =mean(effluentviolations[17:19,2]))
 effluentchange$PercentDifference <- as.numeric(100*(effluentchange[1,2]-effluentchange[1,1])/
