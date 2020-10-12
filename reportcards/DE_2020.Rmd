@@ -75,7 +75,7 @@ DE <- senators[which(senators$state=="DE"), ]
  Congressional Report Card
  </span></div>
  <hr style="height:3px;border-width:0; margin-left:15px; margin-right:15px;color: #b9b9b9;background-color: #b9b9b9; margin-top: 0em; margin-bottom: 0em">
-##### Deleware; seat held by `r DE[1,2]` since `r DE[1,8]` 
+##### Delaware; seat held by `r DE[1,2]` since `r DE[1,8]` 
  <div class="container">
   <img src="../State_maps/DE_map.png" alt="Snow" style="width:100%;">
   </div>
@@ -403,7 +403,7 @@ enforcementfinegraph <- enforcement %>% ggplot()+
           element_text(lineheight = .1, size=10))
 
 ```
-# Highlights for Deleware
+# Highlights for Delaware
 
 * <h3>Comparing the first 3 years of the Obama administration to the first 3 years of the Trump administration, there has been a <span style="color:#569b5e">`r inspectionchange[1,5]`% `r inspectionchange[1,4]` in inspections,  `r enforcementchange[1,10]`%  `r enforcementchange[1,9]` in fines</span>, and a <span style="color:#569b5e">`r enforcementchange[1,8]`% `r enforcementchange[1,7]` in enforcement actions.</span></h3>
 
