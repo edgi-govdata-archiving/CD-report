@@ -165,6 +165,10 @@ actionchange$Value <- ifelse(actionchange$PercentDifference>=0, "increase", "dec
 
 <br />
 
+<h3><span style="color:#DC143C"> The large increase in violations may be in part due to this state's compliance with improved reporting requirements.</span></h3>
+
+<br />
+
 <h3>Enforcement Actions under Clean Air Act, Clean Water Act, and the Resource Conservation and Recovery Act*: <span style="color:#569b5e">`r actionchange[1,4]` `r actionchange[1,5]`</span> than the average over the previous 16 years, representing a <span style="color:#569b5e">`r actionchange[1,6]`% `r actionchange[1,7]`</span> in enforcement actions</h3>
 
 *see data limitations page for metric calculations
