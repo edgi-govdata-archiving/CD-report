@@ -1,7 +1,6 @@
 
 # CD-report
-making .rmd for EDGI CD reports 
-
+This is the repository where we store the data and code used to generate EEW's congressional report cards. For more on the project and resulting report cards See the EEW website: https://www.environmentalenforcementwatch.org/
 
 ## Making CD Reports
 
@@ -10,20 +9,21 @@ making .rmd for EDGI CD reports
 3. Downlaod the "national stats" folder
 4. Download the "logosandimages" folder. 
 5. Download the Rmd template you will be using to construct the final report.
-    THE CURRENT RMD TO COPY FROM IS "VA4_2020.Rmd"
+    THE CURRENT RMD TO COPY FROM IS "VA4_2020.Rmd" for Congressional Districts
+    THe CURRENT RMD TO COPY FROM IS "WY_2020.Rmd" for States 
 6. Download the file custom_current.css from the "reportcards" folder in this branch. 
 7. Create a local folder called "reportcards" that contains the copy of the most recent .rmd and teh custom_current.css.
 
 
-## Notes on Naming and Special Districts (For Maalvika and Steve) 
+## Notes on Naming and Special Districts (irrelevant info for someone making a report on their own, only for EDGI team)
 
-We've decided our urls will be "/XXN-2020" with XX being the state code and N being the district number. Example: VA4_2020. Let's name the .rmds accordingly so I can very quickly make the links live.
+We've decided our urls will be "/XXN-2020" with XX being the state code and N being the district number. Example: VA4_2020. Let's name the .rmds accordingly so we can very quickly make the links live.
 
 For districts that do not have a # because they are small (i.e Deleware, we are going to name the file DE00_2020 so we can differentiate from the senator report card which would be DE_2020. 
 
 ### Special Districts 
 
-AK, IA2, MI7, NY9 and WA5 are outliers on the "grade" dot plot, and therefore the dotplot code will not work for these 5 districts. In case one of you run them and I don't, here's what you need to do:
+AK, IA2, MI7, NY9 and WA5 are outliers on the "grade" dot plot, and therefore the dotplot code will not work for these 5 districts. In case you want to run one of this geographies, here's what you need to do:
 1. locate the folder "outlierdotplots" in the master branch and download it.
 2. move the correct dot plot into your local file folder for the district you're working on
 3.  block out or delete code lines 189-208 in the .rmd - in case the line #s change slightly, this code looks like this: 
@@ -48,7 +48,7 @@ dotplot <-ggplot(CWAper100, aes(x=Region, y=Per100, fill=Highlight))+
 ggsave("dotplot_VA4.png", dotplot, path=here("CD_Dirs/VA4"), scale = 2, width=8, height=5, units=c("cm"))
 ```
 
-## Keeping Track of what districts we've run 
+## Keeping Track of what districts we've run (irrelevant info for someone making a report on their own, only for EDGI team)
 
 Let's use [this spreadsheet](https://docs.google.com/spreadsheets/d/1dXJLIVnqKmhn95RRCgp7yw_a5UPGPgW4PyT264QTeTQ/edit?usp=sharing)
 
@@ -138,7 +138,7 @@ If you are running this from the CD-reports folder, the paths to the files shoul
   
 1. In the reportcards folder make a copy of the most recent eew_template.Rmd.  Name the new file eew_template_XXN.Rmd, where XX is the state abbreviation and N is the district number.
 2. In RStudion use File->File Open to open the new .Rmd file.
-3. Use Command-F (Mac) or Ctrl-F (Windows/Linux) to make these changes.  Use your own state and district in place of California's 36th district in these examples, and the state/district of the file you copied in place of Virginia's 4th.  **Run these replacements in this exact order.**
+3.a FOR CONGRESSIONAL DISTRICTS: Use Command-F (Mac) or Ctrl-F (Windows/Linux) to make these changes.  Use your own state and district in place of California's 36th district in these examples..  **Run these replacements in this exact order.**
 ```
     a. Virginia's 4th --> California's 36th  (expect 2 replacements)
     b. VA 4 --> CA 36  (expect 9 replacements)
@@ -146,7 +146,15 @@ If you are running this from the CD-reports folder, the paths to the files shoul
     d. VA4 --> CA36 (expect 42 replacements)
     e. _VA- --> _CA- (expect 6 replacements)
     
-```    
+``` 
+
+3.b FOR STATES: Use Command-F (Mac) or Ctrl-F (Windows/Linux) to make these changes.  Use your own state in place of Mississippi in these examples.  **Run these replacements in this exact order.**
+
+``` 
+a. Wyoming --> Mississippi
+b. WY --> MS 
+
+
 4. Use the find function (but without any replacement) to look for this string:  'inspectionsper1000_All_pg4', then see what date stamp follows.  The date stamp for all of our data is 091820.  If the date you find is other than that (e.g. 090820), do another global find/replace:
 ``` 090820  -->  091820  (expect 6 replacements) ```
 
