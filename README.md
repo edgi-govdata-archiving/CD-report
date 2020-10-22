@@ -154,7 +154,7 @@ If you are running this from the CD-reports folder, the paths to the files shoul
 a. Wyoming --> Mississippi
 b. WY --> MS 
 
-
+```
 4. Use the find function (but without any replacement) to look for this string:  'inspectionsper1000_All_pg4', then see what date stamp follows.  The date stamp for all of our data is 091820.  If the date you find is other than that (e.g. 090820), do another global find/replace:
 ``` 090820  -->  091820  (expect 6 replacements) ```
 
