@@ -77,7 +77,7 @@ WA2 <- housemembers[which(housemembers$CD=="WA5"), ]
  <hr style="height:3px;border-width:0; margin-left:15px; margin-right:15px;color: #b9b9b9;background-color: #b9b9b9; margin-top: 0em; margin-bottom: 0em">
 ##### Washington's 2nd District; seat held by `r WA2[1,2]` since `r WA2[1,8]` 
  <div class="container">
-  <img src="../CD_maps/WA2_map.png" alt="Snow" style="width:100%;">
+  <img src="../CD_maps/WA5_map.png" alt="Snow" style="width:100%;">
    <div class="bottom-left">Map shows congressional district or state with clusters of regulated facilities</div>
   </div>
 <a href="https://www.environmentalenforcementwatch.org/"><img src="../logosandimages/eew_logo.png" style="float: left; width: 9%; margin-left: 30%"></a>
@@ -609,31 +609,55 @@ ggsave("RCRAfacilities.png", RCRAfacilities, path=here("CD_Dirs/WA2"), scale = 3
 
 <font size="3">**ECHO reports for facilities:**</font>
 
-* <font size="2">[`r CWAbadactors[1,8] `](`r CWAbadactors[1,5] `)</font>
-* <font size="2">[`r CWAbadactors[2,8] `](`r CWAbadactors[2,5] `)</font>
-* <font size="2">[`r CWAbadactors[3,8] `](`r CWAbadactors[3,5] `)</font>
-* <font size="2">[`r CWAbadactors[4,8] `](`r CWAbadactors[4,5] `)</font>
-* <font size="2">[`r CWAbadactors[5,8] `](`r CWAbadactors[5,5] `)</font>
-* <font size="2">[`r CWAbadactors[6,8] `](`r CWAbadactors[6,5] `)</font>
-* <font size="2">[`r CWAbadactors[7,8] `](`r CWAbadactors[7,5] `)</font>
-* <font size="2">[`r CWAbadactors[8,8] `](`r CWAbadactors[8,5] `)</font>
-* <font size="2">[`r CWAbadactors[9,8] `](`r CWAbadactors[9,5] `)</font>
-* <font size="2">[`r CWAbadactors[10,8] `](`r CWAbadactors[10,5] `)</font>
+<font size="2">[`r na.omit(CWAbadactors[1,8]) `](`r na.omit(CWAbadactors[1,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(CWAbadactors[2,8]) `](`r na.omit(CWAbadactors[2,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(CWAbadactors[3,8]) `](`r na.omit(CWAbadactors[3,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(CWAbadactors[4,8]) `](`r na.omit(CWAbadactors[4,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(CWAbadactors[5,8]) `](`r na.omit(CWAbadactors[5,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(CWAbadactors[6,8]) `](`r na.omit(CWAbadactors[6,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(CWAbadactors[7,8]) `](`r na.omit(CWAbadactors[7,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(CWAbadactors[8,8]) `](`r na.omit(CWAbadactors[8,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(CWAbadactors[9,8]) `](`r na.omit(CWAbadactors[9,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(CWAbadactors[10,8]) `](`r na.omit(CWAbadactors[10,5]) `)</font>
+<br />
+
 
 <a ><img src="../CD_Dirs/WA2/RCRAfacilities.png" style="float: left; width: 65%; height: 60%; margin-right: 5%" ></a>
 
+<br />
+
 <font size="3">**ECHO reports for facilities:**</font>
 
-* <font size="2">[`r RCRAbadactors[1,8] `](`r RCRAbadactors[1,5] `)</font>
-* <font size="2">[`r RCRAbadactors[2,8] `](`r RCRAbadactors[2,5] `)</font>
-* <font size="2">[`r RCRAbadactors[3,8] `](`r RCRAbadactors[3,5] `)</font>
-* <font size="2">[`r RCRAbadactors[4,8] `](`r RCRAbadactors[4,5] `)</font>
-* <font size="2">[`r RCRAbadactors[5,8] `](`r RCRAbadactors[5,5] `)</font>
-* <font size="2">[`r RCRAbadactors[6,8] `](`r RCRAbadactors[6,5] `)</font>
-* <font size="2">[`r RCRAbadactors[7,8] `](`r RCRAbadactors[7,5] `)</font>
-* <font size="2">[`r RCRAbadactors[8,8] `](`r RCRAbadactors[8,5] `)</font>
-* <font size="2">[`r RCRAbadactors[9,8] `](`r RCRAbadactors[9,5] `)</font>
-* <font size="2">[`r RCRAbadactors[10,8] `](`r RCRAbadactors[10,5] `)</font>
+<font size="2">[`r na.omit(RCRAbadactors[1,8]) `](`r na.omit(RCRAbadactors[1,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(RCRAbadactors[2,8]) `](`r na.omit(RCRAbadactors[2,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(RCRAbadactors[3,8]) `](`r na.omit(RCRAbadactors[3,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(RCRAbadactors[4,8]) `](`r na.omit(RCRAbadactors[4,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(RCRAbadactors[5,8]) `](`r na.omit(RCRAbadactors[5,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(RCRAbadactors[6,8]) `](`r na.omit(RCRAbadactors[6,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(RCRAbadactors[7,8]) `](`r na.omit(RCRAbadactors[7,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(RCRAbadactors[8,8]) `](`r na.omit(RCRAbadactors[8,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(RCRAbadactors[9,8]) `](`r na.omit(RCRAbadactors[9,5]) `)</font>
+<br />
+<font size="2">[`r na.omit(RCRAbadactors[10,8]) `](`r na.omit(RCRAbadactors[10,5]) `)</font>
+<br />
+
 
 \pagebreak
 
@@ -951,13 +975,19 @@ These figures show patterns of RCRA inspections, violations, enforcement actions
 
 ## In office since `r WA2[1,6]` `r WA2[1,7]`, `r WA2[1,8]`
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
 ### This member of Congress serves on the following committees: 
 
-links to committees will appear here . . . Steve are we following the same .csv structure or a new structure? 
+links to committees will appear here once pulled 
 
 
-
-Add a blurb about what house reps can do 
+## Add a blurb about what house reps can do generally here 
 
 \pagebreak
 
